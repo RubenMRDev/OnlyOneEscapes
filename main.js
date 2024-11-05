@@ -1,19 +1,21 @@
-let nombres = [
+const nombres = [
     "Israel Abad Barrera",
     "Javier Ariza Rosales",
     "Nicolás Burgos Contreras",
     "Felipe Chacón Montero",
     "Fernando de la Torre Esperon",
-    "Jesús Manuel García Lozano",
     "Alejandro Gómez Ojeda",
     "Pablo Jiménez Menéndez",
     "Mario Lebrero García",
     "Pablo Noria Gómez",
-    "Mauricio Nicolas Ortiz",
+    "Mauricio Nicolás Ortiz",
     "Adrián Pérez Agredano",
     "Jairo Saborito Franco",
-    "Judith Tamayo Balogh"
+    "Judith Tamayo Balogh",
+    "Samuel Utrilla Núñez",
+    "Rubén Martín Ruiz"
 ];
+
 
 function mezclarArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -22,7 +24,7 @@ function mezclarArray(array) {
     }
 }
 
-mezclarArray(nombres);
+
 
 function crearParejas(nombres){
 
@@ -36,7 +38,7 @@ for (let i = 0; i < nombres.length; i += 2) {
 }
 return parejas;
 }
-
+mezclarArray(nombres);
 let jugadores = crearParejas(nombres);
 
 // for(let i=0;i<parejas.length;i++){
@@ -48,35 +50,67 @@ let vivos=[];
 let jugando=[];
 let ganadores= [];
 
-
 function empezarPartida(jugador1,jugador2){
     let dado1 = Math.floor(Math.random()*6+1);
     let dado2 = Math.floor(Math.random()*6+1);
-    
-    if(dado1>dado2){
-        console.log(jugador1 + " ha muerto.")
-        muertos.push(jugador1);
-        ganadores.push(jugador2);
+    if(dado1==dado2){
+        console.log("Han salido dados repetidos")
+        empezarPartida(jugador1,jugador2);
     }else{
-        console.log(jugador2 + " ha muerto.")
-        muertos.push(jugador2);
-        ganadores.push(jugador1);
+        if(dado1>dado2){
+            console.log(jugador2 + " mato a " + jugador1)
+            muertos.push(jugador1);
+            ganadores.push(jugador2);
+        }else{
+            console.log(jugador1 + " mato a " + jugador2)
+            muertos.push(jugador2);
+            ganadores.push(jugador1);
+        }
     }
 }
 
+function boss(jugador1){
+    let dado1 = Math.floor(Math.random()*6+1);
+    let dado2 = Math.floor(Math.random()*6+1);
+    if(dado1==dado2){
+        console.log("Han salido dados repetidos")
+        boss(jugador1);
+    }else{
+        if(dado1>dado2){
+            console.log(jugador1 + " murio a manos de Paloma")
+            muertos.push(jugador1);
+        }else{
+            console.log(jugador1 + " sobrevivio a Paloma.")
+            ganadores.push(jugador1);
+        }
+    }
+}
 
 function ejecutarRonda(jugadores){
-
     for(let i=0;i<jugadores.length;i++){
-        empezarPartida(jugadores[i][0],jugadores[i][1]);
+        if(jugadores[i][1] === undefined){
+
+            boss(jugadores[i][0])
+
+        }else{
+            empezarPartida(jugadores[i][0],jugadores[i][1]);
+        }
     }
 }
 
+console.log(jugadores)
 
+jugando = jugadores;
 
-ejecutarRonda(jugadores)
-console.log("== RONDA 1 ==")
-console.log("MUERTOS")
-console.log(muertos)
-console.log("GANADORES")
-console.log(ganadores)
+while(jugando.length>1){
+    console.log("== NUEVA RONDA ==")
+    ejecutarRonda(jugadores)
+    console.log("MUERTOS")
+    console.log(muertos)
+    console.log("GANADORES")
+    console.log(ganadores)
+    jugando= ganadores;
+    mezclarArray(jugando);
+    jugadores = crearParejas(ganadores);
+    ganadores = [];
+ }
