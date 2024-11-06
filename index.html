@@ -8,17 +8,18 @@
   </head>
   <body>
     <h1 id="players">Welcome to the wheel of doom</h1>
+    <h2>CEI Battle Royale</h2>
     <!--Players-->
-    <button id="add-player-button" onclick="displayNewPlayerMenu()">Add new Player</button>
+    <button id="add-player-button" onclick="popNewPlayerMenu()">Add new Player</button>
     <!--Se pulsa el botón de añadir nuevo jugador y aparece un modal con un formulario para introducir el nick-->
     <div id="form-container" class="form-container">
       <form id="newPlayerForm" name="newPlayerForm" action="" method="GET">
-        <label for="newPlayerName">name:</label>
-        <input type="text" id="newPlayerName" name="newPlayerName" />
+        <label for="playerNickname">name:</label>
+        <input type="text" id="playerNickname" placeholder="Enter nickname" name="playerNickname" />
         <input type="submit" value="Submit"/>
       </form>
     </div>
-
+    <p id="players-roster"></p>
     <script src="main.js"></script>
   </body>
 </html>

@@ -1,40 +1,51 @@
-/////////////////////////////////PLAYERS//////////////////////////////////
+////////////////////////////////////////////////PLAYERS//////////////////////////////////
 
 let players = new Array();
 
-function displayNewPlayerMenu(){
+function popNewPlayerMenu() {
   const formContainer = document.getElementById("form-container");
   formContainer.style.display = "block";
   document.getElementById("add-player-button").style.display = "none";
 }
 
+function closeNewPlayerMenu() {
+  document.getElementById("add-player-button").style.display = "inline";
+  const formContainer = document.getElementById("form-container");
+  formContainer.style.display = "none";
+  formContainer.elements.playerNickname = "";
+}
+
+insertPlayer();
+
 function insertPlayer() {
   let form = document.getElementById("newPlayerForm");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const name = form.elements.name.value.trim();
-    /*if(validateName(name)){
-        players.push(name);
-        alert("jugador añadido");
-    }*/
+    const name = form.elements.playerNickname.value.trim();
+    console.log();
+    if (validateName(name)) {
+      players.push(name);
+      document.getElementById("playerNickname").value = "";
+      document.getElementById("players-roster").innerHTML = stringFromCurrentPlayers(players);
+      closeNewPlayerMenu();
+    } else {
+      alert(`el nickname ${name} no es válido`);
+      document.getElementById("playerNickname").value = "";
+    }
   });
 }
 
-function validateName(name) {
-  //name empty o ya existe en el array
-  if (name === "") {
-    alert("no puedes introducir un nombre vacío");
-    return false;
-  }
-  if(players.includes(name)){
-    alert("el jugador ya existe");
-    return false;
-  }
-  return true;
+function stringFromCurrentPlayers(playersArr) {
+  return playersArr.join("</br>");
 }
 
-//----------------------------------------------------------------------
+function validateName(nickName) {
+  //name empty o ya existe en el array
+  return nickName.length > 0 && !players.includes(nickName);
+}
 
+//-------------------------------------------------------------------------------------------------------------
+/*
 let nombres = [
   "Israel Abad Barrera",
   "Javier Ariza Rosales",
@@ -111,3 +122,4 @@ console.log("MUERTOS");
 console.log(muertos);
 console.log("GANADORES");
 console.log(ganadores);
+*/
