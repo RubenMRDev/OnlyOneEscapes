@@ -3,18 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Wheel of Doom</title>
+    <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <h1 id="players"></h1>
+    <h1 id="players">Welcome to the wheel of doom</h1>
     <!--Players-->
-    <button id="add-player" onclick="">Add new Player</button>
+    <button id="add-player-button" onclick="displayNewPlayerMenu()">Add new Player</button>
     <!--Se pulsa el botón de añadir nuevo jugador y aparece un modal con un formulario para introducir el nick-->
-    <form id="newPlayerForm" name="newPlayerForm" action="" method="GET">
-      <label for="newPlayerName">name:</label>
-      <input type="text" id="newPlayerName" name="newPlayerName" />
-      <input type="submit" value="Submit"/>
-    </form>
+    <div id="form-container" class="form-container">
+      <form id="newPlayerForm" name="newPlayerForm" action="" method="GET">
+        <label for="newPlayerName">name:</label>
+        <input type="text" id="newPlayerName" name="newPlayerName" />
+        <input type="submit" value="Submit"/>
+      </form>
+    </div>
 
     <script src="main.js"></script>
   </body>

@@ -1,6 +1,12 @@
 /////////////////////////////////PLAYERS//////////////////////////////////
 
-let players = [];
+let players = new Array();
+
+function displayNewPlayerMenu(){
+  const formContainer = document.getElementById("form-container");
+  formContainer.style.display = "block";
+  document.getElementById("add-player-button").style.display = "none";
+}
 
 function insertPlayer() {
   let form = document.getElementById("newPlayerForm");
