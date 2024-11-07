@@ -73,12 +73,12 @@ function tirarDado(dado1HTML, dado2HTML,jugadores) {
         dado2HTML.innerHTML = "<span>" + dado2 + "</span>";
 
         i++;
-        intervalo *= 1.3;
+        intervalo *= 1.2;
 
         if (i >= 10) { 
             dado1HTML.innerHTML = "<h1>" + dado1 + "</h1>";
             dado2HTML.innerHTML = "<h1>" + dado2 + "</h1>";
-            intervalo = 100;
+            intervalo = 50;
             i = 0;
             
             // Comprobar si los números son iguales
@@ -118,12 +118,12 @@ function boss(dado1HTML, dado2HTML,jugadores) {
         dado2HTML.innerHTML = "<span>" + dado2 + "</span>";
 
         i++;
-        intervalo *= 1.3;
+        intervalo *= 1.2;
 
         if (i >= 10) { 
             dado1HTML.innerHTML = "<h1>" + dado1 + "</h1>";
             dado2HTML.innerHTML = "<h1>" + dado2 + "</h1>";
-            intervalo = 100;
+            intervalo = 50;
             i = 0;
             
             // Comprobar si los números son iguales
@@ -168,7 +168,7 @@ async function ejecutarRonda(jugadores) {
         
         
         // Esperar 1 segundo antes de pasar al siguiente jugador
-        await new Promise(resolve => setTimeout(resolve, 2000));  // Espera de 1 segundo
+        await new Promise(resolve => setTimeout(resolve, 1000));  // Espera de 1 segundo
 
     }
 
