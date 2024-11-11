@@ -1,5 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+
 body{
     text-align: center;
+    font-family: "Pixelify Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    z-index: 1;
 }
 .form-container{
     display: none;
@@ -7,9 +14,29 @@ body{
 
 #add-player-button{
     text-align: center;
+    background-color: #ffe500;
+    border: none;
+    font-family: "Pixelify Sans", serif;
+
 }
+
+.swal2-custom {
+    background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
+    color: white;
+  }
 
 #players-roster{
     padding: 10%;
     margin: auto 0;
+}
+
+.responsive-background {
+    position: fixed;
+    background-image: url('images/fondo_desktop.jpg');
+    background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
+    background-position: center; /* Centra la imagen */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    width: 100vw; /* Ocupa todo el ancho de la pantalla */
+    height: 100vh; /* Ocupa toda la altura de la pantalla */
+    z-index: -1;
 }

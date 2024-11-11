@@ -1,24 +1,34 @@
 ////////////////////////////////////////////////PLAYERS//////////////////////////////////
 
-let nombres = [
-    "Israel Abad Barrera",
-    "Javier Ariza Rosales",
-    "Nicolás Burgos Contreras",
-    "Felipe Chacón Montero",
-    "Fernando de la Torre Esperon",
-    "Jesús Manuel García Lozano",
-    "Alejandro Gómez Ojeda",
-    "Pablo Jiménez Menéndez",
-    "Mario Lebrero García",
-    "Pablo Noria Gómez",
-    "Mauricio Nicolas Ortiz",
-    "Adrián Pérez Agredano",
-    "Jairo Saborito Franco",
-    "Judith Tamayo Balogh",
-    "Samuel Utrilla Núñez",
-    "Ruben Martin Ruiz"
-];
+// let nombres = [
+//     "Israel Abad Barrera",
+//     "Javier Ariza Rosales",
+//     "Nicolás Burgos Contreras",
+//     "Felipe Chacón Montero",
+//     "Fernando de la Torre Esperon",
+//     "Jesús Manuel García Lozano",
+//     "Alejandro Gómez Ojeda",
+//     "Pablo Jiménez Menéndez",
+//     "Mario Lebrero García",
+//     "Pablo Noria Gómez",
+//     "Mauricio Nicolas Ortiz",
+//     "Adrián Pérez Agredano",
+//     "Jairo Saborito Franco",
+//     "Judith Tamayo Balogh",
+//     "Samuel Utrilla Núñez",
+//     "Ruben Martin Ruiz"
+// ];
 
+let nombres=[]
+
+function loadPlayers(players){
+    const divPlayers= document.getElementById("dropdown-players");
+        divPlayers.innerHTML="";
+    for(let i=0;i<players.length;i++) {
+        divPlayers.innerHTML+=`<li> ${players[i]}</li>`
+    }
+
+}
 function popNewPlayerMenu() {
   const formContainer = document.getElementById("form-container");
   formContainer.style.display = "block";
@@ -32,7 +42,76 @@ function closeNewPlayerMenu() {
   formContainer.elements.playerNickname = "";
 }
 
-insertPlayer();
+
+
+
+async function newInsertPlayer() {
+    const { value: playerName } = await Swal.fire({
+      input: "text",
+      inputLabel: "Nombre de Jugador",
+      inputPlaceholder: "Introduce el nombre del jugador...",
+      inputAttributes: {
+        "aria-label": "Introduce el nombre del jugador"
+      },
+      showCancelButton: true,
+      customClass: {
+        popup: "swal2-custom" // Aplica el fondo personalizado
+      }
+    });
+    
+    if (playerName) {
+      const name = playerName.trim();
+      
+      // Verificar si el array ya contiene el nombre ingresado
+      if (nombres.includes(name)) {
+        await Swal.fire({
+          title: "ERROR",
+          text: "El nombre ya existe en la lista de jugadores.",
+          icon: "error",
+          customClass: {
+            popup: "swal2-custom"
+          }
+        });
+        return; // Salir de la función si el nombre ya existe
+      }
+  
+      if (nombres.length < 20) {
+        if (validateName(name)) {
+          nombres.push(name);
+          loadPlayers(nombres);
+          await Swal.fire({
+            title: "Jugador Agregado",
+            text: `El jugador ${name} ha sido agregado.`,
+            icon: "success",
+            customClass: {
+              popup: "swal2-custom"
+            }
+          });
+        } else {
+          await Swal.fire({
+            title: "ERROR",
+            text: "El nombre tiene mas de 10 caracteres.",
+            icon: "error",
+            customClass: {
+              popup: "swal2-custom"
+            }
+          });
+        }
+      } else {
+        await Swal.fire({
+          title: "ERROR",
+          text: "Límite máximo de jugadores alcanzado.",
+          icon: "error",
+          customClass: {
+            popup: "swal2-custom"
+          }
+        });
+      }
+    }
+  }
+  
+  
+  
 
 function insertPlayer() {
     
@@ -41,19 +120,29 @@ function insertPlayer() {
     e.preventDefault();
     const name = form.elements.playerNickname.value.trim();
     console.log();
-    if (validateName(name)) {
-        nombres.push(name);
-      document.getElementById("playerNickname").value = "";
-      document.getElementById("players-roster").innerHTML = stringFromCurrentPlayers(nombres);
-      closeNewPlayerMenu();
-    } else {
+    if(nombres.length<20){
+        if (validateName(name)) {
+            nombres.push(name);
+            loadPlayers(nombres)
+            closeNewPlayerMenu()
+        } else {
+            Swal.fire({
+                title: "ERROR",
+                text: "The name is not valid.",
+                icon: "error"
+              });
+          document.getElementById("playerNickname").value = "";
+          closeNewPlayerMenu()
+        }
+    }else{
         Swal.fire({
             title: "ERROR",
-            text: "The name is not valid.",
+            text: "MAX PLAYER ERROR",
             icon: "error"
           });
-      document.getElementById("playerNickname").value = "";
+          closeNewPlayerMenu()
     }
+    
   });
 }
 
@@ -74,7 +163,7 @@ function stringFromCurrentPlayers(playersArr) {
 
 function validateName(nickName) {
   //name empty o ya existe en el array
-  return nickName.length > 0 && !nombres.includes(nickName);
+  return nickName.length > 0 && !nombres.includes(nickName) && nickName.length<11;
 }
 
 
@@ -103,7 +192,6 @@ for (let i = 0; i < nombres.length; i += 2) {
 return parejas;
 }
 
-mezclarArray(nombres);
 
 
 
@@ -112,7 +200,7 @@ let vivos=[];
 let jugando=[];
 let ganadores= [];
 
-vivos = nombres;
+
 
 
 // VARIABLES DEL DOM
@@ -259,11 +347,24 @@ async function ejecutarRonda(jugadores) {
 let roundNumber=0;
 
 function startRound(){
-    roundNumber++;
-    roundcount.innerHTML="RONDA " + roundNumber;
-    aliveplayers.innerHTML="";
-    document.getElementById("playbutton").innerHTML="Next Round!";
-    document.getElementById("playbutton").style.display="none";
 
-    ejecutarRonda(crearParejas(mezclarArray(vivos)))
+    if(nombres.length>=1){
+        mezclarArray(nombres);
+        vivos = nombres;
+
+        roundNumber++;
+        roundcount.innerHTML="RONDA " + roundNumber;
+        aliveplayers.innerHTML="";
+        document.getElementById("playbutton").innerHTML="Next Round!";
+        document.getElementById("playbutton").style.display="none";
+    
+        ejecutarRonda(crearParejas(mezclarArray(vivos)))
+    }else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Tiene que aver al menos 1 jugador.",
+          });
+    }
+    
 }
