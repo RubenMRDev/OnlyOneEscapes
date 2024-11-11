@@ -35,6 +35,7 @@ function closeNewPlayerMenu() {
 insertPlayer();
 
 function insertPlayer() {
+    
   let form = document.getElementById("newPlayerForm");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
@@ -46,10 +47,25 @@ function insertPlayer() {
       document.getElementById("players-roster").innerHTML = stringFromCurrentPlayers(nombres);
       closeNewPlayerMenu();
     } else {
-      alert(`el nickname ${name} no es válido`);
+        Swal.fire({
+            title: "ERROR",
+            text: "The name is not valid.",
+            icon: "error"
+          });
       document.getElementById("playerNickname").value = "";
     }
   });
+}
+
+async function insertPlayerAlert(){
+    const { value: url } = await Swal.fire({
+        input: "url",
+        inputLabel: "URL address",
+        inputPlaceholder: "Enter the URL"
+      });
+      if (url) {
+        Swal.fire(`Entered URL: ${url}`);
+      }
 }
 
 function stringFromCurrentPlayers(playersArr) {
