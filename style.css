@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
 
+*{
+    font-family: "Pixelify Sans", serif;
+
+}
+
+
 body{
     text-align: center;
     font-family: "Pixelify Sans", serif;
@@ -40,3 +46,8 @@ body{
     height: 100vh; /* Ocupa toda la altura de la pantalla */
     z-index: -1;
 }
+
+.unstyled-link {
+    color: black;        /* Cambia el color a negro */
+  }
+  
