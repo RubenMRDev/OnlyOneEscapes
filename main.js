@@ -38,10 +38,10 @@ function updatePlayers(alive, dead) {
     const playerLi = document.createElement("li");
     const icon = document.createElement("i");
     playerLi.style.color = color;
-    icon.setAttribute("class", iconStatus);
+    icon.setAttribute("class", iconStatus + " px-2");
 
     playerLi.appendChild(icon);
-    playerLi.appendChild(document.createTextNode(" " + player));
+    playerLi.appendChild(document.createTextNode(player));
 
     return playerLi;
   }
