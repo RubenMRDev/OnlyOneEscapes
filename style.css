@@ -47,13 +47,10 @@ body{
 }
 
 #dropdown-players{
-    position: absolute;
     background-color: rgba(25, 161, 176, 0.9);
-    width: 100px;
     padding: 10% 20%;
-    left: 0;
-    margin-top: 8px;
+    margin-top: 0px;
     border-radius: 0;
-    border:none;
     text-align: start;
+    top: 65px;
 }

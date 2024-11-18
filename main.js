@@ -25,16 +25,16 @@ let nombres=[]
 //-----------------------------------SHOW-DEAD-ALIVE-DROPDOWN--------------------------------------------
 
 
-const alive = new Array("nombreTremendamenteLargo", "b", "c", "d", "e", "f");
-const dead = new Array("g", "h", "i", "j", "k", "l");
+const alive = new Array("nombreTremendamenteLargo", "becerro", "coñac", "diamante", "escafandra", "filarmónica");
+const dead = new Array("geriátrico", "h", "i", "j", "k", "l");
 
 
 
-function updatePlayers(alive, dead) {
+function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
   listPlayers.innerHTML = "";
 
-  function createPlayerItem(player, iconStatus, color) {
+  function createPlayerLi(player, iconStatus, color) {
     const playerLi = document.createElement("li");
     const icon = document.createElement("i");
     playerLi.style.color = color;
@@ -47,12 +47,12 @@ function updatePlayers(alive, dead) {
   }
 
   alive.forEach(player => {
-    const playerLi = createPlayerItem(player, "fa-solid fa-face-smile", "#ffe500");
+    const playerLi = createPlayerLi(player, "fa-solid fa-face-smile", "#ffe500");
     listPlayers.appendChild(playerLi);
   });
 
   dead.forEach(player => {
-    const playerLi = createPlayerItem(player, "fa-solid fa-skull", "black");
+    const playerLi = createPlayerLi(player, "fa-solid fa-skull", "black");
     listPlayers.appendChild(playerLi);
   });
 }
@@ -60,10 +60,11 @@ function updatePlayers(alive, dead) {
 
 const buttonSkull = document.getElementById("dropdownPlayersStatus");
 
-buttonSkull.addEventListener("mousedown", ()=>{
+buttonSkull.addEventListener("click", ()=>{
   updatePlayers(alive, dead);
-  const listPlayers= document.getElementById("dropdown-players");
-  listPlayers.setAttribute("class", "dropdown-menu rounded-bottom show")
+  //---------------bootstrap ya gestiona mostrar el overlay-----------
+  //const listPlayers= document.getElementById("dropdown-players");
+  //listPlayers.setAttribute("class", "dropdown-menu rounded-bottom show");
 });
 
 
