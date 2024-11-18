@@ -25,7 +25,7 @@ let nombres=[]
 //-----------------------------------SHOW-DEAD-ALIVE-DROPDOWN--------------------------------------------
 
 
-const alive = new Array("a", "b", "c", "d", "e", "f");
+const alive = new Array("nombreTremendamenteLargo", "b", "c", "d", "e", "f");
 const dead = new Array("g", "h", "i", "j", "k", "l");
 
 
