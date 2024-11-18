@@ -21,14 +21,56 @@
 
 let nombres=[]
 
-function loadPlayers(players){
-    const divPlayers= document.getElementById("dropdown-players");
-        divPlayers.innerHTML="";
-    for(let i=0;i<players.length;i++) {
-        divPlayers.innerHTML+=`<li> ${players[i]}</li>`
-    }
 
+//-----------------------------------SHOW-DEAD-ALIVE-DROPDOWN--------------------------------------------
+
+
+const alive = new Array("a", "b", "c", "d", "e", "f");
+const dead = new Array("g", "h", "i", "j", "k", "l");
+
+
+
+function updatePlayers(alive, dead){
+  const listPlayers= document.getElementById("dropdown-players");
+  listPlayers.innerHTML = "";
+
+  //fontawesome Icons <i class="fa-solid fa-skull"></i><i class="fa-solid fa-face-smile"></i>
+  let aliveIcon = document.createElement("i");
+  aliveIcon.setAttribute("class", "fa-solid fa-face-smile");
+  let deadIcon = document.createElement("i");
+  deadIcon.setAttribute("class", "fa-solid fa-skull");
+
+  //
+  alive.forEach(player =>{
+    let playerLi = document.createElement("li");
+    playerLi.innerHTML = "";
+    playerLi.style.color = "#ffe500";
+    playerLi.textContent = player;
+    listPlayers.appendChild(playerLi);
+    console.log("si");
+  });
+
+  dead.forEach(player =>{
+    let playerLi = document.createElement("li");
+    playerLi.innerHTML = "";
+    playerLi.style.color = "black";
+    playerLi.textContent = player;
+    listPlayers.appendChild(playerLi);
+    console.log("sis");
+  });
 }
+
+
+const buttonSkull = document.getElementById("dropdownPlayersStatus");
+
+buttonSkull.addEventListener("mousedown", ()=>{
+  updatePlayers(alive, dead);
+  const listPlayers= document.getElementById("dropdown-players");
+  listPlayers.setAttribute("class", "dropdown-menu rounded-bottom show")
+});
+
+
+
 function popNewPlayerMenu() {
   const formContainer = document.getElementById("form-container");
   formContainer.style.display = "block";
