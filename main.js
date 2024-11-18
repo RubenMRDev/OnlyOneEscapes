@@ -1,3 +1,11 @@
+//alerta añade un juagdor
+//play aviso seguro que quieres empezar solo la primera vez
+//dado rotando
+//resultado del dado
+//moverse entre pantallas
+//mostrar logs en pantalla inicio
+//quitar
+
 ////////////////////////////////////////////////PLAYERS//////////////////////////////////
 
 let nombres = [
@@ -25,18 +33,6 @@ let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 let dados = ["/images/dado1","/images/dado2","/images/dado3","/images/dado4","/images/dado5","/images/dado6"]
 
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
-
- 
-/*  function loadPlayers(players) {
-   const divPlayers = document.getElementById("dropdown-players");
-   divPlayers.innerHTML = "";
-   for (let i = 0; i < players.length; i++) {
-     divPlayers.innerHTML += `<li> ${players[i]}</li>`
-   }
-  } */
-
-/* const alive = new Array("nombreTremendamenteLargo", "becerro", "coñac", "diamante", "escafandra", "filarmónica");
-const dead = new Array("geriátrico", "h", "i", "j", "k", "l"); */
 
 function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
@@ -76,8 +72,6 @@ const buttonSkull = document.getElementById("dropdownPlayersStatus");
 buttonSkull.addEventListener("click", () => {
   if (!muertos.length > 0) {
     updatePlayers(nombres);
-  } else {
-    updatePlayers(vivos, muertos);
   }
 });
 
@@ -172,8 +166,8 @@ function insertPlayer() {
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
-        loadPlayers(nombres)
-        closeNewPlayerMenu()
+        loadPlayers(nombres);
+        closeNewPlayerMenu();
       } else {
         Swal.fire({
           title: "ERROR",
@@ -252,7 +246,7 @@ const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
 const roundcount = document.getElementById("roundcount");
 const aliveplayers = document.getElementById("aliveplayers");
-const deathplayers = document.getElementById("deathplayers");
+const deadplayers = document.getElementById("deadplayers");
 
 let step = 0;
 let i = 0;
@@ -272,12 +266,15 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
         muertos.push(jugadores[step][1]);
-        deathplayers.innerHTML += jugadores[step][1] + "<br>";
+        deadplayers.innerHTML += jugadores[step][1] + "<br>";
+        updatePlayers(ganadores, muertos);
       } else {
         ganadores.push(jugadores[step][1]);
         aliveplayers.innerHTML += jugadores[step][1] + "<br>";
         muertos.push(jugadores[step][0]);
-        deathplayers.innerHTML += jugadores[step][0] + "<br>";
+        deadplayers.innerHTML += jugadores[step][0] + "<br>";
+        updatePlayers(ganadores, muertos);
+
       }
     } else {
       
@@ -315,6 +312,9 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("playbutton").style.display = "inline";
     step = 0;
   }
+
+  //Guardar captura del estado de las rondas para los Logs
+
 }
 let roundNumber = 0;
 
@@ -341,12 +341,13 @@ function startRound() {
         document.getElementById("playbutton").innerHTML = "Next Round!";
         document.getElementById("playbutton").style.display = "none";
         playMusic()
+        //SOS
         ejecutarRonda(crearParejas(mezclarArray(vivos)))
       } else {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Tiene que aver al menos 1 jugador.",
+          text: "Tiene que haber al menos 1 jugador.",
         });
       }
     }
