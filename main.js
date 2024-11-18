@@ -30,33 +30,30 @@ const dead = new Array("g", "h", "i", "j", "k", "l");
 
 
 
-function updatePlayers(alive, dead){
-  const listPlayers= document.getElementById("dropdown-players");
+function updatePlayers(alive, dead) {
+  const listPlayers = document.getElementById("dropdown-players");
   listPlayers.innerHTML = "";
 
-  //fontawesome Icons <i class="fa-solid fa-skull"></i><i class="fa-solid fa-face-smile"></i>
-  let aliveIcon = document.createElement("i");
-  aliveIcon.setAttribute("class", "fa-solid fa-face-smile");
-  let deadIcon = document.createElement("i");
-  deadIcon.setAttribute("class", "fa-solid fa-skull");
+  function createPlayerItem(player, iconStatus, color) {
+    const playerLi = document.createElement("li");
+    const icon = document.createElement("i");
+    playerLi.style.color = color;
+    icon.setAttribute("class", iconStatus);
 
-  //
-  alive.forEach(player =>{
-    let playerLi = document.createElement("li");
-    playerLi.innerHTML = "";
-    playerLi.style.color = "#ffe500";
-    playerLi.textContent = player;
+    playerLi.appendChild(icon);
+    playerLi.appendChild(document.createTextNode(" " + player));
+
+    return playerLi;
+  }
+
+  alive.forEach(player => {
+    const playerLi = createPlayerItem(player, "fa-solid fa-face-smile", "#ffe500");
     listPlayers.appendChild(playerLi);
-    console.log("si");
   });
 
-  dead.forEach(player =>{
-    let playerLi = document.createElement("li");
-    playerLi.innerHTML = "";
-    playerLi.style.color = "black";
-    playerLi.textContent = player;
+  dead.forEach(player => {
+    const playerLi = createPlayerItem(player, "fa-solid fa-skull", "black");
     listPlayers.appendChild(playerLi);
-    console.log("sis");
   });
 }
 
