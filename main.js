@@ -1,25 +1,27 @@
 ////////////////////////////////////////////////PLAYERS//////////////////////////////////
 
-// let nombres = [
-//     "Israel Abad Barrera",
-//     "Javier Ariza Rosales",
-//     "Nicolás Burgos Contreras",
-//     "Felipe Chacón Montero",
-//     "Fernando de la Torre Esperon",
-//     "Jesús Manuel García Lozano",
-//     "Alejandro Gómez Ojeda",
-//     "Pablo Jiménez Menéndez",
-//     "Mario Lebrero García",
-//     "Pablo Noria Gómez",
-//     "Mauricio Nicolas Ortiz",
-//     "Adrián Pérez Agredano",
-//     "Jairo Saborito Franco",
-//     "Judith Tamayo Balogh",
-//     "Samuel Utrilla Núñez",
-//     "Ruben Martin Ruiz"
-// ];
+ let nombres = [
+     "Israel Abad Barrera",
+     "Javier Ariza Rosales",
+     "Nicolás Burgos Contreras",
+     "Felipe Chacón Montero",
+     "Fernando de la Torre Esperon",
+     "Jesús Manuel García Lozano",
+     "Alejandro Gómez Ojeda",
+     "Pablo Jiménez Menéndez",
+     "Mario Lebrero García",
+     "Pablo Noria Gómez",
+     "Mauricio Nicolas Ortiz",
+     "Adrián Pérez Agredano",
+     "Jairo Saborito Franco",
+     "Judith Tamayo Balogh",
+     "Samuel Utrilla Núñez",
+     "Ruben Martin Ruiz"
+ ];
 
-let nombres = []
+let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
+
+let dados = ["/images/dado1","/images/dado2","/images/dado3","/images/dado4","/images/dado5","/images/dado6"]
 
 function loadPlayers(players) {
   const divPlayers = document.getElementById("dropdown-players");
@@ -55,14 +57,13 @@ async function newInsertPlayer() {
     },
     showCancelButton: true,
     customClass: {
-      popup: "swal2-custom" // Aplica el fondo personalizado
+      popup: "swal2-custom" 
     }
   });
 
   if (playerName) {
     const name = playerName.trim();
 
-    // Verificar si el array ya contiene el nombre ingresado
     if (nombres.includes(name)) {
       await Swal.fire({
         title: "ERROR",
@@ -72,12 +73,13 @@ async function newInsertPlayer() {
           popup: "swal2-custom"
         }
       });
-      return; // Salir de la función si el nombre ya existe
+      return; 
     }
 
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
+        vivos = nombres;
         loadPlayers(nombres);
         await Swal.fire({
           title: "Jugador Agregado",
@@ -162,7 +164,6 @@ function stringFromCurrentPlayers(playersArr) {
 }
 
 function validateName(nickName) {
-  //name empty o ya existe en el array
   return nickName.length > 0 && !nombres.includes(nickName) && nickName.length < 11;
 }
 
@@ -180,7 +181,6 @@ function mezclarArray(array) {
 }
 
 function crearParejas(nombres) {
-
   let parejas = [];
   for (let i = 0; i < nombres.length; i += 2) {
     if (i + 1 < nombres.length) {
@@ -214,104 +214,43 @@ const deathplayers = document.getElementById("deathplayers");
 
 let step = 0;
 let i = 0;
-let intervalo = 100; // Tiempo inicial en milisegundos
 
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
-    let dado1 = Math.floor(Math.random() * 6 + 1);
-    let dado2 = Math.floor(Math.random() * 6 + 1);
-    dado1HTML.innerHTML = "<span>" + dado1 + "</span>";
-    dado2HTML.innerHTML = "<span>" + dado2 + "</span>";
 
-    i++;
-    intervalo *= 1.2;
+    do {
+      dado1 = Math.floor(Math.random() * 6 + 1);
+      dado2 = Math.floor(Math.random() * 6 + 1);
+    } while (dado1 === dado2); 
 
-    if (i >= 10) {
-      dado1HTML.innerHTML = "<h1>" + dado1 + "</h1>";
-      dado2HTML.innerHTML = "<h1>" + dado2 + "</h1>";
-      intervalo = 50;
-      i = 0;
-
-      // Comprobar si los números son iguales
-      if (dado1 === dado2) {
-        // Si los dados son iguales, esperar 1 segundo antes de reiniciar
-        setTimeout(() => {
-          // Llamar de nuevo a la función para continuar tirando los dados
-          resolve(tirarDado(dado1HTML, dado2HTML, jugadores));
-        }, 1000);  // Espera de 1 segundo (1000 ms)
+    if (jugadores[step][1] !== undefined) {
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      if (dado1 > dado2) {
+        ganadores.push(jugadores[step][0]);
+        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
+        muertos.push(jugadores[step][1]);
+        deathplayers.innerHTML += jugadores[step][1] + "<br>";
       } else {
-        if (jugadores[step][1] != undefined) {
-          if (dado1 > dado2) {
-            ganadores.push(jugadores[step][0]);
-            aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-            muertos.push(jugadores[step][1])
-            deathplayers.innerHTML += jugadores[step][1] + "<br>";
-            step++;
-          } else {
-            ganadores.push(jugadores[step][1]);
-            aliveplayers.innerHTML += jugadores[step][1] + "<br>";
-            muertos.push(jugadores[step][0])
-            deathplayers.innerHTML += jugadores[step][0] + "<br>";
-            step++;
-          }
-          resolve();
-        } else {
-          if (dado1 > dado2) {
-            ganadores.push(jugadores[step][0]);
-            aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-            step++;
-          }
-          resolve();
-        }
+        ganadores.push(jugadores[step][1]);
+        aliveplayers.innerHTML += jugadores[step][1] + "<br>";
+        muertos.push(jugadores[step][0]);
+        deathplayers.innerHTML += jugadores[step][0] + "<br>";
       }
     } else {
-      setTimeout(() => resolve(tirarDado(dado1HTML, dado2HTML, jugadores)), intervalo);
-    }
-  });
-}
-function boss(dado1HTML, dado2HTML, jugadores) {
-  return new Promise((resolve) => {
-    let dado1 = Math.floor(Math.random() * 6 + 1);
-    let dado2 = Math.floor(Math.random() * 6 + 1);
-    dado1HTML.innerHTML = "<span>" + dado1 + "</span>";
-    dado2HTML.innerHTML = "<span>" + dado2 + "</span>";
-
-    i++;
-    intervalo *= 1.2;
-
-    if (i >= 10) {
-      dado1HTML.innerHTML = "<h1>" + dado1 + "</h1>";
-      dado2HTML.innerHTML = "<h1>" + dado2 + "</h1>";
-      intervalo = 50;
-      i = 0;
-
-      // Comprobar si los números son iguales
-      if (dado1 === dado2) {
-        // Si los dados son iguales, esperar 1 segundo antes de reiniciar
-        setTimeout(() => {
-          // Llamar de nuevo a la función para continuar tirando los dados
-          resolve(tirarDado(dado1HTML, dado2HTML, jugadores));
-        }, 1000);  // Espera de 1 segundo (1000 ms)
-      } else {
-
-        if (dado1 < dado2) {
-          ganadores.push(jugadores[step][0]);
-          aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-          step++;
-        } else {
-          muertos.push(jugadores[step][0])
-          deathplayers.innerHTML += jugadores[step][0] + "<br>";
-          step++;
-        }
-        resolve();
+      
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50">`;
+      if (dado1 > dado2) {
+        ganadores.push(jugadores[step][0]);
+        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
       }
-    } else {
-      setTimeout(() => resolve(tirarDado(dado1HTML, dado2HTML, jugadores)), intervalo);
     }
+    step++;
+    resolve();
   });
 }
-
 async function ejecutarRonda(jugadores) {
   for (let i = 0; i < jugadores.length; i++) {
     if (jugadores[i][1] == undefined) {
@@ -319,14 +258,12 @@ async function ejecutarRonda(jugadores) {
       player2.innerHTML = "PALOMA"
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
-      // Esperar a que termine la tirada del dado de cada jugador antes de continuar
       player1.innerHTML = jugadores[i][0]
       player2.innerHTML = jugadores[i][1]
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    // Esperar 1 segundo antes de pasar al siguiente jugador
-    await new Promise(resolve => setTimeout(resolve, 1000));  // Espera de 1 segundo
+    await new Promise(resolve => setTimeout(resolve, 3000));
   }
 
   if (ganadores.length == 1) {
@@ -340,6 +277,12 @@ async function ejecutarRonda(jugadores) {
 }
 let roundNumber = 0;
 
+//TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
+function playMusic(){
+  var music = new Audio('images/play.mp3');
+  music.play();
+  }
+
 function startRound() {
   Swal.fire({
     title: "Are you sure you want to start the game?",
@@ -351,15 +294,12 @@ function startRound() {
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
-        mezclarArray(nombres);
-        vivos = nombres;
-    
         roundNumber++;
         roundcount.innerHTML = "RONDA " + roundNumber;
         aliveplayers.innerHTML = "";
         document.getElementById("playbutton").innerHTML = "Next Round!";
         document.getElementById("playbutton").style.display = "none";
-    
+        playMusic()
         ejecutarRonda(crearParejas(mezclarArray(vivos)))
       } else {
         Swal.fire({
@@ -371,3 +311,6 @@ function startRound() {
     }
   });
 }
+
+
+
