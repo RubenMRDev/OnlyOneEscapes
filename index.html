@@ -37,50 +37,48 @@
           <img src="images/letras logo 1.png" alt="Centered Image" height="50">
         </div>
         <div class="navbar-right">
-          <button class="btn btn-primary" onclick="playMusic()" value="sound">Salir</button>
+          <button class="btn btn-primary mx-3" onclick="playMusic()" value="sound">Salir</button>
         </div>
       </div>
     </nav>
   </header>
 
-  <!--Players-->
-  <button id="add-player-button" onclick="newInsertPlayer()">Add Players</button>
-  <!--Se pulsa el botón de añadir nuevo jugador y aparece un modal con un formulario para introducir el nick-->
-  <div id="form-container" class="form-container">
-    <form id="newPlayerForm" name="newPlayerForm" action="" method="GET">
-      <label for="playerNickname">name:</label>
-      <input type="text" id="playerNickname" placeholder="Enter nickname" name="playerNickname" />
-      <input type="submit" value="Submit" />
-    </form>
-  </div>
-  <!-- <p id="players-roster"></p> -->
-
-  <div class="container text-center text-white mt-5">
-
-    <h1 id="roundcount">CEI BATTLE ROYALE</h1>
-
-    <div class="row align-items-end">
-      <div class="col" id="player1dice">DICE VALUE</div>
-      <div class="col" id="player2dice">DICE VALUE</div>
+  <main id="main-screen" class="">
+    <!--Players-->
+    <div id="start-menu" class="d-flex flex-column justify-content-center align-items-center gap-4">
+      <button class="button-UI" onclick="startGame()">Start Game</button>
+      <button class="button-UI" onclick="showHistory()">Game History</button>
+      <p id="history"></p>
     </div>
-    <div class="row align-items-end">
-      <div class="col" id="player1">PLAYER 1</div>
-      <div class="col" id="player2">PLAYER 2</div>
-    </div>
-    <button type="button" class="btn btn-danger mt-5" onclick="startRound()" id="playbutton">Play</button>
-  </div>
-  </div>
-  <div class="text-center mt-5">
+    <button class="button-UI" id="add-player-button" onclick="newInsertPlayer()">Add Players</button>
 
-    <div class="row align-items-end text-white">
-      <div class="col">VIVOS</div>
-      <div class="col">MUERTOS</div>
-    </div>
-    <div class="row align-items-end text-white" >
-      <div class="col" id="aliveplayers"></div>
-      <div class="col" id="deadplayers"></div>
-    </div>
+    <div class="duels">
+      <div class="container text-center text-white mt-5">
+        <h1 id="roundcount">CEI BATTLE ROYALE</h1>
+        <div class="row align-items-end">
+          <div class="col" id="player1dice">DICE VALUE</div>
+          <div class="col" id="player2dice">DICE VALUE</div>
+        </div>
+        <div class="row align-items-end">
+          <div class="col" id="player1">PLAYER 1</div>
+          <div class="col" id="player2">PLAYER 2</div>
+        </div>
+        <button type="button" class="btn btn-danger mt-5" onclick="startRound()" id="playbutton">Play</button>
+      </div>
+      <div class="text-center mt-5">
+        <div class="row align-items-end text-white">
+          <div class="col">VIVOS</div>
+          <div class="col">MUERTOS</div>
+        </div>
+        <div class="row align-items-end text-white" >
+          <div class="col" id="aliveplayers"></div>
+          <div class="col" id="deadplayers"></div>
+        </div>
+      </div>
   </div>
+
+  </main>
+
 
 <!-- Footer -->
 <!-- <footer class="footer w-100 py-3 position-absolute bottom-0 text-center" style="background-color: #2DAAB8;">

@@ -1,12 +1,28 @@
-//alerta añade un juagdor
+//alerta añade un jugador
 //play aviso seguro que quieres empezar solo la primera vez
 //dado rotando
 //resultado del dado
 //moverse entre pantallas
 //mostrar logs en pantalla inicio
 //quitar
+//añadir nombres en rojo a la lista en enfrentamientos
+//animacion/transicion de inicio
+//animacion boss
 
 ////////////////////////////////////////////////PLAYERS//////////////////////////////////
+
+
+function startGame(){
+  document.getElementById("add-player-button").style.display = "block";
+  document.getElementById("start-menu").classList.add("d-none");
+}
+
+function showHistory(){
+    //Logs
+    const p = document.getElementById("history");
+    p.textContent = "No history has been found";
+    p.style.color = "white";
+}
 
 let nombres = [
   "Israel Abad Barrera",
@@ -28,7 +44,7 @@ let nombres = [
 ];
 
 //let nombres=[]
-let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
+//let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
 let dados = ["/images/dado1","/images/dado2","/images/dado3","/images/dado4","/images/dado5","/images/dado6"]
 
@@ -94,7 +110,7 @@ async function newInsertPlayer() {
     inputLabel: "Nombre de Jugador",
     inputPlaceholder: "Introduce el nombre del jugador...",
     inputAttributes: {
-      "aria-label": "Introduce el nombre del jugador"//,
+      "aria-label": "Introduce el nombre del jugador"
     },
     showCancelButton: true,
     customClass: {
