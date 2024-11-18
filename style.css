@@ -42,6 +42,10 @@ body{
     z-index: -1;
 }
 
+.navbar-toggler:focus {
+    color: transparent;
+}
+
 #dropdown-players{
     position: absolute;
     background-color: rgba(25, 161, 176, 0.9);
