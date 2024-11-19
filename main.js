@@ -225,8 +225,7 @@ function validateName(nickName) {
 
 //------------------------------INICIAR-PARTIDA--------------------------
 
-let parejas = [];
-function startDuels() {
+function showDuels() {
   Swal.fire({
     title: "Are you sure you want to start the game?",
     icon: "warning",
@@ -256,7 +255,7 @@ function startDuels() {
 
 function displayPairingsAsList(pairings) {
   console.log(pairings);
-
+  
   const ul = document.createElement("ul");
   ul.classList.add("p-2");
   ul.style.listStyle = "none";
@@ -273,7 +272,7 @@ function displayPairingsAsList(pairings) {
     const right = document.createElement("span");
     right.textContent = pair[1] || "BOSS";
     right.style.color = "yellow";
-    
+
     li.appendChild(left);
     li.appendChild(vs);
     li.appendChild(right);
@@ -304,8 +303,15 @@ function crearParejas(nombres) {
   return parejas;
 }
 
+function startDuels(){
+  document.getElementById("fight").classList.add("d-none");
+  document.getElementById("lobby").classList.add("d-none");
+  document.getElementById("duels").classList.add("d-block");
+  startRound();
+}
 
 
+let parejas = [];
 let muertos = [];
 let vivos = [];
 let jugando = [];
@@ -400,33 +406,14 @@ function playMusic() {
 }
 
 function startRound() {
-  Swal.fire({
-    title: "Are you sure you want to start the game?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Start Game"
-  }).then((result) => {
-    if (result.isConfirmed) {
-      if (nombres.length >= 1) {
-        roundNumber++;
-        roundcount.innerHTML = "RONDA " + roundNumber;
-        aliveplayers.innerHTML = "";
-        document.getElementById("playbutton").innerHTML = "Next Round!";
-        document.getElementById("playbutton").style.display = "none";
-        playMusic()
-        //SOS
-        ejecutarRonda(crearParejas(mezclarArray(nombres)));
-      } else {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "Tiene que haber al menos 1 jugador.",
-        });
-      }
-    }
-  });
+  roundNumber++;
+  roundcount.innerHTML = "RONDA " + roundNumber;
+  aliveplayers.innerHTML = "";
+  document.getElementById("playbutton").innerHTML = "Next Round!";
+  document.getElementById("playbutton").style.display = "none";
+  playMusic()
+  //SOS
+  ejecutarRonda(crearParejas(mezclarArray(nombres)));
 }
 
 
