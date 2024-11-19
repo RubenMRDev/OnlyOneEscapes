@@ -9,20 +9,21 @@
 //animacion/transicion de inicio
 //animacion boss
 
-////////////////////////////////////////////////PLAYERS//////////////////////////////////
+///////////////////////UI-INICIO///////////////////////////////////
 
-
-function startGame(){
-  document.getElementById("add-player-button").style.display = "block";
+function startGame() {
+  document.getElementById("add-player-menu").style.display = "flex";
   document.getElementById("start-menu").classList.add("d-none");
 }
 
-function showHistory(){
-    //Logs
-    const p = document.getElementById("history");
-    p.textContent = "No history has been found";
-    p.style.color = "white";
+function showHistory() {
+  //Logs
+  const p = document.getElementById("history");
+  p.textContent = "No history has been found";
+  p.style.color = "white";
 }
+
+////////////////////////////////////////////////PLAYERS//////////////////////////////////
 
 let nombres = [
   "Israel Abad Barrera",
@@ -46,7 +47,7 @@ let nombres = [
 //let nombres=[]
 //let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
-let dados = ["/images/dado1","/images/dado2","/images/dado3","/images/dado4","/images/dado5","/images/dado6"]
+let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
 
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
 
@@ -114,7 +115,7 @@ async function newInsertPlayer() {
     },
     showCancelButton: true,
     customClass: {
-      popup: "swal2-custom" 
+      popup: "swal2-custom"
     }
   });
 
@@ -130,14 +131,13 @@ async function newInsertPlayer() {
           popup: "swal2-custom"
         }
       });
-      return; 
+      return;
     }
 
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
         vivos = nombres;
-        loadPlayers(nombres);
         await Swal.fire({
           title: "Jugador Agregado",
           text: `El jugador ${name} ha sido agregado.`,
@@ -182,7 +182,6 @@ function insertPlayer() {
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
-        loadPlayers(nombres);
         closeNewPlayerMenu();
       } else {
         Swal.fire({
@@ -224,6 +223,67 @@ function validateName(nickName) {
   return nickName.length > 0 && !nombres.includes(nickName) && nickName.length < 11;
 }
 
+//------------------------------INICIAR-PARTIDA--------------------------
+
+let parejas = [];
+function startDuels() {
+  Swal.fire({
+    title: "Are you sure you want to start the game?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Start Game"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      if (nombres.length >= 1) {
+        //show first round pairings
+        document.getElementById("add-player-button").style.display = "none";
+        document.getElementById("play").style.display = "none";
+        document.getElementById("fight").style.display = "block";
+        parejas = crearParejas(mezclarArray(nombres));
+        document.getElementById("lobby").appendChild(displayPairingsAsList(parejas));
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Tiene que haber al menos 1 jugador.",
+        });
+      }
+    }
+  });
+}
+
+function displayPairingsAsList(pairings) {
+  console.log(pairings);
+
+  const ul = document.createElement("ul");
+  ul.classList.add("p-2");
+  ul.style.listStyle = "none";
+
+  pairings.forEach((pair) => {
+    const li = document.createElement("li");
+    li.classList.add("d-flex", "justify-content-between");
+    const left = document.createElement("span");
+    left.textContent = pair[0];
+    left.style.color = "yellow";
+    const vs = document.createElement("span");
+    vs.textContent = "vs";
+    vs.style.color = "white";
+    const right = document.createElement("span");
+    right.textContent = pair[1] || "BOSS";
+    right.style.color = "yellow";
+    
+    li.appendChild(left);
+    li.appendChild(vs);
+    li.appendChild(right);
+    ul.appendChild(li);
+  });
+
+  return ul;
+}
+
+//-------------------------------------------------------------------------
 function mezclarArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
@@ -243,7 +303,6 @@ function crearParejas(nombres) {
   }
   return parejas;
 }
-
 
 
 
@@ -273,11 +332,11 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     do {
       dado1 = Math.floor(Math.random() * 6 + 1);
       dado2 = Math.floor(Math.random() * 6 + 1);
-    } while (dado1 === dado2); 
+    } while (dado1 === dado2);
 
     if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
+      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -293,9 +352,9 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
 
       }
     } else {
-      
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50">`;
+
+      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
+      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}evil.png" width=50">`;
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -335,10 +394,10 @@ async function ejecutarRonda(jugadores) {
 let roundNumber = 0;
 
 //TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
-function playMusic(){
+function playMusic() {
   var music = new Audio('images/play.mp3');
   music.play();
-  }
+}
 
 function startRound() {
   Swal.fire({
@@ -358,7 +417,7 @@ function startRound() {
         document.getElementById("playbutton").style.display = "none";
         playMusic()
         //SOS
-        ejecutarRonda(crearParejas(mezclarArray(vivos)))
+        ejecutarRonda(crearParejas(mezclarArray(nombres)));
       } else {
         Swal.fire({
           icon: "error",
