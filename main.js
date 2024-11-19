@@ -18,6 +18,7 @@ function startGame() {
 }
 
 function showHistory() {
+
   //Logs
   const p = document.getElementById("history");
   p.textContent = "No history has been found";
@@ -397,10 +398,8 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("playbutton").style.display = "inline";
     step = 0;
   }
-
-  //Guardar captura del estado de las rondas para los Logs
-
 }
+
 let roundNumber = 0;
 
 //TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
@@ -409,6 +408,7 @@ function playMusic() {
   music.play();
 }
 
+vivos=nombres;
 function startRound() {
   roundNumber++;
   roundcount.innerHTML = "RONDA " + roundNumber;
@@ -416,8 +416,7 @@ function startRound() {
   document.getElementById("playbutton").innerHTML = "Next Round!";
   document.getElementById("playbutton").style.display = "none";
   playMusic()
-  //SOS
-  ejecutarRonda(crearParejas(mezclarArray(nombres)));
+  ejecutarRonda(crearParejas(mezclarArray(vivos)))
 }
 
 
