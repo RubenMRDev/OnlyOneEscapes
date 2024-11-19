@@ -13,6 +13,7 @@
 
 function startGame() {
   document.getElementById("add-player-menu").style.display = "flex";
+  document.getElementById("lobby").innerHTML = nombres.join("<br>");
   document.getElementById("start-menu").classList.add("d-none");
 }
 
@@ -241,7 +242,9 @@ function showDuels() {
         document.getElementById("play").style.display = "none";
         document.getElementById("fight").style.display = "block";
         parejas = crearParejas(mezclarArray(nombres));
-        document.getElementById("lobby").appendChild(displayPairingsAsList(parejas));
+        const lobby = document.getElementById("lobby");
+        lobby.innerHTML = "";
+        lobby.appendChild(displayPairingsAsList(parejas));
       } else {
         Swal.fire({
           icon: "error",
@@ -270,6 +273,7 @@ function displayPairingsAsList(pairings) {
     vs.textContent = "vs";
     vs.style.color = "white";
     const right = document.createElement("span");
+    right.classList.add("text-end");
     right.textContent = pair[1] || "BOSS";
     right.style.color = "yellow";
 
