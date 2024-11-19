@@ -38,7 +38,7 @@ body {
 
 .responsive-background {
   position: fixed;
-  background-image: url("images/fondo_desktop.jpg");
+  background-image: url("images/UI/background.webp");
   background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
   background-position: center; /* Centra la imagen */
   background-repeat: no-repeat; /* Evita que la imagen se repita */
@@ -79,3 +79,16 @@ body {
   min-width: 300px;
   min-height: 300px;
 }
+
+/* Apply the hover effect to the element */
+.settings_button {
+  display: inline-block;
+  transition: transform 0.3s ease-in-out;
+  border: none;
+  background: none;
+}
+
+.settings_button:hover {
+  transform: scale(1.2);
+}
+
