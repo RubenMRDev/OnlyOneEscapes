@@ -46,15 +46,54 @@ body {
 
 .responsive-background {
   position: fixed;
-  background-image: url("images/UI/background.webp");
+  background-image: 
+  url("images/parallaxCave/9.png"),
+  url("images/parallaxCave/8fx.png"),
+  url("images/parallaxCave/7.png"), 
+  url("images/parallaxCave/6fx.png"), 
+  url("images/parallaxCave/5.png"), 
+  url("images/parallaxCave/4.png"), 
+  url("images/parallaxCave/3fx.png"), 
+  url("images/parallaxCave/2.png"), 
+  url("images/parallaxCave/1.png");
+
   background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-position: center, center, center, center, center, center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   width: 100vw;
   height: 100vh;
   z-index: -1;
 }
 
+.responsive-background::after {
+  content: "";
+  position: fixed;
+  background-color: rgb(39, 40, 69);
+  mix-blend-mode:difference;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  animation: mood-cycle 14s infinite ease;
+}
+
+@keyframes mood-cycle {
+  0% { background-color: #0c2627; }
+  25% { background-color: #222e2c; }
+  50% { background-color: #2d4444; }
+  75% { background-color: #282f47; }
+  100% { background-color: #0c2627; }
+}
+#title{
+  margin-top: 50px;
+  text-align: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 800;
+  text-shadow: 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+}
 .navbar-toggler:focus {
   color: transparent;
 }
