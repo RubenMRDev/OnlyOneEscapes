@@ -44,9 +44,13 @@ function showHistory() {
    "Ruben Martin Ruiz",
  ];
 
-let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
+let nombres=[]
 
-let dados = ["/images/dado1","/images/dado2","/images/dado3","/images/dado4","/images/dado5","/images/dado6"]
+//let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
+
+let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
+
+//-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
 
 function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
@@ -326,6 +330,7 @@ const player1dice = document.getElementById("player1dice");
 const playe2dice = document.getElementById("player2dice");
 const player1 = document.getElementById("player1");
 const player2 = document.getElementById("player2");
+
 const roundcount = document.getElementById("roundcount");
 const aliveplayers = document.getElementById("aliveplayers");
 const deathplayers = document.getElementById("deadplayers");
@@ -344,9 +349,7 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     } while (dado1 === dado2); 
 
     if (jugadores[step][1] !== undefined) {
-      skin1.innerHTML= `<img src="${spriteRight[Math.floor(Math.random()*3)]}">`;
       dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
-      skin2.innerHTML= `<img src="${spriteRight[Math.floor(Math.random()*3)]}" style="transform: scaleX(-1);">`;
       dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
@@ -361,12 +364,20 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
       }
     } else {
       
-      skin1.innerHTML= `<img src="${spriteRight[Math.floor(Math.random()*3)]}">`;
       dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50">`;
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
+      }else{
+        console.log("test")
+        if(jugadores.length>=1){
+        console.log("test")
+          
+        muertos.push(jugadores[step][0]);
+        deathplayers.innerHTML += jugadores[step][0] + "<br>";
+        ganadores.push("Paloma");
+        }
       }
     }
     step++;
@@ -380,6 +391,13 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
 
 
 async function ejecutarRonda(jugadores) {
+  if(loose){
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You need at least one player to start.",
+    });
+  }
   for (let i = 0; i < jugadores.length; i++) {
     if (jugadores[i][1] === undefined) {
       player1.innerHTML = jugadores[i][0]
