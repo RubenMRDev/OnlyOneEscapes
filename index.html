@@ -39,11 +39,29 @@
           <img src="images/UI/header.webp" alt="Centered Image" height="50">
         </div>
         <div class="navbar-right">
-          <button class="mx-3 settings_button" value="sound"><img src="images/UI/settings.webp" alt="" width="50"></button>
+          <button id="settingsOverlayButton" class="mx-3 settings_button" value="sound"><img src="images/UI/settings.webp" alt="" width="50"></button>
         </div>
       </div>
     </nav>
   </header>
+
+
+  <div id="overlay" class="hidden">
+      <div class="overlay-content">
+          <h4 class="settings-father">VOLUME</h4>
+            <h5 class="settings-sons">MUSIC</h5>
+              <!--Deslizable musica--> 
+            <h5 class="settings-sons">SOUND</h5>
+              <!--Deslizable sonido--> 
+          <h4 class="settings-father">GRAPHICS</h4>
+              <button class="graphics-button"><p><strong>ACTIVATE GORE MODE</strong><p><img class="danger-img" width="60" height="60" src="https://cdn-icons-png.flaticon.com/512/10843/10843180.png" alt="Danger!"> </button>
+          <h4 class="settings-father">GAME</h4>
+          <button class="game-button">RESTART GAME</button>
+          <button class="game-button">QUIT GAME</button>
+          <button class="game-button">EXIT</button>
+      </div>
+  </div>
+
 
   <main id="main-screen" class="p-5 d-flex justify-content-center align-items-center vh-100">
     <!--Players-->

@@ -89,6 +89,17 @@ body {
 }
 
 .settings_button:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
 }
 
+#overlay{
+  position: fixed;
+  top: 75px;
+  bottom: 40px;
+  left: 0;
+  right: 0;
+  background-color: rgb(15, 15, 15);
+  opacity: 80%;
+  display: flex;
+
+}
