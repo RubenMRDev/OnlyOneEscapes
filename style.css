@@ -16,15 +16,23 @@ body {
 .button-UI {
   text-align: center;
   background-color: #ffe500;
+  box-shadow: 0px 0px 10px 1px #C7FCCA;
   border: none;
   border-radius: 3px;
   padding: 8px;
-  font-family: "Pixelify Sans", serif;
 }
 .button-UI:hover {
-  color: rgb(25, 161, 176);
+  color: rgb(0, 246, 189);
+  background-color: rgb(0, 0, 0);
+  box-shadow: 0px 0px 10px 5px rgb(25, 161, 176);
+  text-shadow: 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+}
+
+.clicked {
+  color: rgb(47, 86, 90);
   background-color: rgb(0, 0, 0);
 }
+
 
 .swal2-custom {
   background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
@@ -38,15 +46,50 @@ body {
 
 .responsive-background {
   position: fixed;
-  background-image: url("images/UI/background.webp");
-  background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
-  background-position: center; /* Centra la imagen */
-  background-repeat: no-repeat; /* Evita que la imagen se repita */
-  width: 100vw; /* Ocupa todo el ancho de la pantalla */
-  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-image: 
+  url("images/parallaxCave/9.png"),
+  url("images/parallaxCave/8fx.png"),
+  url("images/parallaxCave/7.png"), 
+  url("images/parallaxCave/6fx.png"), 
+  url("images/parallaxCave/5.png"), 
+  url("images/parallaxCave/4.png"), 
+  url("images/parallaxCave/3fx.png"), 
+  url("images/parallaxCave/2.png"), 
+  url("images/parallaxCave/1.png");
+
+  background-size: cover;
+  background-position: center, center, center, center, center, center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
+  width: 100vw;
+  height: 100vh;
   z-index: -1;
 }
 
+.responsive-background::after {
+  content: "";
+  position: fixed;
+  background-color: rgb(39, 40, 69);
+  mix-blend-mode:difference;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  animation: mood-cycle 10s infinite ease;
+}
+
+@keyframes mood-cycle {
+  0% { background-color: #0c2627; }
+  25% { background-color: #222e2c; }
+  50% { background-color: #2d4444; }
+  75% { background-color: #282f47; }
+  100% { background-color: #0c2627; }
+}
+#title{
+  color: white;
+  text-shadow: -1px 0 #C7FCCA, 2px 0 #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+}
 .navbar-toggler:focus {
   color: transparent;
 }

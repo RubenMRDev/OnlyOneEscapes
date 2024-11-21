@@ -34,21 +34,20 @@
             style="min-width: max-content;">
           </ul>
         </div>
-
         <div class="name">
-          <img src="images/UI/header.webp" alt="Centered Image" height="50">
+          <h1 id="title" class="display-5 text-center m-0 fw-bold fs">CEI BATTLE ROYALE</h1>
         </div>
         <div class="navbar-right">
-          <button class="mx-3 settings_button" value="sound"><img src="images/UI/settings.webp" alt="" width="50"></button>
+          <button class="btn btn-primary mx-3" onclick="playMusic()" value="sound">LEAVE</button>
         </div>
       </div>
     </nav>
   </header>
-
-  <main id="main-screen" class="p-5 d-flex justify-content-center align-items-center vh-100">
+  
+  <main id="main-screen" class="p-5 d-flex flex-column align-items-center h-100">
     <!--Players-->
     <div id="start-menu" class="d-flex flex-column justify-content-center align-items-center gap-4">
-      <button class="button-UI" onclick="startGame()">Start Game</button>
+      <button class="button-UI" onclick="startGame()">New Game</button>
       <button class="button-UI" onclick="showHistory()">Game History</button>
       <p id="history"></p>
     </div>
@@ -60,7 +59,7 @@
     </div>
     <div class="duels" id="duels">
       <div class="container text-center text-white mt-5">
-        <h1 id="roundcount">CEI BATTLE ROYALE</h1>
+        <h2 id="roundcount">CEI BATTLE ROYALE</h2>
         <div class="row align-items-end">
           <div class="col" id="player1dice">DICE VALUE</div>
           <div class="col" id="player2dice">DICE VALUE</div>
@@ -73,8 +72,8 @@
       </div>
       <div class="text-center mt-5">
         <div class="row align-items-end text-white">
-          <div class="col">VIVOS</div>
-          <div class="col">MUERTOS</div>
+          <div class="col">ALIVE</div>
+          <div class="col">DEATH</div>
         </div>
         <div class="row align-items-end text-white">
           <div class="col" id="aliveplayers"></div>
@@ -87,7 +86,7 @@
 
 
   <!-- Footer -->
-  <!-- <footer class="footer w-100 py-3 position-absolute bottom-0 text-center" style="background-color: #2DAAB8;">
+ <footer class="footer w-100 py-3 position-absolute bottom-0 text-center" style="background-color: #2DAAB8;">
   <div class="d-flex justify-content-center gap-5">
       <a href="" class="unstyled-link">Github</a>
       <a href="" class="unstyled-link">Documentation</a>
@@ -96,7 +95,7 @@
       <i class="bi bi-youtube"></i>
       <i class="bi bi-linkedin"></i>
   </div>
-</footer> -->
+</footer>
 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
