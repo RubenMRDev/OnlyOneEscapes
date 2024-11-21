@@ -234,7 +234,11 @@ function showDuels() {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Start Game"
+    confirmButtonText: "Start Game",
+    customClass: {
+      popup: "swal2-custom"
+    }
+    
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
@@ -387,11 +391,21 @@ async function ejecutarRonda(jugadores) {
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    await new Promise(resolve => setTimeout(resolve, 1));
   }
 
   if (ganadores.length == 1) {
-    alert("el ganador es " + ganadores[0])
+    swal.fire({
+      tittle: 'Tenemos un ganador',
+      text: `El ganador es ${ganadores[0]}`,
+      imageUrl: 'images/crown.png',
+      imageWidth: 230,
+      imageHeight: 150,
+      confirmButtonText: 'Aceptar',
+      customClass: {
+        popup: "swal2-custom"
+      }
+    });
   } else {
     vivos = ganadores;
     ganadores = [];
