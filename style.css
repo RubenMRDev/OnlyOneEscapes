@@ -11,6 +11,8 @@ body {
   font-weight: 400;
   font-style: normal;
   z-index: 1;
+  height: 100vh;
+  width: 100vw;
 }
 
 .button-UI {
@@ -103,16 +105,18 @@ body {
   width: 140%;
   height: 140%;
   z-index: -1;
-  background: radial-gradient(circle, #C7FCCA 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(circle, rgb(199, 252, 202, 0.4) 0%, #C7FCCA 30%, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0) 100%);
 }
 
 #settings{
-  min-width: 30px;
+  min-width: 40px;
 }
 .navbar-toggler:focus {
   color: transparent;
 }
-
+main{
+  height: 83%;
+}
 .duels, #fight {
   display: none;
 }
@@ -154,3 +158,6 @@ body {
   transform: scale(1.2);
 }
 
+.footer a, .footer{
+  color: white;
+}
