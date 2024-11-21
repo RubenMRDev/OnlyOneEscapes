@@ -88,7 +88,26 @@ body {
 }
 #title{
   color: white;
-  text-shadow: 2px 0 #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+}
+#settings-button {
+  position: relative;
+  z-index: 4;
+}
+
+#settings-button::before {
+  content: '';
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: -1;
+  background: radial-gradient(circle, #C7FCCA 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+#settings{
+  min-width: 30px;
 }
 .navbar-toggler:focus {
   color: transparent;
