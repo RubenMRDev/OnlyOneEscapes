@@ -18,35 +18,34 @@ function startGame() {
 }
 
 function showHistory() {
-
   //Logs
   const p = document.getElementById("history");
   p.textContent = "No history has been found";
   p.style.color = "white";
 }
 
-////////////////////////////////////////////////PLAYERS//////////////////////////////////
+////////////////////////////////////////////////PLAYERS/////////////////////////////////
+ let ALUMNOS = [
+   "Israel Abad Barrera",
+   "Javier Ariza Rosales",
+   "Nicolás Burgos Contreras",
+   "Felipe Chacón Montero",
+   "Fernando de la Torre Esperon",
+   "Jesús Manuel García Lozano",
+   "Alejandro Gómez Ojeda",
+   "Pablo Jiménez Menéndez",
+   "Mario Lebrero García",
+   "Pablo Noria Gómez",
+   "Mauricio Nicolas Ortiz",
+   "Adrián Pérez Agredano",
+   "Jairo Saborito Franco",
+   "Judith Tamayo Balogh",
+   "Samuel Utrilla Núñez",
+   "Ruben Martin Ruiz",
+ ];
 
-let nombres = [
-  "Israel Abad Barrera",
-  "Javier Ariza Rosales",
-  "Nicolás Burgos Contreras",
-  "Felipe Chacón Montero",
-  "Fernando de la Torre Esperon",
-  "Jesús Manuel García Lozano",
-  "Alejandro Gómez Ojeda",
-  "Pablo Jiménez Menéndez",
-  "Mario Lebrero García",
-  "Pablo Noria Gómez",
-  "Mauricio Nicolas Ortiz",
-  "Adrián Pérez Agredano",
-  "Jairo Saborito Franco",
-  "Judith Tamayo Balogh",
-  "Samuel Utrilla Núñez",
-  "Ruben Martin Ruiz",
-];
-
-//let nombres=[]
+let nombres=[]
+nombres=ALUMNOS
 //let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
 let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
@@ -110,10 +109,10 @@ function closeNewPlayerMenu() {
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
     input: "text",
-    inputLabel: "Nombre de Jugador",
-    inputPlaceholder: "Introduce el nombre del jugador...",
+    inputLabel: "Name of the player.",
+    inputPlaceholder: "Introduce the name of the player:",
     inputAttributes: {
-      "aria-label": "Introduce el nombre del jugador"
+      "aria-label": "Introduce the name of the player:r"
     },
     showCancelButton: true,
     customClass: {
@@ -127,7 +126,7 @@ async function newInsertPlayer() {
     if (nombres.includes(name)) {
       await Swal.fire({
         title: "ERROR",
-        text: "El nombre ya existe en la lista de jugadores.",
+        text: "The name already exist in the list.",
         icon: "error",
         customClass: {
           popup: "swal2-custom"
@@ -141,8 +140,8 @@ async function newInsertPlayer() {
         nombres.push(name);
         vivos = nombres;
         await Swal.fire({
-          title: "Jugador Agregado",
-          text: `El jugador ${name} ha sido agregado.`,
+          title: "Player added.",
+          text: `The player ${name} has been added.`,
           icon: "success",
           customClass: {
             popup: "swal2-custom",
@@ -151,7 +150,7 @@ async function newInsertPlayer() {
       } else {
         await Swal.fire({
           title: "ERROR",
-          text: "El nombre tiene mas de 10 caracteres.",
+          text: "The name's lenght is more than 20.",
           icon: "error",
           customClass: {
             popup: "swal2-custom",
@@ -161,7 +160,7 @@ async function newInsertPlayer() {
     } else {
       await Swal.fire({
         title: "ERROR",
-        text: "Límite máximo de jugadores alcanzado.",
+        text: "You cant add more than 20 players.",
         icon: "error",
         customClass: {
           popup: "swal2-custom"
@@ -174,47 +173,47 @@ async function newInsertPlayer() {
 
 
 
-function insertPlayer() {
+ function insertPlayer() {
 
-  let form = document.getElementById("newPlayerForm");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = form.elements.playerNickname.value.trim();
-    console.log();
-    if (nombres.length < 20) {
+   let form = document.getElementById("newPlayerForm");
+   form.addEventListener("submit", function (e) {
+     e.preventDefault();
+     const name = form.elements.playerNickname.value.trim();
+     console.log();
+     if (nombres.length < 20) {
       if (validateName(name)) {
-        nombres.push(name);
+         nombres.push(name);
         closeNewPlayerMenu();
       } else {
-        Swal.fire({
+         Swal.fire({
           title: "ERROR",
           text: "The name is not valid.",
-          icon: "error"
-        });
-        document.getElementById("playerNickname").value = "";
-        closeNewPlayerMenu()
+           icon: "error"
+         });
+         document.getElementById("playerNickname").value = "";
+         closeNewPlayerMenu()
       }
-    } else {
-      Swal.fire({
-        title: "ERROR",
+     } else {
+       Swal.fire({
+         title: "ERROR",
         text: "MAX PLAYER ERROR",
-        icon: "error"
+         icon: "error"
       });
       closeNewPlayerMenu()
-    }
+     }
 
   });
-}
+ }
 
-async function insertPlayerAlert() {
-  const { value: url } = await Swal.fire({
+ async function insertPlayerAlert() {
+   const { value: url } = await Swal.fire({
     input: "url",
-    inputLabel: "URL address",
-    inputPlaceholder: "Enter the URL"
+     inputLabel: "URL address",
+     inputPlaceholder: "Enter the URL"
   });
-  if (url) {
+   if (url) {
     Swal.fire(`Entered URL: ${url}`);
-  }
+   }
 }
 
 function stringFromCurrentPlayers(playersArr) {
@@ -250,7 +249,7 @@ function showDuels() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Tiene que haber al menos 1 jugador.",
+          text: "You need at least one player to start.",
         });
       }
     }
@@ -308,6 +307,8 @@ function crearParejas(nombres) {
   return parejas;
 }
 
+
+
 function startDuels(){
   document.getElementById("fight").classList.add("d-none");
   document.getElementById("lobby").classList.add("d-none");
@@ -316,14 +317,13 @@ function startDuels(){
 }
 
 
+
+
 let parejas = [];
 let muertos = [];
 let vivos = [];
 let jugando = [];
 let ganadores = [];
-
-
-
 
 // VARIABLES DEL DOM
 const player1dice = document.getElementById("player1dice");
@@ -337,49 +337,66 @@ const deadplayers = document.getElementById("deadplayers");
 let step = 0;
 let i = 0;
 
-function tirarDado(dado1HTML, dado2HTML, jugadores) {
+let loose=false;
+
+async function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
 
+    let dado1, dado2;
+
     do {
-      dado1 = Math.floor(Math.random() * 6 + 1);
-      dado2 = Math.floor(Math.random() * 6 + 1);
+      dado1 = Math.floor(Math.random() * 6) + 1;
+      dado2 = Math.floor(Math.random() * 6) + 1;
     } while (dado1 === dado2);
-
-    if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
-      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
+    dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
+    if (jugadores.length === 1) {
+      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}evil.png" width="50">`;
       if (dado1 > dado2) {
-        ganadores.push(jugadores[step][0]);
-        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-        muertos.push(jugadores[step][1]);
-        deadplayers.innerHTML += jugadores[step][1] + "<br>";
-        updatePlayers(ganadores, muertos);
+        ganadores.push(jugadores[0][0]);
+        aliveplayers.innerHTML += jugadores[0][0] + "<br>";
       } else {
-        ganadores.push(jugadores[step][1]);
-        aliveplayers.innerHTML += jugadores[step][1] + "<br>";
-        muertos.push(jugadores[step][0]);
-        deadplayers.innerHTML += jugadores[step][0] + "<br>";
-        updatePlayers(ganadores, muertos);
+        loose=true;
+        ganadores.push("Paloma");
 
       }
-    } else {
-
-      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
-      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}evil.png" width=50">`;
+      resolve();
+      return;
+    }
+    dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
+    if (jugadorActual[1] !== undefined) { 
       if (dado1 > dado2) {
-        ganadores.push(jugadores[step][0]);
-        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
+        ganadores.push(jugadorActual[0]);
+        muertos.push(jugadorActual[1]);
+      } else {
+        ganadores.push(jugadorActual[1]);
+        muertos.push(jugadorActual[0]);
       }
+      aliveplayers.innerHTML += ganadores.at(-1) + "<br>";
+      deadplayers.innerHTML += muertos.at(-1) + "<br>";
+      updatePlayers(ganadores, muertos);
     }
     step++;
     resolve();
   });
 }
+
+
+
+
+
+
 async function ejecutarRonda(jugadores) {
+  if(loose){
+    Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "You need at least one player to start.",
+    });
+  }
   for (let i = 0; i < jugadores.length; i++) {
     if (jugadores[i][1] == undefined) {
       player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = "PALOMA"
+      player2.innerHTML = "Paloma"
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
       player1.innerHTML = jugadores[i][0]
@@ -387,11 +404,12 @@ async function ejecutarRonda(jugadores) {
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    await new Promise(resolve => setTimeout(resolve, 2000));
   }
 
   if (ganadores.length == 1) {
-    alert("el ganador es " + ganadores[0])
+    alert("The winner is " + ganadores[0])
   } else {
     vivos = ganadores;
     ganadores = [];
@@ -411,12 +429,12 @@ function playMusic() {
 vivos=nombres;
 function startRound() {
   roundNumber++;
-  roundcount.innerHTML = "RONDA " + roundNumber;
+  roundcount.innerHTML = "ROUND " + roundNumber;
   aliveplayers.innerHTML = "";
   document.getElementById("playbutton").innerHTML = "Next Round!";
   document.getElementById("playbutton").style.display = "none";
-  playMusic()
-  ejecutarRonda(crearParejas(mezclarArray(vivos)))
+  // playMusic()
+  ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
 
 
