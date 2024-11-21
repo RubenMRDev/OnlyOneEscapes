@@ -46,6 +46,7 @@ function showHistory() {
 
 let nombres=[]
 
+nombres=ALUMNOS
 //let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
 let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
@@ -349,8 +350,12 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     } while (dado1 === dado2); 
 
     if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50" style="animation: spin 1s linear infinite;">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50" style="animation: spin 1s linear infinite;">`; 
+      setTimeout(() => {
+        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
+        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -364,8 +369,12 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
       }
     } else {
       
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50" style="animation: spin 1s linear infinite;">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" style="animation: spin 1s linear infinite;">`;  
+      setTimeout(() => {
+        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
+        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;  
+      }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -374,8 +383,6 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
         if(jugadores.length>=1){
         console.log("test")
           
-        muertos.push(jugadores[step][0]);
-        deathplayers.innerHTML += jugadores[step][0] + "<br>";
         ganadores.push("Paloma");
         }
       }
@@ -389,9 +396,8 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
 
 
 
-
 async function ejecutarRonda(jugadores) {
-  if(loose){
+  if (loose) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -400,21 +406,25 @@ async function ejecutarRonda(jugadores) {
   }
   for (let i = 0; i < jugadores.length; i++) {
     if (jugadores[i][1] === undefined) {
-      player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = "Paloma"
+      player1.innerHTML = jugadores[i][0];
+      player2.innerHTML = "Paloma";
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
-      player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = jugadores[i][1]
+      player1.innerHTML = jugadores[i][0];
+      player2.innerHTML = jugadores[i][1];
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   }
 
   if (ganadores.length == 1) {
-    alert("The winner is " + ganadores[0])
+    Swal.fire({
+      icon: "success",
+      title: "Congratulations!",
+      text: "The winner is " + ganadores[0],
+      confirmButtonText: "Awesome!",
+    });
   } else {
     vivos = ganadores;
     ganadores = [];
@@ -425,20 +435,18 @@ async function ejecutarRonda(jugadores) {
 
 let roundNumber = 0;
 
-//TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
-function playMusic() {
-  var music = new Audio('images/play.mp3');
-  music.play();
-}
+
 
 vivos=nombres;
-function startRound() {
+function startRound() { 
   roundNumber++;
   roundcount.innerHTML = "ROUND " + roundNumber;
   aliveplayers.innerHTML = "";
   document.getElementById("playbutton").innerHTML = "Next Round!";
   document.getElementById("playbutton").style.display = "none";
-  // playMusic()
+
+
+
   ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
 
