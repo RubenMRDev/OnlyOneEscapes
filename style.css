@@ -88,7 +88,7 @@ body {
 }
 #title{
   color: white;
-  text-shadow: 2px 0 #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+  text-shadow: -1px 0 #C7FCCA, 2px 0 #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
 }
 .navbar-toggler:focus {
   color: transparent;
