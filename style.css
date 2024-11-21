@@ -1,53 +1,81 @@
-@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
 
-*{
-    font-family: "Pixelify Sans", serif;
-
+* {
+  font-family: "Pixelify Sans", serif;
 }
 
-
-body{
-    text-align: center;
-    font-family: "Pixelify Sans", serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-    z-index: 1;
-}
-.form-container{
-    display: none;
+body {
+  text-align: center;
+  font-family: "Pixelify Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 1;
 }
 
-#add-player-button{
-    text-align: center;
-    background-color: #ffe500;
-    border: none;
-    font-family: "Pixelify Sans", serif;
-
+.button-UI {
+  text-align: center;
+  background-color: #ffe500;
+  border: none;
+  border-radius: 3px;
+  padding: 8px;
+  font-family: "Pixelify Sans", serif;
+}
+.button-UI:hover {
+  color: rgb(25, 161, 176);
+  background-color: rgb(0, 0, 0);
 }
 
 .swal2-custom {
-    background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
-    color: white;
-  }
+  background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
+  color: white;
+}
 
-#players-roster{
-    padding: 10%;
-    margin: auto 0;
+#players-roster {
+  padding: 10%;
+  margin: auto 0;
 }
 
 .responsive-background {
-    position: fixed;
-    background-image: url('images/fondo_desktop.jpg');
-    background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
-    background-position: center; /* Centra la imagen */
-    background-repeat: no-repeat; /* Evita que la imagen se repita */
-    width: 100vw; /* Ocupa todo el ancho de la pantalla */
-    height: 100vh; /* Ocupa toda la altura de la pantalla */
-    z-index: -1;
+  position: fixed;
+  background-image: url("images/fondo_desktop.jpg");
+  background-size: cover; /* Asegura que la imagen cubra completamente el contenedor */
+  background-position: center; /* Centra la imagen */
+  background-repeat: no-repeat; /* Evita que la imagen se repita */
+  width: 100vw; /* Ocupa todo el ancho de la pantalla */
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  z-index: -1;
 }
 
+.navbar-toggler:focus {
+  color: transparent;
+}
+
+.duels, #fight {
+  display: none;
+}
+#add-player-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#dropdown-players {
+  background-color: rgba(25, 161, 176, 0.9);
+  padding: 10% 20%;
+  margin-top: 0px;
+  border-radius: 0;
+  text-align: start;
+  top: 65px;
+}
 .unstyled-link {
-    color: black;        /* Cambia el color a negro */
-  }
-  
+  color: black; /* Cambia el color a negro */
+}
+
+#lobby{
+  background-color: rgba(25, 161, 176, 0.9);
+  min-width: 300px;
+  min-height: 300px;
+}
