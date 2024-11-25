@@ -12,6 +12,12 @@
 ///////////////////////UI-INICIO///////////////////////////////////
 
 function startGame() {
+  
+  document.getElementById("add-player-menu").classList.remove("d-none");
+  document.getElementById("add-player-button").style.display = "block";
+  document.getElementById("lobby").classList.remove("d-none");
+  document.getElementById("play").style.display = "block";
+
   document.getElementById("add-player-menu").style.display = "flex";
   document.getElementById("lobby").innerHTML = nombres.join("<br>");
   document.getElementById("start-menu").classList.add("d-none");
@@ -51,7 +57,21 @@ let nombres = [
 
 let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
 
+const fight_music = new Audio('images/audio/fight.mp3');
+const menu_music = new Audio('images/audio/menu.mp3');
+const winner_music = new Audio('images/audio/winner.mp3');
+
+
+
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
+
+
+function loadWebsite(){
+  document.getElementById('black-screen').remove(); 
+  menu_music.loop = true;
+  menu_music.play();
+}
+
 
 function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
@@ -228,6 +248,7 @@ function validateName(nickName) {
 //------------------------------INICIAR-PARTIDA--------------------------
 
 function showDuels() {
+
   Swal.fire({
     title: "Are you sure you want to start the game?",
     icon: "warning",
@@ -244,7 +265,8 @@ function showDuels() {
       if (nombres.length >= 1) {
         //show first round pairings
         document.getElementById("add-player-button").style.display = "none";
-        document.getElementById("play").style.display = "none";
+  document.getElementById("fight").classList.remove("d-none");
+  document.getElementById("play").style.display = "none";
         document.getElementById("fight").style.display = "block";
         parejas = crearParejas(mezclarArray(nombres));
         const lobby = document.getElementById("lobby");
@@ -317,6 +339,10 @@ function startDuels(){
   document.getElementById("lobby").classList.add("d-none");
   document.getElementById("duels").classList.add("d-block");
   startRound();
+  menu_music.pause();
+  menu_music.currentTime = 0;
+  fight_music.loop = true;
+  fight_music.play();
 }
 
 
@@ -395,6 +421,17 @@ async function ejecutarRonda(jugadores) {
   }
 
   if (ganadores.length == 1) {
+    if (fight_music) {
+      fight_music.pause();
+      fight_music.currentTime = 0;
+      winner_music.play();
+
+    }
+    
+    document.getElementById("start-menu").classList.remove("d-none");
+    document.getElementById("duels").classList.remove("d-block");
+
+
     swal.fire({
       tittle: 'Tenemos un ganador',
       text: `El ganador es ${ganadores[0]}`,
@@ -406,6 +443,23 @@ async function ejecutarRonda(jugadores) {
         popup: "swal2-custom"
       }
     });
+
+    parejas = [];
+    muertos = [];
+    vivos=nombres;
+
+    jugando = [];
+    ganadores = [];
+
+  aliveplayers.innerHTML = "";
+  deadplayers.innerHTML = "";
+
+    roundNumber = 0;
+    step=0;
+    i=0;
+
+
+
   } else {
     vivos = ganadores;
     ganadores = [];
@@ -416,12 +470,6 @@ async function ejecutarRonda(jugadores) {
 
 let roundNumber = 0;
 
-//TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
-function playMusic() {
-  var music = new Audio('images/play.mp3');
-  music.play();
-}
-
 vivos=nombres;
 function startRound() {
   roundNumber++;
@@ -429,9 +477,5 @@ function startRound() {
   aliveplayers.innerHTML = "";
   document.getElementById("playbutton").innerHTML = "Next Round!";
   document.getElementById("playbutton").style.display = "none";
-  playMusic()
   ejecutarRonda(crearParejas(mezclarArray(vivos)))
 }
-
-
-
