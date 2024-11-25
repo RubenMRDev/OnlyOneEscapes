@@ -90,7 +90,7 @@ body {
 
 #loadingLogo {
   width: 100px;
-  animation: scaleUp 3s ease forwards; /* Scale-up animation */
+  animation: scaleUp 3s ease forwards;
 }
 
 @keyframes scaleUp {
@@ -107,22 +107,56 @@ body {
 }
 
 .button-UI {
-  text-align: center;
   background-color: #ffe500;
   box-shadow: 0px 0px 10px 1px #ffe500;
   border: none;
   border-radius: 3px;
   padding: 8px;
   transition: transform 0.1s ease-in-out;
+  position: relative;
+  color: black;
+  z-index: 1;
 }
+
 .button-UI:hover {
   color: rgb(0, 246, 189);
   background-color: rgb(0, 0, 0);
   box-shadow: 0px 0px 10px 5px rgb(25, 161, 176);
   text-shadow: 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
   transform: scale(1.2);
-
 }
+
+.button-UI::before {
+  content: '';
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(180deg, rgba(255, 255, 0, 0.5), rgba(255, 255, 0, 0));
+  clip-path:  polygon(0px 0px, 200px 100px, 0px 200px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.button-UI:hover::before {
+  opacity: 1;
+  animation: border-spotlight 2s linear infinite;
+}
+
+@keyframes border-spotlight {
+  0% {
+  }
+  25% {
+  }
+  50% {
+  }
+  75% {
+  }
+  100% {
+  }
+}
+
+
 
 #settings, #logo {
   min-width: 40px;
@@ -143,12 +177,12 @@ body {
 #dropdownPlayersStatus::before {
   content: '';
   position: absolute;
-  top: -5%;
+  top: 0%;
   left: -1%;
   width: 100%;
   height: 100%;
   z-index: -1;
-  background: radial-gradient(circle, rgb(199, 252, 202, 0.0) 0%, rgb(199, 252, 202, 0.0) 10%,#C7FCCA 40%, rgba(255, 255, 255, 0.5) 50%,rgba(255, 255, 255, 0) 70%);
+  background: radial-gradient(circle, rgb(199, 252, 202, 0.2) 0%, rgb(199, 252, 202, 0.4) 30%, rgb(199, 252, 202, 0.4) 40%,  rgba(255, 255, 255, 0) 70%);
 }
 
 #settings-button::before {
@@ -159,7 +193,7 @@ body {
   width: 140%;
   height: 140%;
   z-index: -1;
-  background: radial-gradient(circle, rgb(199, 252, 202, 0) 0%, rgb(199, 252, 202, 0) 25%, #C7FCCA 40%, rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(circle, rgb(199, 252, 202, 0.4) 0%, rgb(199, 252, 202, 0.4) 30%, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0) 100%);
 }
 
 
