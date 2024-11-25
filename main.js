@@ -433,5 +433,17 @@ function startRound() {
   ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
 
+//---------------------------------------WINDOW-EVENT--------------------------------------
 
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loadingScreen');
+  
+  setTimeout(() => {
+      loadingScreen.style.transition = 'opacity 1s ease';
+      loadingScreen.style.opacity = '0';
+      setTimeout(() => {
+          loadingScreen.style.display = 'none';
+      }, 1000);
+  }, 3000);
+});
 
