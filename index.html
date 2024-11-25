@@ -49,12 +49,16 @@
   <div id="overlay" class="hidden">
       <div class="overlay-content">
           <h4 class="settings-father">VOLUME</h4>
-            <h5 class="settings-son">MUSIC</h5>
-              <!--Deslizable musica--> 
-            <h5 class="settings-son">SOUND</h5>
-              <!--Deslizable sonido--> 
+          <div id="sliders-container" class="sliders-container">
+            <label for="volume-slider"><h5>MUSIC:</h5></label>
+            <input class="sliders" type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+            <label for="volume-slider" class="volume-slider"><h5>SOUND:</h5></label>
+            <input class="sliders" type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+        </div>
           <h4 class="settings-father">GRAPHICS</h4>
+          <div class="div-Gore-button">
               <button class="graphics-button"><p><strong>ACTIVATE GORE MODE</strong><p><img class="danger-img" width="45" height="45" src="https://cdn-icons-png.flaticon.com/512/10843/10843180.png" alt="Danger!"> </button>
+          </div>
           <h4 class="settings-father">GAME</h4>
         <div class="gameButtonsSpace">
           <button class="game-button">RESTART GAME</button>

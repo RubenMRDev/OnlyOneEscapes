@@ -100,7 +100,7 @@ body {
   background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 
 #overlay.hidden{
@@ -109,32 +109,33 @@ body {
 
 .overlay-content {
   background: transparent;
-  width: 320px;
+  width: 500px;
+  height: -150px;
   text-align: center;
+  margin-top: 20px;
 }
-
 
 .settings-father {
   font-size: 22px;
   color: #FFE600;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   text-align: left;
-  padding-top: 15px;
+  padding-top: 20px;
+  padding-bottom: 10px;
 }
 
 
 .settings-son {
-  font-size: 18px;
+  font-size: 20px;
   color: #FFE600;
   margin-bottom: 5px;
   text-align: center;
 }
 
 button.graphics-button {
-  width: 90%;
-  padding: 5px;
-  padding-top: 20px;
-  height: 50px;
+  width: 60%;
+  padding-top: 18px;
+  height: 35px;
   font-size: 22px;
   border: none;
   cursor: pointer;
@@ -153,33 +154,55 @@ button.graphics-button {
 .gameButtonsSpace{
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 40px;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
-button.game-button{
+.game-button{
+  height: 25px;
+  font-size: 22px;
   border: none;
-  height: 50px;
-  font-size: 20px;
+  width: 170px;
   background-color: #FFE600;
   color: #ffffff;
   text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
                1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
+  box-shadow: 0 0 0px 2px #ffffff;
+  padding-bottom: 40px;
 }
 
-button.exit-button{
+.exit-button{
   border: none;
-  height: 50px;
-  font-size: 20px;
+  height: 30px;
+  margin-top: 20px;
+  font-size: 22px;
   background-color: #FFE600;
   opacity: 0.;
   color: #ffffff;
   text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
                1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
   font-weight: bold;
-  box-shadow: 0 0 0px 3px #000000;
+  box-shadow: 0 0 0px 2px #ffffff;
+  padding-bottom: 35px;
 }
+
+.div-Gore-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliders-container{
+  color: #FFE600;
+  display: flex;
+  flex-direction: row;
+  width: 30%;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
 
