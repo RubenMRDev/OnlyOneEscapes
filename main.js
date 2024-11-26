@@ -106,6 +106,14 @@ function closeNewPlayerMenu() {
   formContainer.elements.playerNickname = "";
 }
 
+function assignGoblinToPlayer(playerNickname){
+  let randomGoblin = document.createElement("img");
+  randomGoblin.setAttribute("src", "images/goblin/goblin-idle/idleBlack.gif");
+  randomGoblin.setAttribute("alt", `${playerNickname} goblin`);
+  const container = document.getElementById("lobby");
+  container.appendChild(randomGoblin);
+}
+
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
     input: "text",
@@ -138,6 +146,8 @@ async function newInsertPlayer() {
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
+        //TODO: Add function to insert goblin
+        assignGoblinToPlayer(name);
         vivos = nombres;
         await Swal.fire({
           title: "Player added.",
