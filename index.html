@@ -16,13 +16,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden;" onload="dialogue()">
 
 
 
   <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 999;">
   <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <button id="playButton" onclick="loadWebsite()      " style="z-index: 1000; font-size: 30px;">Iniciar</button>
+    <button id="playButton" onclick="loadWebsite()" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
+    <div id="dialogue" class="text-white container text-center"></div>
+    <button id="nextButton" onclick="dialogue()" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
   </div>
 </div>
 

@@ -57,15 +57,15 @@ body {
   url("images/parallaxCave/2.png"), 
   url("images/parallaxCave/1.png");
 
-  background-size: 100vw, 100vw, 100vw, 100vw, 100vw, 100vw, 100vw, 100vw, 100vw;
-  background-position: 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%;
-  background-repeat: repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x, repeat-x;
+  background-size: cover;
   width: 100vw;
   height: 100vh;
   z-index: -1;
   filter: brightness(0.5); /* Makes the background darker */
   animation: scrollLeft 60s infinite linear;
 }
+
+
 
 @keyframes scrollLeft {
   0% { background-position: 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%; }

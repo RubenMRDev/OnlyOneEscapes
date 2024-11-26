@@ -61,9 +61,56 @@ const fight_music = new Audio('images/audio/fight.mp3');
 const menu_music = new Audio('images/audio/menu.mp3');
 const winner_music = new Audio('images/audio/winner.mp3');
 
+let dialogueCount=0;
+function dialogue(){
+
+  document.getElementById("nextButton").style.display = "block";
+  const dialog1 = "¡Ahhh, bienvenidos, frágiles criaturas! Están en mi dominio, un laberinto que respira oscuridad y muerte. Aquí no hay recuerdos, ni piedad... solo un camino: sobrevivir.";
+  const dialog2 ="No confíen demasiado en esas caras... ¡uno de ustedes será el último en pie! Cada esquina guarda un secreto, cada sombra, un peligro. ¿Amigos? ¿Enemigos? ¡Decídanlo pronto, o el laberinto lo hará por ustedes!";
+  const dialog3="Vayan, corran... o quédense y enfrenten su destino. El tiempo no será su aliado aquí. ¡Que comience el juego!";
+
+  if(dialogueCount==0){
+    document.getElementById("dialogue").innerHTML = "";
+  addLettersToDiv(dialog1, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }else if(dialogueCount==1){
+    document.getElementById("dialogue").innerHTML = "";
+    addLettersToDiv(dialog2, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }else if(dialogueCount==2){
+    document.getElementById("dialogue").innerHTML = "";
+    addLettersToDiv(dialog3, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }
+
+ 
 
 
-//-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
+
+} 
+
+function addLettersToDiv(string, divId){
+  const letters = string.split("");
+  const div = document.getElementById(divId);
+  let i = 0;
+  const intervalId = setInterval(() => {
+    div.innerHTML += letters[i];
+    i++;
+    if (i === letters.length) {
+      clearInterval(intervalId);
+      document.getElementById("nextButton").style.display = "block";
+      if(dialogueCount==3){
+        document.getElementById("playButton").style.display = "block";
+      document.getElementById("nextButton").style.display = "none";
+
+      }
+    }
+  }, 5);
+}
+
 
 
 function loadWebsite(){
@@ -71,6 +118,11 @@ function loadWebsite(){
   menu_music.loop = true;
   menu_music.play();
 }
+
+//-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
+
+
+
 
 
 function updatePlayers(alive, dead = []) {
