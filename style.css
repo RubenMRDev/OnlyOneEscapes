@@ -212,6 +212,26 @@ button.graphics-button {
   height: 8px;
   outline: none;
   border-radius: 5px;
+  align-items: center;
+  justify-content: center;
 }
 
+.sliders::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, #2DAAB8, #000036); /* Degradado o color sólido */
+  border-radius: 5px;
+  height: 8px;
+}
 
+.sliders::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #FFE600;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sliders:active::-webkit-slider-thumb {
+  background: #C7FCCA;
+}
