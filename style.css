@@ -161,6 +161,7 @@ body {
 }
 .goblin{
   color: #ffe500;
+  text-shadow: 1px 0 rgb(25, 161, 176), 0 -1px rgb(25, 161, 176), 0px 0px 10px #C7FCCA;
   width: 80px;
   height: 80px;
   position: absolute;

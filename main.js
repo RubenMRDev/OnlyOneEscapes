@@ -165,7 +165,7 @@ async function newInsertPlayer() {
   });
 
   if (playerName) {
-    const name = playerName.trim();
+    const name = playerName.trim().toUpperCase();
 
     if (nombres.includes(name)) {
       await Swal.fire({
