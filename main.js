@@ -113,6 +113,7 @@ function closeNewPlayerMenu() {
   formContainer.elements.playerNickname = "";
 }
 //-------------GOBLIN--------------------------------------
+const goblin = ["", "", ""];
 
 function assignGoblinToPlayer(playerNickname) {
   let randomGoblin = document.createElement("img");
@@ -124,12 +125,14 @@ function assignGoblinToPlayer(playerNickname) {
   console.log(location);
   randomGoblin.style.top = `${location[0]}px`;
   randomGoblin.style.right = `${location[1]}px`;
+  //change z-index based on location[0] number to overlap gif;
+  randomGoblin.style.zIndex = `${location[0]}`;
   container.appendChild(randomGoblin);
 }
 
 function randomizeLocationGoblinSpawn() {
-  const containerWidth = 300;
-  const containerHeight = 300;
+  const containerWidth = 220;
+  const containerHeight = 220;
   const y = Math.floor(Math.random() * containerHeight);
   const x = Math.floor(Math.random() * containerWidth);
   return [y, x];
