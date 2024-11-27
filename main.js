@@ -25,30 +25,37 @@ function showHistory() {
 }
 
 ////////////////////////////////////////////////PLAYERS/////////////////////////////////
- let ALUMNOS = [
-   "Israel Abad Barrera",
-   "Javier Ariza Rosales",
-   "Nicolás Burgos Contreras",
-   "Felipe Chacón Montero",
-   "Fernando de la Torre Esperon",
-   "Jesús Manuel García Lozano",
-   "Alejandro Gómez Ojeda",
-   "Pablo Jiménez Menéndez",
-   "Mario Lebrero García",
-   "Pablo Noria Gómez",
-   "Mauricio Nicolas Ortiz",
-   "Adrián Pérez Agredano",
-   "Jairo Saborito Franco",
-   "Judith Tamayo Balogh",
-   "Samuel Utrilla Núñez",
-   "Ruben Martin Ruiz",
- ];
+let ALUMNOS = [
+  "Israel Abad Barrera",
+  "Javier Ariza Rosales",
+  "Nicolás Burgos Contreras",
+  "Felipe Chacón Montero",
+  "Fernando de la Torre Esperon",
+  "Jesús Manuel García Lozano",
+  "Alejandro Gómez Ojeda",
+  "Pablo Jiménez Menéndez",
+  "Mario Lebrero García",
+  "Pablo Noria Gómez",
+  "Mauricio Nicolas Ortiz",
+  "Adrián Pérez Agredano",
+  "Jairo Saborito Franco",
+  "Judith Tamayo Balogh",
+  "Samuel Utrilla Núñez",
+  "Ruben Martin Ruiz",
+];
 
-let nombres=[]
+let nombres = [];
 
 //let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
-let dados = ["/images/dado1", "/images/dado2", "/images/dado3", "/images/dado4", "/images/dado5", "/images/dado6"]
+let dados = [
+  "/images/dado1",
+  "/images/dado2",
+  "/images/dado3",
+  "/images/dado4",
+  "/images/dado5",
+  "/images/dado6",
+];
 
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
 
@@ -105,13 +112,27 @@ function closeNewPlayerMenu() {
   formContainer.style.display = "none";
   formContainer.elements.playerNickname = "";
 }
+//-------------GOBLIN--------------------------------------
 
-function assignGoblinToPlayer(playerNickname){
+function assignGoblinToPlayer(playerNickname) {
   let randomGoblin = document.createElement("img");
   randomGoblin.setAttribute("src", "images/goblin/goblin-idle/idleBlack.gif");
   randomGoblin.setAttribute("alt", `${playerNickname} goblin`);
+  randomGoblin.setAttribute("class", "goblin");
   const container = document.getElementById("lobby");
+  const location = randomizeLocationGoblinSpawn(container);
+  console.log(location);
+  randomGoblin.style.top = `${location[0]}px`;
+  randomGoblin.style.right = `${location[1]}px`;
   container.appendChild(randomGoblin);
+}
+
+function randomizeLocationGoblinSpawn() {
+  const containerWidth = 300;
+  const containerHeight = 300;
+  const y = Math.floor(Math.random() * containerHeight);
+  const x = Math.floor(Math.random() * containerWidth);
+  return [y, x];
 }
 
 async function newInsertPlayer() {
@@ -120,12 +141,12 @@ async function newInsertPlayer() {
     inputLabel: "Name of the player.",
     inputPlaceholder: "Introduce the name of the player:",
     inputAttributes: {
-      "aria-label": "Introduce the name of the player:r"
+      "aria-label": "Introduce the name of the player:r",
     },
     showCancelButton: true,
     customClass: {
-      popup: "swal2-custom"
-    }
+      popup: "swal2-custom",
+    },
   });
 
   if (playerName) {
@@ -137,8 +158,8 @@ async function newInsertPlayer() {
         text: "The name already exist in the list.",
         icon: "error",
         customClass: {
-          popup: "swal2-custom"
-        }
+          popup: "swal2-custom",
+        },
       });
       return;
     }
@@ -173,57 +194,52 @@ async function newInsertPlayer() {
         text: "You cant add more than 20 players.",
         icon: "error",
         customClass: {
-          popup: "swal2-custom"
-        }
+          popup: "swal2-custom",
+        },
       });
     }
   }
 }
 
-
-
-
- function insertPlayer() {
-
-   let form = document.getElementById("newPlayerForm");
-   form.addEventListener("submit", function (e) {
-     e.preventDefault();
-     const name = form.elements.playerNickname.value.trim();
-     console.log();
-     if (nombres.length < 20) {
+function insertPlayer() {
+  let form = document.getElementById("newPlayerForm");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const name = form.elements.playerNickname.value.trim();
+    console.log();
+    if (nombres.length < 20) {
       if (validateName(name)) {
-         nombres.push(name);
+        nombres.push(name);
         closeNewPlayerMenu();
       } else {
-         Swal.fire({
+        Swal.fire({
           title: "ERROR",
           text: "The name is not valid.",
-           icon: "error"
-         });
-         document.getElementById("playerNickname").value = "";
-         closeNewPlayerMenu()
+          icon: "error",
+        });
+        document.getElementById("playerNickname").value = "";
+        closeNewPlayerMenu();
       }
-     } else {
-       Swal.fire({
-         title: "ERROR",
+    } else {
+      Swal.fire({
+        title: "ERROR",
         text: "MAX PLAYER ERROR",
-         icon: "error"
+        icon: "error",
       });
-      closeNewPlayerMenu()
-     }
-
+      closeNewPlayerMenu();
+    }
   });
- }
+}
 
- async function insertPlayerAlert() {
-   const { value: url } = await Swal.fire({
+async function insertPlayerAlert() {
+  const { value: url } = await Swal.fire({
     input: "url",
-     inputLabel: "URL address",
-     inputPlaceholder: "Enter the URL"
+    inputLabel: "URL address",
+    inputPlaceholder: "Enter the URL",
   });
-   if (url) {
+  if (url) {
     Swal.fire(`Entered URL: ${url}`);
-   }
+  }
 }
 
 function stringFromCurrentPlayers(playersArr) {
@@ -231,7 +247,9 @@ function stringFromCurrentPlayers(playersArr) {
 }
 
 function validateName(nickName) {
-  return nickName.length > 0 && !nombres.includes(nickName) && nickName.length < 11;
+  return (
+    nickName.length > 0 && !nombres.includes(nickName) && nickName.length < 11
+  );
 }
 
 //------------------------------INICIAR-PARTIDA--------------------------
@@ -243,7 +261,7 @@ function showDuels() {
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
-    confirmButtonText: "Start Game"
+    confirmButtonText: "Start Game",
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
@@ -268,7 +286,7 @@ function showDuels() {
 
 function displayPairingsAsList(pairings) {
   console.log(pairings);
-  
+
   const ul = document.createElement("ul");
   ul.classList.add("p-2");
   ul.style.listStyle = "none";
@@ -317,17 +335,12 @@ function crearParejas(nombres) {
   return parejas;
 }
 
-
-
-function startDuels(){
+function startDuels() {
   document.getElementById("fight").classList.add("d-none");
   document.getElementById("lobby").classList.add("d-none");
   document.getElementById("duels").classList.add("d-block");
   startRound();
 }
-
-
-
 
 let parejas = [];
 let muertos = [];
@@ -348,19 +361,18 @@ const deathplayers = document.getElementById("deadplayers");
 let step = 0;
 let i = 0;
 
-let loose=false;
+let loose = false;
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
-
     do {
       dado1 = Math.floor(Math.random() * 6 + 1);
       dado2 = Math.floor(Math.random() * 6 + 1);
-    } while (dado1 === dado2); 
+    } while (dado1 === dado2);
 
     if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
+      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -373,9 +385,10 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
         deathplayers.innerHTML += jugadores[step][0] + "<br>";
       }
     } else {
-      
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;
+      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
+      dado2HTML.innerHTML = `<img src="${
+        dados[dado2 - 1]
+      }evil.png" width=50" >`;
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -386,13 +399,8 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
   });
 }
 
-
-
-
-
-
 async function ejecutarRonda(jugadores) {
-  if(loose){
+  if (loose) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
@@ -401,21 +409,20 @@ async function ejecutarRonda(jugadores) {
   }
   for (let i = 0; i < jugadores.length; i++) {
     if (jugadores[i][1] === undefined) {
-      player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = "Paloma"
+      player1.innerHTML = jugadores[i][0];
+      player2.innerHTML = "Paloma";
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
-      player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = jugadores[i][1]
+      player1.innerHTML = jugadores[i][0];
+      player2.innerHTML = jugadores[i][1];
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise((resolve) => setTimeout(resolve, 2000));
   }
 
   if (ganadores.length == 1) {
-    alert("The winner is " + ganadores[0])
+    alert("The winner is " + ganadores[0]);
   } else {
     vivos = ganadores;
     ganadores = [];
@@ -428,11 +435,11 @@ let roundNumber = 0;
 
 //TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
 function playMusic() {
-  var music = new Audio('images/play.mp3');
+  var music = new Audio("images/play.mp3");
   music.play();
 }
 
-vivos=nombres;
+vivos = nombres;
 function startRound() {
   roundNumber++;
   roundcount.innerHTML = "ROUND " + roundNumber;
@@ -445,15 +452,14 @@ function startRound() {
 
 //---------------------------------------WINDOW-EVENT--------------------------------------
 
-window.addEventListener('load', () => {
-  const loadingScreen = document.getElementById('loadingScreen');
-  
+window.addEventListener("load", () => {
+  const loadingScreen = document.getElementById("loadingScreen");
+
   setTimeout(() => {
-      loadingScreen.style.transition = 'opacity 1s ease';
-      loadingScreen.style.opacity = '0';
-      setTimeout(() => {
-          loadingScreen.style.display = 'none';
-      }, 1000);
+    loadingScreen.style.transition = "opacity 1s ease";
+    loadingScreen.style.opacity = "0";
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+    }, 1000);
   }, 3000);
 });
-

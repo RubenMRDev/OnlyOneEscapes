@@ -63,7 +63,7 @@ body {
   width: 100vw;
   height: 100vh;
   z-index: 1;
-  animation: mood-cycle 10s infinite ease;
+  animation: mood-cycle 20s infinite ease;
 }
 
 @keyframes mood-cycle {
@@ -154,6 +154,16 @@ body {
   }
   100% {
   }
+}
+
+#lobby{
+  position: relative;
+}
+.goblin{
+  max-width: 100px;
+  max-height: 100px;
+  position: absolute;
+  /* random x y  coordinates on main js  */
 }
 
 
