@@ -129,6 +129,20 @@ buttonSkull.addEventListener("click", () => {
 
 //---------------------------------------GOBLIN----------------------------------------------
 
+//Settings Menu
+const overlayButton = document.getElementById('settingsOverlayButton');
+const overlay = document.getElementById('overlay');
+const exitButton = document.getElementById('exitButton');
+
+overlayButton.addEventListener('click', () => {
+  overlay.classList.toggle('hidden');
+});
+
+exitButton.addEventListener('click', () => {
+  overlay.classList.add('hidden');
+});
+
+
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
     input: "text",
