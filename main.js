@@ -1,3 +1,5 @@
+import { assignGoblinToPlayer } from "./goblin.js";
+
 //alerta añade un jugador
 //play aviso seguro que quieres empezar solo la primera vez
 //dado rotando
@@ -9,12 +11,37 @@
 //animacion/transicion de inicio
 //animacion boss
 
+
+window.addEventListener("load", () => {
+  const loadingScreen = document.getElementById("loadingScreen");
+  
+  setTimeout(() => {
+    loadingScreen.style.transition = "opacity 1s ease";
+    loadingScreen.style.opacity = "0";
+    setTimeout(() => {
+      loadingScreen.style.display = "none";
+      
+    }, 1000);
+  }, 3000);
+});
+
+/////////////////////EVENT-LISTENER////////////////////////////////
+
+document.getElementById("start-game-button").addEventListener("click", startGame);
+document.getElementById("show-history-button").addEventListener("click", showHistory);
+document.getElementById("add-player-button").addEventListener("click", newInsertPlayer);
+document.getElementById("play-button").addEventListener("click", showDuels);
+document.getElementById("fight-button").addEventListener("click", startDuels);
+document.getElementById("start-round-button").addEventListener("click", startRound);
+
+
 ///////////////////////UI-INICIO///////////////////////////////////
 
 function startGame() {
   document.getElementById("add-player-menu").style.display = "flex";
-  document.getElementById("lobby").innerHTML = nombres.join("<br>");
-  document.getElementById("start-menu").classList.add("d-none");
+  document.getElementById("start-menu").classList.remove("d-flex");
+  document.getElementById("start-menu").style.display = "none";
+  document.getElementById("fight-button").style.display = "none";
 }
 
 function showHistory() {
@@ -24,8 +51,9 @@ function showHistory() {
   p.style.color = "white";
 }
 
-////////////////////////////////////////////////PLAYERS/////////////////////////////////
-let ALUMNOS = [
+///////////////////////////PLAYERS/////////////////////////////////
+
+/* let ALUMNOS = [
   "Israel Abad Barrera",
   "Javier Ariza Rosales",
   "Nicolás Burgos Contreras",
@@ -42,11 +70,9 @@ let ALUMNOS = [
   "Judith Tamayo Balogh",
   "Samuel Utrilla Núñez",
   "Ruben Martin Ruiz",
-];
+]; */
 
 let nombres = [];
-
-//let nombresa = ["Jugador 1","Jugador 2","Jugador 3","Jugador 4"]
 
 let dados = [
   "/images/dado1",
@@ -100,55 +126,7 @@ buttonSkull.addEventListener("click", () => {
   }
 });
 
-function popNewPlayerMenu() {
-  const formContainer = document.getElementById("form-container");
-  formContainer.style.display = "block";
-  document.getElementById("add-player-button").style.display = "none";
-}
-
-function closeNewPlayerMenu() {
-  document.getElementById("add-player-button").style.display = "inline";
-  const formContainer = document.getElementById("form-container");
-  formContainer.style.display = "none";
-  formContainer.elements.playerNickname = "";
-}
 //---------------------------------------GOBLIN----------------------------------------------
-const goblin = ["", "", ""];
-
-function assignGoblinToPlayer(playerNickname) {
-
-  let goblinContainer = document.createElement("div");
-  goblinContainer.setAttribute("class", "goblin");
-
-  let randomGoblin = document.createElement("img");
-  randomGoblin.setAttribute("src", "images/goblin/goblin-idle/idleBlack.gif");
-  randomGoblin.setAttribute("alt", `${playerNickname} goblin`);
-  randomGoblin.setAttribute("class", "goblin-image");
-
-  let nickname = document.createElement("div");
-  nickname.setAttribute("class", "nickname");
-  nickname.textContent = playerNickname.toUpperCase();
-
-  goblinContainer.setAttribute("class", "goblin");
-  goblinContainer.appendChild(nickname);
-  goblinContainer.appendChild(randomGoblin);
-  const container = document.getElementById("lobby");
-  //random location inside lobby
-  const location = randomizeLocationGoblinSpawn(container);
-  goblinContainer.style.top = `${location[0]}px`;
-  goblinContainer.style.right = `${location[1]}px`;
-  //change z-index based on location[0] number to overlap gif
-  goblinContainer.style.zIndex = `${location[0]}`;
-  container.appendChild(goblinContainer);
-}
-
-function randomizeLocationGoblinSpawn() {
-  const containerWidth = 214;
-  const containerHeight = 214;
-  const y = Math.floor(Math.random() * containerHeight);
-  const x = Math.floor(Math.random() * containerWidth);
-  return [y, x];
-}
 
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
@@ -216,50 +194,6 @@ async function newInsertPlayer() {
   }
 }
 
-function insertPlayer() {
-  let form = document.getElementById("newPlayerForm");
-  form.addEventListener("submit", function (e) {
-    e.preventDefault();
-    const name = form.elements.playerNickname.value.trim();
-    console.log();
-    if (nombres.length < 20) {
-      if (validateName(name)) {
-        nombres.push(name);
-        closeNewPlayerMenu();
-      } else {
-        Swal.fire({
-          title: "ERROR",
-          text: "The name is not valid.",
-          icon: "error",
-        });
-        document.getElementById("playerNickname").value = "";
-        closeNewPlayerMenu();
-      }
-    } else {
-      Swal.fire({
-        title: "ERROR",
-        text: "MAX PLAYER ERROR",
-        icon: "error",
-      });
-      closeNewPlayerMenu();
-    }
-  });
-}
-
-async function insertPlayerAlert() {
-  const { value: url } = await Swal.fire({
-    input: "url",
-    inputLabel: "URL address",
-    inputPlaceholder: "Enter the URL",
-  });
-  if (url) {
-    Swal.fire(`Entered URL: ${url}`);
-  }
-}
-
-function stringFromCurrentPlayers(playersArr) {
-  return playersArr.join("</br>");
-}
 
 function validateName(nickName) {
   return (
@@ -281,7 +215,9 @@ function showDuels() {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
         //show first round pairings
-        document.getElementById("add-player-button").style.display = "none";
+        //TODO FIX EVENT
+        document.getElementById("player-list-buttons").classList.remove("d-flex");
+        document.getElementById("player-list-buttons").style.display = "none";
         document.getElementById("play").style.display = "none";
         document.getElementById("fight").style.display = "block";
         parejas = crearParejas(mezclarArray(nombres));
@@ -441,7 +377,7 @@ async function ejecutarRonda(jugadores) {
   } else {
     vivos = ganadores;
     ganadores = [];
-    document.getElementById("playbutton").style.display = "inline";
+    document.getElementById("start-round-button").style.display = "inline";
     step = 0;
   }
 }
@@ -449,32 +385,21 @@ async function ejecutarRonda(jugadores) {
 let roundNumber = 0;
 
 //TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
+/* 
 function playMusic() {
   var music = new Audio("images/play.mp3");
   music.play();
 }
-
+ */
 vivos = nombres;
 function startRound() {
   roundNumber++;
   roundcount.innerHTML = "ROUND " + roundNumber;
   aliveplayers.innerHTML = "";
-  document.getElementById("playbutton").innerHTML = "Next Round!";
-  document.getElementById("playbutton").style.display = "none";
+  document.getElementById("start-round-button").innerHTML = "Next Round!";
+  document.getElementById("start-round-button").style.display = "none";
   // playMusic()
   ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
 
 //---------------------------------------WINDOW-EVENT--------------------------------------
-
-window.addEventListener("load", () => {
-  const loadingScreen = document.getElementById("loadingScreen");
-
-  setTimeout(() => {
-    loadingScreen.style.transition = "opacity 1s ease";
-    loadingScreen.style.opacity = "0";
-    setTimeout(() => {
-      loadingScreen.style.display = "none";
-    }, 1000);
-  }, 3000);
-});
