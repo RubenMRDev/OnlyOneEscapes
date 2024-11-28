@@ -5,7 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Wheel of Doom</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="shortcut icon" href="images\black-skull.png" type="image/x-icon" />
+    <link
+      rel="shortcut icon"
+      href="images\black-skull.png"
+      type="image/x-icon"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -25,11 +29,8 @@
   </head>
 
   <body style="overflow-x: hidden">
+    <div id="loadingScreen"></div>
 
-    <div id="loadingScreen">
-<!--       <img src="images/black-background.jpg" id="loadingLogo" alt="Logo" class="h-100 w-100">
- --> </div>
-    
     <div class="responsive-background"></div>
 
     <header class="px-3">
@@ -50,7 +51,9 @@
               aria-label="Toggle navigation"
             >
               <img
-                src="images/UI/skull-logo.png" id="logo" height="50"
+                src="images/UI/skull-logo.png"
+                id="logo"
+                height="50"
                 alt="Logo"
                 class="d-inline-block align-text-top"
               />
@@ -101,8 +104,13 @@
       <div id="add-player-menu">
         <button class="button-UI" id="play-button">Start</button>
         <div id="lobby" class="rounded"></div>
-        <div id="playe-list-buttons" class="d-flex justify-content-around align-items-center w-100">
-          <button class="button-UI" id="remove-player-button">Delete Player</button>
+        <div
+          id="player-list-buttons"
+          class="d-flex justify-content-around align-items-center w-100"
+        >
+          <button class="button-UI" id="remove-player-button">
+            Delete Player
+          </button>
           <button class="button-UI" id="add-player-button">Add Player</button>
         </div>
         <button class="button-UI" id="fight-button">Fight</button>
@@ -118,7 +126,13 @@
             <div class="col" id="player1">PLAYER 1</div>
             <div class="col" id="player2">PLAYER 2</div>
           </div>
-          <button type="button" class="btn btn-danger mt-5" id="start-round-button"> Play </button>
+          <button
+            type="button"
+            class="btn btn-danger mt-5"
+            id="start-round-button"
+          >
+            Play
+          </button>
         </div>
         <div class="text-center mt-5">
           <div class="row align-items-end text-white">

@@ -218,8 +218,8 @@ function showDuels() {
         //TODO FIX EVENT
         document.getElementById("player-list-buttons").classList.remove("d-flex");
         document.getElementById("player-list-buttons").style.display = "none";
-        document.getElementById("play").style.display = "none";
-        document.getElementById("fight").style.display = "block";
+        document.getElementById("play-button").style.display = "none";
+        document.getElementById("fight-button").style.display = "block";
         parejas = crearParejas(mezclarArray(nombres));
         const lobby = document.getElementById("lobby");
         lobby.innerHTML = "";
@@ -287,7 +287,7 @@ function crearParejas(nombres) {
 }
 
 function startDuels() {
-  document.getElementById("fight").classList.add("d-none");
+  document.getElementById("fight-button").classList.add("d-none");
   document.getElementById("lobby").classList.add("d-none");
   document.getElementById("duels").classList.add("d-block");
   startRound();
@@ -310,8 +310,9 @@ const aliveplayers = document.getElementById("aliveplayers");
 const deathplayers = document.getElementById("deadplayers");
 
 let step = 0;
-let i = 0;
-
+//let i = 0;
+let dado1 = 0;
+let dado2 = 0;
 let loose = false;
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
