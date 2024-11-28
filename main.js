@@ -324,8 +324,12 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     } while (dado1 === dado2);
 
     if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
-      dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50" style="animation: spin 1s linear infinite;">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50" style="animation: spin 1s linear infinite;">`; 
+      setTimeout(() => {
+        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
+        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+      }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
@@ -338,19 +342,33 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
         deathplayers.innerHTML += jugadores[step][0] + "<br>";
       }
     } else {
-      dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
-      dado2HTML.innerHTML = `<img src="${
-        dados[dado2 - 1]
-      }evil.png" width=50" >`;
+      
+      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50" style="animation: spin 1s linear infinite;">`;  
+      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" style="animation: spin 1s linear infinite;">`;  
+      setTimeout(() => {
+        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
+        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;  
+      }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
+      }else{
+        console.log("test")
+        if(jugadores.length>=1){
+        console.log("test")
+          
+        ganadores.push("Paloma");
+        }
       }
     }
     step++;
     resolve();
   });
 }
+
+
+
+
 
 async function ejecutarRonda(jugadores) {
   if (loose) {
@@ -375,7 +393,12 @@ async function ejecutarRonda(jugadores) {
   }
 
   if (ganadores.length == 1) {
-    alert("The winner is " + ganadores[0]);
+    Swal.fire({
+      icon: "success",
+      title: "Congratulations!",
+      text: "The winner is " + ganadores[0],
+      confirmButtonText: "Awesome!",
+    });
   } else {
     vivos = ganadores;
     ganadores = [];
