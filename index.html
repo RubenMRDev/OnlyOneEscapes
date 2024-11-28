@@ -27,8 +27,8 @@
   <body style="overflow-x: hidden">
 
     <div id="loadingScreen">
-      <img src="images/black-background.jpg" id="loadingLogo" alt="Logo" class="h-100 w-100">
-    </div>
+<!--       <img src="images/black-background.jpg" id="loadingLogo" alt="Logo" class="h-100 w-100">
+ --> </div>
     
     <div class="responsive-background"></div>
 
@@ -71,7 +71,6 @@
             <button
               id="settings-button"
               class="border-0 mx-3 bg-transparent"
-              onclick="playMusic()"
               value="sound"
             >
               <img
@@ -95,23 +94,18 @@
         id="start-menu"
         class="d-flex flex-column justify-content-center align-items-center gap-4"
       >
-        <button class="button-UI" onclick="startGame()">New Game</button>
-        <button class="button-UI" onclick="showHistory()">Game History</button>
+        <button id="start-game-button" class="button-UI">New Game</button>
+        <button id="show-history-button" class="button-UI">Game History</button>
         <p id="history"></p>
       </div>
       <div id="add-player-menu">
-        <button
-          class="button-UI"
-          id="add-player-button"
-          onclick="newInsertPlayer()"
-        >
-          Add Players
-        </button>
+        <button class="button-UI" id="play-button">Start</button>
         <div id="lobby" class="rounded"></div>
-        <button class="button-UI" id="play" onclick="showDuels()">Play</button>
-        <button class="button-UI" id="fight" onclick="startDuels()">
-          Fight
-        </button>
+        <div id="playe-list-buttons" class="d-flex justify-content-around align-items-center w-100">
+          <button class="button-UI" id="remove-player-button">Delete Player</button>
+          <button class="button-UI" id="add-player-button">Add Player</button>
+        </div>
+        <button class="button-UI" id="fight-button">Fight</button>
       </div>
       <div class="duels" id="duels">
         <div class="container text-center text-white mt-5">
@@ -124,14 +118,7 @@
             <div class="col" id="player1">PLAYER 1</div>
             <div class="col" id="player2">PLAYER 2</div>
           </div>
-          <button
-            type="button"
-            class="btn btn-danger mt-5"
-            onclick="startRound()"
-            id="playbutton"
-          >
-            Play
-          </button>
+          <button type="button" class="btn btn-danger mt-5" id="start-round-button"> Play </button>
         </div>
         <div class="text-center mt-5">
           <div class="row align-items-end text-white">
