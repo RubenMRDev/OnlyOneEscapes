@@ -1,3 +1,5 @@
+import { assignGoblinToPlayer as goblinChar} from "./players.js";
+
 //alerta añade un jugador
 //play aviso seguro que quieres empezar solo la primera vez
 //dado rotando
@@ -112,43 +114,6 @@ function closeNewPlayerMenu() {
   formContainer.style.display = "none";
   formContainer.elements.playerNickname = "";
 }
-//---------------------------------------GOBLIN----------------------------------------------
-const goblin = ["", "", ""];
-
-function assignGoblinToPlayer(playerNickname) {
-
-  let goblinContainer = document.createElement("div");
-  goblinContainer.setAttribute("class", "goblin");
-
-  let randomGoblin = document.createElement("img");
-  randomGoblin.setAttribute("src", "images/goblin/goblin-idle/idleBlack.gif");
-  randomGoblin.setAttribute("alt", `${playerNickname} goblin`);
-  randomGoblin.setAttribute("class", "goblin-image");
-
-  let nickname = document.createElement("div");
-  nickname.setAttribute("class", "nickname");
-  nickname.textContent = playerNickname.toUpperCase();
-
-  goblinContainer.setAttribute("class", "goblin");
-  goblinContainer.appendChild(nickname);
-  goblinContainer.appendChild(randomGoblin);
-  const container = document.getElementById("lobby");
-  //random location inside lobby
-  const location = randomizeLocationGoblinSpawn(container);
-  goblinContainer.style.top = `${location[0]}px`;
-  goblinContainer.style.right = `${location[1]}px`;
-  //change z-index based on location[0] number to overlap gif
-  goblinContainer.style.zIndex = `${location[0]}`;
-  container.appendChild(goblinContainer);
-}
-
-function randomizeLocationGoblinSpawn() {
-  const containerWidth = 214;
-  const containerHeight = 214;
-  const y = Math.floor(Math.random() * containerHeight);
-  const x = Math.floor(Math.random() * containerWidth);
-  return [y, x];
-}
 
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
@@ -183,7 +148,7 @@ async function newInsertPlayer() {
       if (validateName(name)) {
         nombres.push(name);
         //TODO: Add function to insert goblin
-        assignGoblinToPlayer(name);
+        goblinChar(name);
         vivos = nombres;
         await Swal.fire({
           title: "Player added.",
