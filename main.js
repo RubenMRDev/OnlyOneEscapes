@@ -1,3 +1,4 @@
+
 import { assignGoblinToPlayer } from "./goblin.js";
 
 //alerta añade un jugador
