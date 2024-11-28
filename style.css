@@ -71,7 +71,7 @@ body {
   top: 65px;
 }
 .unstyled-link {
-  color: black; /* Cambia el color a negro */
+  color: black;
 }
 
 #lobby{
@@ -118,12 +118,18 @@ body {
 .settings-father {
   font-size: 22px;
   color: #FFE600;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   text-align: left;
   padding-top: 20px;
-  padding-bottom: 10px;
-}
+  padding-bottom: 25px;
+} 
 
+.settings-game{
+  font-size: 22px;
+  color: #FFE600;
+  text-align: left;
+  transform: translateY(-15%);
+}
 
 .settings-son {
   font-size: 20px;
@@ -133,6 +139,7 @@ body {
 }
 
 button.graphics-button {
+  transform: translateY(-100%);
   width: 60%;
   padding-top: 18px;
   height: 35px;
@@ -151,12 +158,28 @@ button.graphics-button {
   box-shadow: 0 0 0px 3px #b80000;
 }
 
+.graphics-button:hover {
+  background-color: #ff0000;
+  box-shadow: 0 0 0px 3px #710000;
+}
+
+.game-button:hover {
+  background-color: #2DAAB8;
+  box-shadow: 0 0 0px 3px #FFE600;
+}
+
+.exit-button:hover {
+  background-color: #710000;
+  box-shadow: 0 0 0px 3px #FFE600;
+}
+
 .gameButtonsSpace{
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 30px;
     align-items: center;
     margin-top: 30px;
+
 }
 
 .game-button{
@@ -172,6 +195,7 @@ button.graphics-button {
   padding: 5px;
   box-shadow: 0 0 0px 2px #ffffff;
   padding-bottom: 40px;
+  transform: translateY(-10%);
 }
 
 .exit-button{
@@ -187,6 +211,7 @@ button.graphics-button {
   font-weight: bold;
   box-shadow: 0 0 0px 2px #ffffff;
   padding-bottom: 35px;
+  transform: translateY(90%);
 }
 
 .div-Gore-button{
@@ -199,21 +224,28 @@ button.graphics-button {
   color: #FFE600;
   display: flex;
   flex-direction: row;
-  width: 30%;
+  width: 100%;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
   gap: 20px;
+  max-width: 500px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .sliders {
   -webkit-appearance: none;
   appearance: none;
-  width: 100%;
-  height: 8px;
   outline: none;
   border-radius: 5px;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  height: 8px; 
+  margin: 10px 0;
+  transform: translateY(-30%);
 }
 
 .sliders::-webkit-slider-runnable-track {
@@ -230,6 +262,8 @@ button.graphics-button {
   background: #FFE600;
   border-radius: 50%;
   cursor: pointer;
+  position: relative;
+  transform: translateY(-25%);
 }
 
 .sliders:active::-webkit-slider-thumb {
