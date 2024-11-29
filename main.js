@@ -1,5 +1,4 @@
-
-import { assignGoblinToPlayer } from "./goblin.js";
+import { assignGoblinToPlayer, showDuelingGoblins } from "./goblin.js";
 
 //alerta añade un jugador
 //play aviso seguro que quieres empezar solo la primera vez
@@ -12,10 +11,9 @@ import { assignGoblinToPlayer } from "./goblin.js";
 //animacion/transicion de inicio
 //animacion boss
 
-
 window.addEventListener("load", () => {
   const loadingScreen = document.getElementById("loadingScreen");
-  
+
   setTimeout(() => {
     loadingScreen.style.transition = "opacity 1s ease";
     loadingScreen.style.opacity = "0";
@@ -28,20 +26,26 @@ window.addEventListener("load", () => {
 
 /////////////////////EVENT-LISTENER////////////////////////////////
 
-document.getElementById("start-game-button").addEventListener("click", startGame);
-document.getElementById("show-history-button").addEventListener("click", showHistory);
-document.getElementById("add-player-button").addEventListener("click", newInsertPlayer);
+document
+  .getElementById("start-game-button")
+  .addEventListener("click", startGame);
+document
+  .getElementById("show-history-button")
+  .addEventListener("click", showHistory);
+document
+  .getElementById("add-player-button")
+  .addEventListener("click", newInsertPlayer);
 document.getElementById("play-button").addEventListener("click", showDuels);
 document.getElementById("fight-button").addEventListener("click", startDuels);
-document.getElementById("start-round-button").addEventListener("click", startRound);
+document
+  .getElementById("start-round-button")
+  .addEventListener("click", startRound);
 document.getElementById("nextButton").addEventListener("click", dialogue);
 document.getElementById("playButton").addEventListener("click", loadWebsite);
-
 
 ///////////////////////UI-INICIO///////////////////////////////////
 
 function startGame() {
-  
   document.getElementById("add-player-menu").classList.remove("d-none");
   document.getElementById("add-player-button").style.display = "block";
   document.getElementById("lobby").classList.remove("d-none");
@@ -54,7 +58,6 @@ function startGame() {
 }
 
 function showHistory() {
-
   //Logs
   const p = document.getElementById("history");
   p.textContent = "No history has been found";
@@ -93,42 +96,40 @@ let dados = [
   "/images/dado6",
 ];
 
-const fight_music = new Audio('images/audio/fight.mp3');
-const menu_music = new Audio('images/audio/menu.mp3');
-const winner_music = new Audio('images/audio/winner.mp3');
+const fight_music = new Audio("images/audio/fight.mp3");
+const menu_music = new Audio("images/audio/menu.mp3");
+const winner_music = new Audio("images/audio/winner.mp3");
 
-let dialogueCount=0;
-function dialogue(){
+let dialogueCount = 0;
 
+function dialogue() {
   document.getElementById("nextButton").style.display = "block";
-  const dialog1 = "¡Ahhh, bienvenidos, frágiles criaturas! Están en mi dominio, un laberinto que respira oscuridad y muerte. Aquí no hay recuerdos, ni piedad... solo un camino: sobrevivir.";
-  const dialog2 ="No confíen demasiado en esas caras... ¡uno de ustedes será el último en pie! Cada esquina guarda un secreto, cada sombra, un peligro. ¿Amigos? ¿Enemigos? ¡Decídanlo pronto, o el laberinto lo hará por ustedes!";
-  const dialog3="Vayan, corran... o quédense y enfrenten su destino. El tiempo no será su aliado aquí. ¡Que comience el juego!";
+  const dialog1 =
+    "¡Ahhh, bienvenidos, frágiles criaturas! Están en mi dominio, un laberinto que respira oscuridad y muerte. Aquí no hay recuerdos, ni piedad... solo un camino: sobrevivir.";
+  const dialog2 =
+    "No confíen demasiado en esas caras... ¡uno de ustedes será el último en pie! Cada esquina guarda un secreto, cada sombra, un peligro. ¿Amigos? ¿Enemigos? ¡Decídanlo pronto, o el laberinto lo hará por ustedes!";
+  const dialog3 =
+    "Vayan, corran... o quédense y enfrenten su destino. El tiempo no será su aliado aquí. ¡Que comience el juego!";
 
-  if(dialogueCount==0){
+  if (dialogueCount == 0) {
     document.getElementById("dialogue").innerHTML = "";
-  addLettersToDiv(dialog1, "dialogue");
-  document.getElementById("nextButton").style.display = "none";
-  dialogueCount++;
-  }else if(dialogueCount==1){
+    addLettersToDiv(dialog1, "dialogue");
+    document.getElementById("nextButton").style.display = "none";
+    dialogueCount++;
+  } else if (dialogueCount == 1) {
     document.getElementById("dialogue").innerHTML = "";
     addLettersToDiv(dialog2, "dialogue");
-  document.getElementById("nextButton").style.display = "none";
-  dialogueCount++;
-  }else if(dialogueCount==2){
+    document.getElementById("nextButton").style.display = "none";
+    dialogueCount++;
+  } else if (dialogueCount == 2) {
     document.getElementById("dialogue").innerHTML = "";
     addLettersToDiv(dialog3, "dialogue");
-  document.getElementById("nextButton").style.display = "none";
-  dialogueCount++;
+    document.getElementById("nextButton").style.display = "none";
+    dialogueCount++;
   }
+}
 
- 
-
-
-
-} 
-
-function addLettersToDiv(string, divId){
+function addLettersToDiv(string, divId) {
   const letters = string.split("");
   const div = document.getElementById(divId);
   let i = 0;
@@ -138,28 +139,21 @@ function addLettersToDiv(string, divId){
     if (i === letters.length) {
       clearInterval(intervalId);
       document.getElementById("nextButton").style.display = "block";
-      if(dialogueCount==3){
+      if (dialogueCount == 3) {
         document.getElementById("playButton").style.display = "block";
-      document.getElementById("nextButton").style.display = "none";
-
+        document.getElementById("nextButton").style.display = "none";
       }
     }
   }, 5);
 }
 
-
-
-function loadWebsite(){
-  document.getElementById('black-screen').remove(); 
+function loadWebsite() {
+  document.getElementById("black-screen").remove();
   menu_music.loop = true;
   menu_music.play();
 }
 
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
-
-
-
-
 
 function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
@@ -202,21 +196,19 @@ buttonSkull.addEventListener("click", () => {
   }
 });
 
-//---------------------------------------GOBLIN----------------------------------------------
 
 //Settings Menu
-const overlayButton = document.getElementById('settingsOverlayButton');
-const overlay = document.getElementById('overlay');
-const exitButton = document.getElementById('exitButton');
+const overlayButton = document.getElementById("settingsOverlayButton");
+const overlay = document.getElementById("overlay");
+const exitButton = document.getElementById("exitButton");
 
-overlayButton.addEventListener('click', () => {
-  overlay.classList.toggle('hidden');
+overlayButton.addEventListener("click", () => {
+  overlay.classList.toggle("hidden");
 });
 
-exitButton.addEventListener('click', () => {
-  overlay.classList.add('hidden');
+exitButton.addEventListener("click", () => {
+  overlay.classList.add("hidden");
 });
-
 
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
@@ -284,7 +276,6 @@ async function newInsertPlayer() {
   }
 }
 
-
 function validateName(nickName) {
   return (
     nickName.length > 0 && !nombres.includes(nickName) && nickName.length < 11
@@ -294,7 +285,6 @@ function validateName(nickName) {
 //------------------------------INICIAR-PARTIDA--------------------------
 
 function showDuels() {
-
   Swal.fire({
     title: "Are you sure you want to start the game?",
     icon: "warning",
@@ -303,15 +293,16 @@ function showDuels() {
     cancelButtonColor: "#d33",
     confirmButtonText: "Start Game",
     customClass: {
-      popup: "swal2-custom"
-    }
-    
+      popup: "swal2-custom",
+    },
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
         //show first round pairings
         //TODO FIX EVENT
-        document.getElementById("player-list-buttons").classList.remove("d-flex");
+        document
+          .getElementById("player-list-buttons")
+          .classList.remove("d-flex");
         document.getElementById("player-list-buttons").style.display = "none";
         document.getElementById("play-button").style.display = "none";
         document.getElementById("fight-button").style.display = "block";
@@ -398,9 +389,6 @@ let vivos = [];
 let jugando = [];
 let ganadores = [];
 
-
-
-
 // VARIABLES DEL DOM
 const player1dice = document.getElementById("player1dice");
 const playe2dice = document.getElementById("player2dice");
@@ -425,11 +413,15 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     } while (dado1 === dado2);
 
     if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50" style="animation: spin 1s linear infinite;">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50" style="animation: spin 1s linear infinite;">`; 
+      dado1HTML.innerHTML = `<img src="${
+        dados[dado1 - 1]
+      }.png" width="50" style="animation: spin 1s linear infinite;">`;
+      dado2HTML.innerHTML = `<img src="${
+        dados[dado2 - 1]
+      }.png" width="50" style="animation: spin 1s linear infinite;">`;
       setTimeout(() => {
-        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png" width="50">`;  
-        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}.png" width="50">`; 
+        dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
+        dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
       }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
@@ -443,22 +435,27 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
         deathplayers.innerHTML += jugadores[step][0] + "<br>";
       }
     } else {
-      
-      dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50" style="animation: spin 1s linear infinite;">`;  
-      dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" style="animation: spin 1s linear infinite;">`;  
+      dado1HTML.innerHTML = `<img src="${
+        dados[dado1 - 1]
+      }.png " width="50" style="animation: spin 1s linear infinite;">`;
+      dado2HTML.innerHTML = `<img src="${
+        dados[dado2 - 1]
+      }evil.png" width=50" style="animation: spin 1s linear infinite;">`;
       setTimeout(() => {
-        dado1HTML.innerHTML = `<img src="${dados[dado1-1]}.png " width="50">`;  
-        dado2HTML.innerHTML = `<img src="${dados[dado2-1]}evil.png" width=50" >`;  
+        dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
+        dado2HTML.innerHTML = `<img src="${
+          dados[dado2 - 1]
+        }evil.png" width=50" >`;
       }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
         aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-      }else{
-        console.log("test")
-        if(jugadores.length>=1){
-        console.log("test")
-          
-        ganadores.push("Paloma");
+      } else {
+        console.log("test");
+        if (jugadores.length >= 1) {
+          console.log("test");
+
+          ganadores.push("Paloma");
         }
       }
     }
@@ -466,8 +463,6 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
     resolve();
   });
 }
-
-
 
 
 
@@ -480,17 +475,18 @@ async function ejecutarRonda(jugadores) {
     });
   }
   for (let i = 0; i < jugadores.length; i++) {
+
+    showDuelingGoblins(jugadores[i][0], jugadores[i][1]);
+   
     if (jugadores[i][1] == undefined) {
-      player1.innerHTML = jugadores[i][0]
-      player2.innerHTML = "PALOMA"
+      player2.innerHTML += "PALOMA";
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
-      player1.innerHTML = jugadores[i][0];
-      player2.innerHTML = jugadores[i][1];
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    await new Promise(resolve => setTimeout(resolve, 1));
+    //Goblins' idle animation and death animation
+    await new Promise((resolve) => setTimeout(resolve, 5000));
   }
 
   if (ganadores.length == 1) {
@@ -498,41 +494,36 @@ async function ejecutarRonda(jugadores) {
       fight_music.pause();
       fight_music.currentTime = 0;
       winner_music.play();
-
     }
-    
+
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
-
     swal.fire({
-      tittle: 'Tenemos un ganador',
+      tittle: "Tenemos un ganador",
       text: `El ganador es ${ganadores[0]}`,
-      imageUrl: 'images/crown.png',
+      imageUrl: "images/crown.png",
       imageWidth: 230,
       imageHeight: 150,
-      confirmButtonText: 'Aceptar',
+      confirmButtonText: "Aceptar",
       customClass: {
-        popup: "swal2-custom"
-      }
+        popup: "swal2-custom",
+      },
     });
 
     parejas = [];
     muertos = [];
-    vivos=nombres;
+    vivos = nombres;
 
     jugando = [];
     ganadores = [];
 
-  aliveplayers.innerHTML = "";
-  deadplayers.innerHTML = "";
+    aliveplayers.innerHTML = "";
+    deadplayers.innerHTML = "";
 
     roundNumber = 0;
-    step=0;
-    i=0;
-
-
-
+    step = 0;
+    i = 0;
   } else {
     vivos = ganadores;
     ganadores = [];

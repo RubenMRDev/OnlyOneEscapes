@@ -51,7 +51,7 @@ body {
   height: 100vh;
   z-index: -1;
   filter: brightness(0.5);
-  animation: scrollLeft 90s infinite linear;
+  animation: scrollLeft 120s infinite linear;
 }
 
 .responsive-background::after {
@@ -263,6 +263,11 @@ main{
     transform: rotate(360deg);
   }
 }
+
+/* .duelingGoblin{
+  width: 300px;
+  height: 400px;
+} */
 
 /* /////////////////////////////////////SETTINGS//////////////////////////////////////       */
 

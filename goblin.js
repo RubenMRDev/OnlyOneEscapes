@@ -145,7 +145,7 @@ const goblins = {
 
 const availableGoblins = Object.keys(goblins);
 const spareGoblins = [...availableGoblins];
-const assignedGoblins = new Map();
+export const assignedGoblins = new Map();
 const containerSize = 250;
 const qSize = containerSize / 5;
 const quadrantsPixels = new Map([
@@ -180,7 +180,7 @@ const spareQuadrants = Array.from(quadrantsPixels.keys());
 
 function findRandomGoblin() {
   let randomGoblin = Math.floor(Math.random() * spareGoblins.length);
-  return spareGoblins.splice(randomGoblin, 1);
+  return spareGoblins.splice(randomGoblin, 1)[0];
 }
 
 export function assignGoblinToPlayer(playerNickname) {
@@ -214,7 +214,6 @@ export function assignGoblinToPlayer(playerNickname) {
 
 function randomizeLocationGoblinSpawn() {
   const quadrant = selectRandomQuadrant();
-  console.log(quadrant);
   const containerHeight = quadrantsPixels.get(quadrant)[0];
   const containerWidth = quadrantsPixels.get(quadrant)[1];
   const padding = 25;
@@ -234,4 +233,46 @@ function selectRandomQuadrant() {
   let randomIndex = Math.floor(Math.random() * spareQuadrants.length);
   let selectedQuadrant = spareQuadrants.splice(randomIndex, 1)[0];
   return selectedQuadrant;
+}
+
+export function showDuelingGoblins(player1, player2){
+  const player1Container = document.getElementById("player1");
+  const player2Container = document.getElementById("player2");
+
+  player1Container.innerHTML = "";
+  player2Container.innerHTML = "";
+
+  const goblin1Number = assignedGoblins.get(player1);
+  const goblin2Number = assignedGoblins.get(player2);
+  console.log(goblin1Number);
+
+  let nickname1 = document.createElement("div");
+  nickname1.setAttribute("class", "nickname text-center");
+  nickname1.textContent = player1;
+
+  let goblin1 = document.createElement("img");
+  goblin1.setAttribute("src", goblins[goblin1Number].animations.idle);
+  goblin1.setAttribute("alt", `${player1} goblin`);
+  goblin1.setAttribute("class", "goblin-image");
+  player1Container.appendChild(goblin1);
+  player1Container.appendChild(nickname1);
+
+  let nickname2 = document.createElement("div");
+  nickname2.setAttribute("class", "nickname text-center");
+  nickname2.textContent = player2;
+
+  //seguro que se pasa algo diferente a undefined tras una comprobacion x
+  if(player2){
+    let goblin2 = document.createElement("img");
+    goblin2.setAttribute("src", goblins[goblin2Number].animations.idle);
+    goblin2.setAttribute("alt", `${player2} goblin`);
+    goblin2.setAttribute("class", "goblin-image");
+    goblin2.style.transform = "scaleX(-1)";
+    player2Container.appendChild(goblin2);
+  }else{
+    nickname2.textContent = "BOSS";
+  }
+  player2Container.appendChild(nickname2);
+
+  
 }
