@@ -45,11 +45,11 @@ body {
   url("images/parallaxCave/1.png");
   
   background-size: cover;
-  background-position: center, center, center, center, center, center, center, center, center;
-  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat, no-repeat;
   width: 100vw;
   height: 100vh;
   z-index: -1;
+  filter: brightness(0.5); /* Makes the background darker */
+  animation: scrollLeft 60s infinite linear;
 }
 
 .responsive-background::after {
@@ -64,6 +64,11 @@ body {
   height: 100vh;
   z-index: 1;
   animation: mood-cycle 20s infinite ease;
+}
+
+@keyframes scrollLeft {
+  0% { background-position: 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%; }
+  100% { background-position: -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw; }
 }
 
 @keyframes mood-cycle {

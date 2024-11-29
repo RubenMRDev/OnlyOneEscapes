@@ -31,7 +31,16 @@
   <body style="overflow-x: hidden">
     <div id="loadingScreen"></div>
 
-    <div class="responsive-background"></div>
+<body style="overflow-x: hidden;">
+  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 999;">
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <button id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
+    <div id="dialogue" class="text-white container text-center"></div>
+    <button id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+  </div>
+</div>
+
+  <div class="responsive-background"></div>
 
     <header class="px-3">
       <nav class="navbar navbar-dark" style="background-color: transparent">

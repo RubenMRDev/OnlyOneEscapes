@@ -21,7 +21,7 @@ window.addEventListener("load", () => {
     loadingScreen.style.opacity = "0";
     setTimeout(() => {
       loadingScreen.style.display = "none";
-      
+      dialogue();
     }, 1000);
   }, 3000);
 });
@@ -34,11 +34,19 @@ document.getElementById("add-player-button").addEventListener("click", newInsert
 document.getElementById("play-button").addEventListener("click", showDuels);
 document.getElementById("fight-button").addEventListener("click", startDuels);
 document.getElementById("start-round-button").addEventListener("click", startRound);
+document.getElementById("nextButton").addEventListener("click", dialogue);
+document.getElementById("playButton").addEventListener("click", loadWebsite);
 
 
 ///////////////////////UI-INICIO///////////////////////////////////
 
 function startGame() {
+  
+  document.getElementById("add-player-menu").classList.remove("d-none");
+  document.getElementById("add-player-button").style.display = "block";
+  document.getElementById("lobby").classList.remove("d-none");
+  document.getElementById("play-button").style.display = "block";
+
   document.getElementById("add-player-menu").style.display = "flex";
   document.getElementById("start-menu").classList.remove("d-flex");
   document.getElementById("start-menu").style.display = "none";
@@ -46,6 +54,7 @@ function startGame() {
 }
 
 function showHistory() {
+
   //Logs
   const p = document.getElementById("history");
   p.textContent = "No history has been found";
@@ -84,7 +93,73 @@ let dados = [
   "/images/dado6",
 ];
 
+const fight_music = new Audio('images/audio/fight.mp3');
+const menu_music = new Audio('images/audio/menu.mp3');
+const winner_music = new Audio('images/audio/winner.mp3');
+
+let dialogueCount=0;
+function dialogue(){
+
+  document.getElementById("nextButton").style.display = "block";
+  const dialog1 = "¡Ahhh, bienvenidos, frágiles criaturas! Están en mi dominio, un laberinto que respira oscuridad y muerte. Aquí no hay recuerdos, ni piedad... solo un camino: sobrevivir.";
+  const dialog2 ="No confíen demasiado en esas caras... ¡uno de ustedes será el último en pie! Cada esquina guarda un secreto, cada sombra, un peligro. ¿Amigos? ¿Enemigos? ¡Decídanlo pronto, o el laberinto lo hará por ustedes!";
+  const dialog3="Vayan, corran... o quédense y enfrenten su destino. El tiempo no será su aliado aquí. ¡Que comience el juego!";
+
+  if(dialogueCount==0){
+    document.getElementById("dialogue").innerHTML = "";
+  addLettersToDiv(dialog1, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }else if(dialogueCount==1){
+    document.getElementById("dialogue").innerHTML = "";
+    addLettersToDiv(dialog2, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }else if(dialogueCount==2){
+    document.getElementById("dialogue").innerHTML = "";
+    addLettersToDiv(dialog3, "dialogue");
+  document.getElementById("nextButton").style.display = "none";
+  dialogueCount++;
+  }
+
+ 
+
+
+
+} 
+
+function addLettersToDiv(string, divId){
+  const letters = string.split("");
+  const div = document.getElementById(divId);
+  let i = 0;
+  const intervalId = setInterval(() => {
+    div.innerHTML += letters[i];
+    i++;
+    if (i === letters.length) {
+      clearInterval(intervalId);
+      document.getElementById("nextButton").style.display = "block";
+      if(dialogueCount==3){
+        document.getElementById("playButton").style.display = "block";
+      document.getElementById("nextButton").style.display = "none";
+
+      }
+    }
+  }, 5);
+}
+
+
+
+function loadWebsite(){
+  document.getElementById('black-screen').remove(); 
+  menu_music.loop = true;
+  menu_music.play();
+}
+
 //-----------------------------------UPDATE-DEAD-ALIVE-OVERLAY--------------------------------------------
+
+
+
+
 
 function updatePlayers(alive, dead = []) {
   const listPlayers = document.getElementById("dropdown-players");
@@ -146,8 +221,8 @@ exitButton.addEventListener('click', () => {
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
     input: "text",
-    inputLabel: "Name of the player.",
-    inputPlaceholder: "Introduce the name of the player:",
+    inputLabel: "Nombre de Jugador",
+    inputPlaceholder: "Introduce el nombre del jugador...",
     inputAttributes: {
       "aria-label": "Introduce the name of the player:r",
     },
@@ -163,7 +238,7 @@ async function newInsertPlayer() {
     if (nombres.includes(name)) {
       await Swal.fire({
         title: "ERROR",
-        text: "The name already exist in the list.",
+        text: "El nombre ya existe en la lista de jugadores.",
         icon: "error",
         customClass: {
           popup: "swal2-custom",
@@ -179,8 +254,8 @@ async function newInsertPlayer() {
         assignGoblinToPlayer(name);
         vivos = nombres;
         await Swal.fire({
-          title: "Player added.",
-          text: `The player ${name} has been added.`,
+          title: "Jugador Agregado",
+          text: `El jugador ${name} ha sido agregado.`,
           icon: "success",
           customClass: {
             popup: "swal2-custom",
@@ -189,7 +264,7 @@ async function newInsertPlayer() {
       } else {
         await Swal.fire({
           title: "ERROR",
-          text: "The name's lenght is more than 20.",
+          text: "El nombre tiene mas de 10 caracteres.",
           icon: "error",
           customClass: {
             popup: "swal2-custom",
@@ -199,7 +274,7 @@ async function newInsertPlayer() {
     } else {
       await Swal.fire({
         title: "ERROR",
-        text: "You cant add more than 20 players.",
+        text: "Límite máximo de jugadores alcanzado.",
         icon: "error",
         customClass: {
           popup: "swal2-custom",
@@ -219,6 +294,7 @@ function validateName(nickName) {
 //------------------------------INICIAR-PARTIDA--------------------------
 
 function showDuels() {
+
   Swal.fire({
     title: "Are you sure you want to start the game?",
     icon: "warning",
@@ -226,6 +302,10 @@ function showDuels() {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Start Game",
+    customClass: {
+      popup: "swal2-custom"
+    }
+    
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
@@ -243,7 +323,7 @@ function showDuels() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "You need at least one player to start.",
+          text: "Tiene que haber al menos 1 jugador.",
         });
       }
     }
@@ -306,6 +386,10 @@ function startDuels() {
   document.getElementById("lobby").classList.add("d-none");
   document.getElementById("duels").classList.add("d-block");
   startRound();
+  menu_music.pause();
+  menu_music.currentTime = 0;
+  fight_music.loop = true;
+  fight_music.play();
 }
 
 let parejas = [];
@@ -313,6 +397,9 @@ let muertos = [];
 let vivos = [];
 let jugando = [];
 let ganadores = [];
+
+
+
 
 // VARIABLES DEL DOM
 const player1dice = document.getElementById("player1dice");
@@ -393,9 +480,9 @@ async function ejecutarRonda(jugadores) {
     });
   }
   for (let i = 0; i < jugadores.length; i++) {
-    if (jugadores[i][1] === undefined) {
-      player1.innerHTML = jugadores[i][0];
-      player2.innerHTML = "Paloma";
+    if (jugadores[i][1] == undefined) {
+      player1.innerHTML = jugadores[i][0]
+      player2.innerHTML = "PALOMA"
       await tirarDado(player1dice, playe2dice, jugadores);
     } else {
       player1.innerHTML = jugadores[i][0];
@@ -403,16 +490,49 @@ async function ejecutarRonda(jugadores) {
       await tirarDado(player1dice, playe2dice, jugadores);
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 1));
   }
 
   if (ganadores.length == 1) {
-    Swal.fire({
-      icon: "success",
-      title: "Congratulations!",
-      text: "The winner is " + ganadores[0],
-      confirmButtonText: "Awesome!",
+    if (fight_music) {
+      fight_music.pause();
+      fight_music.currentTime = 0;
+      winner_music.play();
+
+    }
+    
+    document.getElementById("start-menu").classList.remove("d-none");
+    document.getElementById("duels").classList.remove("d-block");
+
+
+    swal.fire({
+      tittle: 'Tenemos un ganador',
+      text: `El ganador es ${ganadores[0]}`,
+      imageUrl: 'images/crown.png',
+      imageWidth: 230,
+      imageHeight: 150,
+      confirmButtonText: 'Aceptar',
+      customClass: {
+        popup: "swal2-custom"
+      }
     });
+
+    parejas = [];
+    muertos = [];
+    vivos=nombres;
+
+    jugando = [];
+    ganadores = [];
+
+  aliveplayers.innerHTML = "";
+  deadplayers.innerHTML = "";
+
+    roundNumber = 0;
+    step=0;
+    i=0;
+
+
+
   } else {
     vivos = ganadores;
     ganadores = [];
@@ -433,7 +553,7 @@ function playMusic() {
 vivos = nombres;
 function startRound() {
   roundNumber++;
-  roundcount.innerHTML = "ROUND " + roundNumber;
+  roundcount.innerHTML = "RONDA " + roundNumber;
   aliveplayers.innerHTML = "";
   document.getElementById("start-round-button").innerHTML = "Next Round!";
   document.getElementById("start-round-button").style.display = "none";
