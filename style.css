@@ -254,6 +254,12 @@ button.graphics-button {
   height: 8px;
 }
 
+.sliders::-moz-range-track {
+  background: linear-gradient(90deg, #007bff, #00ff99);
+  border-radius: 5px;
+  height: 8px;
+}
+
 .sliders::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
@@ -266,6 +272,21 @@ button.graphics-button {
   transform: translateY(-25%);
 }
 
+.sliders::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #FFE600;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transform: translateY(-25%); 
+}
+
 .sliders:active::-webkit-slider-thumb {
+  background: #C7FCCA;
+}
+
+.sliders:active::-moz-range-thumb {
   background: #C7FCCA;
 }
