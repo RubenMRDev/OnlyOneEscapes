@@ -35,21 +35,23 @@ body {
   position: fixed;
   background-image: 
   url("images/parallaxCave/9.png"),
-  url("images/parallaxCave/8fx.png"),
-  url("images/parallaxCave/7.png"), 
-  url("images/parallaxCave/6fx.png"), 
+  /* url("images/parallaxCave/8fx.png"), */
+  url("images/parallaxCave/7.png"),
+  /* url("images/parallaxCave/6fx.png"), */ 
   url("images/parallaxCave/5.png"), 
   url("images/parallaxCave/4.png"), 
-  url("images/parallaxCave/3fx.png"), 
+  /* url("images/parallaxCave/3fx.png"),  */
   url("images/parallaxCave/2.png"), 
   url("images/parallaxCave/1.png");
   
+  background-repeat: repeat;
   background-size: cover;
+  background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  filter: brightness(0.5); /* Makes the background darker */
-  animation: scrollLeft 60s infinite linear;
+  filter: brightness(0.5);
+  animation: scrollLeft 90s infinite linear;
 }
 
 .responsive-background::after {
@@ -67,9 +69,17 @@ body {
 }
 
 @keyframes scrollLeft {
-  0% { background-position: 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%, 0%; }
-  100% { background-position: -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw, -100vw; }
+  0% { 
+    background-position: -300vw 0%, -200vw 0%, -100vw 0%, -50vw 0%, 0vw 0%, 0vw 0%; 
+  }
+  50% { background-position: 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%; }
+
+  100% { 
+    background-position: 300vw 0%, 200vw 0%, 100vw 0%, 50vw 0%, 0vw 0%, 0% 0%; 
+  }
+  
 }
+
 
 @keyframes mood-cycle {
   0% { background-color: #0c2627; }
