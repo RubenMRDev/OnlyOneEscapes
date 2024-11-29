@@ -141,10 +141,42 @@ const goblins = {
   },
 };
 
+//-------------------------------------------------------------------------------------------------------------------
 
 const availableGoblins = Object.keys(goblins);
-const spareGoblins = availableGoblins;
+const spareGoblins = [...availableGoblins];
 const assignedGoblins = new Map();
+const containerSize = 250;
+const qSize = containerSize / 5;
+const quadrantsPixels = new Map([
+  [1, [qSize, containerSize]],
+  [2, [qSize, qSize * 4]],
+  [3, [qSize, qSize * 3]],
+  [4, [qSize, qSize * 2]],
+  [5, [qSize, qSize]],
+  [6, [qSize * 2, containerSize]],
+  [7, [qSize * 2, qSize * 4]],
+  [8, [qSize * 2, qSize * 3]],
+  [9, [qSize * 2, qSize * 2]],
+  [10, [qSize * 3, qSize]],
+  [11, [qSize * 3, containerSize]],
+  [12, [qSize * 3, qSize * 4]],
+  [13, [qSize * 3, qSize * 3]],
+  [14, [qSize * 3, qSize * 2]],
+  [15, [qSize * 3, qSize]],
+  [16, [qSize * 4, containerSize]],
+  [17, [qSize * 4, qSize * 4]],
+  [18, [qSize * 4, qSize * 3]],
+  [19, [qSize * 4, qSize * 2]],
+  [20, [qSize * 4, qSize]],
+  [21, [containerSize, containerSize]],
+  [22, [containerSize, qSize * 4]],
+  [23, [containerSize, qSize * 3]],
+  [24, [containerSize, qSize * 2]],
+  [25, [containerSize, qSize]],
+]);
+
+const spareQuadrants = Array.from(quadrantsPixels.keys());
 
 function findRandomGoblin() {
   let randomGoblin = Math.floor(Math.random() * spareGoblins.length);
@@ -181,10 +213,25 @@ export function assignGoblinToPlayer(playerNickname) {
 }
 
 function randomizeLocationGoblinSpawn() {
-  const containerWidth = 214;
-  const containerHeight = 214;
-  const y = Math.floor(Math.random() * containerHeight);
-  const x = Math.floor(Math.random() * containerWidth);
+  const quadrant = selectRandomQuadrant();
+  console.log(quadrant);
+  const containerHeight = quadrantsPixels.get(quadrant)[0];
+  const containerWidth = quadrantsPixels.get(quadrant)[1];
+  const padding = 25;
+  const y =
+    containerHeight > 60
+      ? Math.floor(Math.random() * qSize) + (containerHeight - qSize - padding)
+      : 0;
+  const x =
+    containerWidth > 60
+      ? Math.floor(Math.random() * qSize) + (containerWidth - qSize - padding)
+      : 0;
+
   return [y, x];
 }
 
+function selectRandomQuadrant() {
+  let randomIndex = Math.floor(Math.random() * spareQuadrants.length);
+  let selectedQuadrant = spareQuadrants.splice(randomIndex, 1)[0];
+  return selectedQuadrant;
+}
