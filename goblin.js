@@ -244,21 +244,20 @@ export function showDuelingGoblins(player1, player2){
 
   const goblin1Number = assignedGoblins.get(player1);
   const goblin2Number = assignedGoblins.get(player2);
-  console.log(goblin1Number);
 
   let nickname1 = document.createElement("div");
-  nickname1.setAttribute("class", "nickname text-center");
+  nickname1.setAttribute("class", "nickname text-center mt-3");
   nickname1.textContent = player1;
 
   let goblin1 = document.createElement("img");
   goblin1.setAttribute("src", goblins[goblin1Number].animations.idle);
   goblin1.setAttribute("alt", `${player1} goblin`);
-  goblin1.setAttribute("class", "goblin-image");
+  goblin1.setAttribute("class", "goblin-fighting");
   player1Container.appendChild(goblin1);
   player1Container.appendChild(nickname1);
 
   let nickname2 = document.createElement("div");
-  nickname2.setAttribute("class", "nickname text-center");
+  nickname2.setAttribute("class", "nickname text-center mt-3");
   nickname2.textContent = player2;
 
   //seguro que se pasa algo diferente a undefined tras una comprobacion x
@@ -266,7 +265,7 @@ export function showDuelingGoblins(player1, player2){
     let goblin2 = document.createElement("img");
     goblin2.setAttribute("src", goblins[goblin2Number].animations.idle);
     goblin2.setAttribute("alt", `${player2} goblin`);
-    goblin2.setAttribute("class", "goblin-image");
+    goblin2.setAttribute("class", "goblin-fighting");
     goblin2.style.transform = "scaleX(-1)";
     player2Container.appendChild(goblin2);
   }else{

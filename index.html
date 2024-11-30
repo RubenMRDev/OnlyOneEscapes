@@ -148,15 +148,17 @@
         <button class="button-UI" id="fight-button">Fight</button>
       </div>
       <div class="duels" id="duels">
-        <div class="container text-center text-white mt-5">
-          <h2 id="roundcount">CEI BATTLE ROYALE</h2>
-          <div class="row align-items-end">
+        <div class="container text-center text-white h-100">
+          <h2 class="mb-5" id="roundcount">ROUND X</h2>
+          <div class="row align-items-end w-100 Pt-5">
             <div class="col duelingGoblin" id="player1dice">DICE VALUE</div>
             <div class="col duelingGoblin" id="player2dice">DICE VALUE</div>
           </div>
-          <div class="row align-items-end">
-            <div class="col" id="player1">PLAYER 1</div>
-            <div class="col" id="player2">PLAYER 2</div>
+          <div class="row align-items-end mt-5">
+            <div class="duelingGoblin col" id="player1">PLAYER 1</div>
+            <div class="duelingGoblin col" id="player2">PLAYER 2</div>
+          </div>
+          <div id="rolling-dice">
           </div>
           <button
             type="button"
@@ -165,16 +167,6 @@
           >
             Play
           </button>
-        </div>
-        <div class="text-center mt-5">
-          <div class="row align-items-end text-white">
-            <div class="col">ALIVE</div>
-            <div class="col">DEATH</div>
-          </div>
-          <div class="row align-items-end text-white">
-            <div class="col" id="aliveplayers"></div>
-            <div class="col" id="deadplayers"></div>
-          </div>
         </div>
       </div>
     </main>

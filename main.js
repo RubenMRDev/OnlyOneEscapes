@@ -196,7 +196,6 @@ buttonSkull.addEventListener("click", () => {
   }
 });
 
-
 //Settings Menu
 const overlayButton = document.getElementById("settingsOverlayButton");
 const overlay = document.getElementById("overlay");
@@ -242,7 +241,6 @@ async function newInsertPlayer() {
     if (nombres.length < 20) {
       if (validateName(name)) {
         nombres.push(name);
-        //TODO: Add function to insert goblin
         assignGoblinToPlayer(name);
         vivos = nombres;
         await Swal.fire({
@@ -322,8 +320,6 @@ function showDuels() {
 }
 
 function displayPairingsAsList(pairings) {
-  console.log(pairings);
-
   const ul = document.createElement("ul");
   ul.classList.add("p-2");
   ul.style.listStyle = "none";
@@ -392,15 +388,10 @@ let ganadores = [];
 // VARIABLES DEL DOM
 const player1dice = document.getElementById("player1dice");
 const playe2dice = document.getElementById("player2dice");
-const player1 = document.getElementById("player1");
-const player2 = document.getElementById("player2");
-
 const roundcount = document.getElementById("roundcount");
-const aliveplayers = document.getElementById("aliveplayers");
-const deathplayers = document.getElementById("deadplayers");
 
 let step = 0;
-//let i = 0;
+let i = 0;
 let dado1 = 0;
 let dado2 = 0;
 let loose = false;
@@ -425,14 +416,10 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
       }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
-        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
         muertos.push(jugadores[step][1]);
-        deathplayers.innerHTML += jugadores[step][1] + "<br>";
       } else {
         ganadores.push(jugadores[step][1]);
-        aliveplayers.innerHTML += jugadores[step][1] + "<br>";
         muertos.push(jugadores[step][0]);
-        deathplayers.innerHTML += jugadores[step][0] + "<br>";
       }
     } else {
       dado1HTML.innerHTML = `<img src="${
@@ -449,22 +436,19 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
       }, 1000);
       if (dado1 > dado2) {
         ganadores.push(jugadores[step][0]);
-        aliveplayers.innerHTML += jugadores[step][0] + "<br>";
-      } else {
+      } /* else {
         console.log("test");
         if (jugadores.length >= 1) {
           console.log("test");
 
-          ganadores.push("Paloma");
+          //ganadores.push("Paloma");
         }
-      }
+      } */
     }
     step++;
     resolve();
   });
 }
-
-
 
 async function ejecutarRonda(jugadores) {
   if (loose) {
@@ -475,16 +459,8 @@ async function ejecutarRonda(jugadores) {
     });
   }
   for (let i = 0; i < jugadores.length; i++) {
-
     showDuelingGoblins(jugadores[i][0], jugadores[i][1]);
-   
-    if (jugadores[i][1] == undefined) {
-      player2.innerHTML += "PALOMA";
-      await tirarDado(player1dice, playe2dice, jugadores);
-    } else {
-      await tirarDado(player1dice, playe2dice, jugadores);
-    }
-
+    await tirarDado(player1dice, playe2dice, jugadores);
     //Goblins' idle animation and death animation
     await new Promise((resolve) => setTimeout(resolve, 5000));
   }
@@ -498,9 +474,9 @@ async function ejecutarRonda(jugadores) {
 
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
-
+    //TODO: Insertar pantalla ganador
     swal.fire({
-      tittle: "Tenemos un ganador",
+      title: "Tenemos un ganador",
       text: `El ganador es ${ganadores[0]}`,
       imageUrl: "images/crown.png",
       imageWidth: 230,
@@ -517,9 +493,6 @@ async function ejecutarRonda(jugadores) {
 
     jugando = [];
     ganadores = [];
-
-    aliveplayers.innerHTML = "";
-    deadplayers.innerHTML = "";
 
     roundNumber = 0;
     step = 0;
@@ -545,7 +518,6 @@ vivos = nombres;
 function startRound() {
   roundNumber++;
   roundcount.innerHTML = "RONDA " + roundNumber;
-  aliveplayers.innerHTML = "";
   document.getElementById("start-round-button").innerHTML = "Next Round!";
   document.getElementById("start-round-button").style.display = "none";
   // playMusic()
