@@ -400,32 +400,41 @@ const duelsContainer = document.getElementById("duelsContainer");
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
-    dado1HTML.innerHTML = `<img src="${dados[0]}" width="50">`;
-    dado2HTML.innerHTML = `<img src="${dados[0]}" width="50">`;
-
+    dado1HTML.innerHTML = `<img id="first-dice" src="${dados[0]}" width="50">`;
+    dado2HTML.innerHTML = `<img id="second-dice" src="${dados[0]}" width="50">`;
     do {
       dice1 = 6 - Math.floor(Math.random() * 5);
       dice2 = 6 - Math.floor(Math.random() * 5);
     } while (dice1 === dice2);
     findWinners(dice1, dice2, jugadores);
-
-    setTurns(dado1HTML, dado2HTML, jugadores, step);
+    setTurns(jugadores, step, dice1, dice2);
     step++;
     resolve();
   });
 }
 
-function setTurns(dado1HTML, dado2HTML, jugadores, step) {
+function setTurns(jugadores, step, dice1, dice2) {
   const turnCount = document.getElementById("turncount");
-  const diceHTML = [dado1HTML, dado2HTML];
-  turnCount.textContent = `${jugadores[step][0]}'S TURN`;
-  rollDice(diceHTML[0]);
-  showRollingDice();
-  setTimeout(() => {
-    turnCount.textContent = `${jugadores[step][1]}'S TURN`;
-    rollDice(diceHTML[1]);
-    showRollingDice();
-  }, 3000);
+
+  function handleTurn(player, diceId) {
+    return new Promise((resolve) => {
+      turnCount.textContent = `${player}'S TURN`;
+      rollDice(diceId);
+      showRollingDice();
+      setTimeout(() => resolve(), 3000);
+    });
+  }
+
+  async function playTurns(dice1, dice2) {
+    await handleTurn(jugadores[step][0], "first-dice");
+    console.log(dados[dice1]);
+    document.getElementById("first-dice").src = dados[dice1];
+    await handleTurn(jugadores[step][1], "second-dice");
+    console.log(dados[dice2]);
+    document.getElementById("second-dice").src = dados[dice2];
+  }
+
+  playTurns(dice1, dice2);
 }
 
 function findWinners(dice1, dice2, jugadores) {
@@ -456,12 +465,12 @@ function showRollingDice() {
   }, 2000);
 }
 
-function rollDice(dadoHTML) {
+function rollDice(id) {
   let count = 0;
   let swapNumber = 4;
   let intervalo = setInterval(() => {
     let index = Math.floor(Math.random() * dados.length);
-    dadoHTML.src = dados[index];
+    document.getElementById(id).src = dados[index];
     count++;
     if (count >= swapNumber) {
       clearInterval(intervalo);
@@ -480,7 +489,7 @@ async function ejecutarRonda(jugadores) {
   for (let i = 0; i < jugadores.length; i++) {
     showDuelingGoblins(jugadores[i][0], jugadores[i][1]);
     await tirarDado(player1dice, playe2dice, jugadores);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    await new Promise((resolve) => setTimeout(resolve, 10000));
   }
 
   if (ganadores.length == 1) {
