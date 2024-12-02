@@ -87,15 +87,6 @@ function showHistory() {
 
 let nombres = [];
 
-let dados = [
-  "/images/dado1",
-  "/images/dado2",
-  "/images/dado3",
-  "/images/dado4",
-  "/images/dado5",
-  "/images/dado6",
-];
-
 const fight_music = new Audio("images/audio/fight.mp3");
 const menu_music = new Audio("images/audio/menu.mp3");
 const winner_music = new Audio("images/audio/winner.mp3");
@@ -390,64 +381,92 @@ const player1dice = document.getElementById("player1dice");
 const playe2dice = document.getElementById("player2dice");
 const roundcount = document.getElementById("roundcount");
 
+let dados = [
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014317/unknowndice_iw0fy9.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014312/dice1_cc8qay.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014312/dice2_ozdull.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014313/dice3_vmikdb.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014314/dice4_pb8kqu.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014315/dice5_yp2kig.png",
+  "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733014316/dice6_f6p1mh.png",
+];
+
 let step = 0;
 let i = 0;
-let dado1 = 0;
-let dado2 = 0;
+let dice1 = 0;
+let dice2 = 0;
 let loose = false;
+const duelsContainer = document.getElementById("duelsContainer");
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
+    dado1HTML.innerHTML = `<img src="${dados[0]}" width="50">`;
+    dado2HTML.innerHTML = `<img src="${dados[0]}" width="50">`;
+
     do {
-      dado1 = Math.floor(Math.random() * 6 + 1);
-      dado2 = Math.floor(Math.random() * 6 + 1);
-    } while (dado1 === dado2);
+      dice1 = 6 - Math.floor(Math.random() * 5);
+      dice2 = 6 - Math.floor(Math.random() * 5);
+    } while (dice1 === dice2);
+    findWinners(dice1, dice2, jugadores);
 
-    if (jugadores[step][1] !== undefined) {
-      dado1HTML.innerHTML = `<img src="${
-        dados[dado1 - 1]
-      }.png" width="50" style="animation: spin 1s linear infinite;">`;
-      dado2HTML.innerHTML = `<img src="${
-        dados[dado2 - 1]
-      }.png" width="50" style="animation: spin 1s linear infinite;">`;
-      setTimeout(() => {
-        dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png" width="50">`;
-        dado2HTML.innerHTML = `<img src="${dados[dado2 - 1]}.png" width="50">`;
-      }, 1000);
-      if (dado1 > dado2) {
-        ganadores.push(jugadores[step][0]);
-        muertos.push(jugadores[step][1]);
-      } else {
-        ganadores.push(jugadores[step][1]);
-        muertos.push(jugadores[step][0]);
-      }
-    } else {
-      dado1HTML.innerHTML = `<img src="${
-        dados[dado1 - 1]
-      }.png " width="50" style="animation: spin 1s linear infinite;">`;
-      dado2HTML.innerHTML = `<img src="${
-        dados[dado2 - 1]
-      }evil.png" width=50" style="animation: spin 1s linear infinite;">`;
-      setTimeout(() => {
-        dado1HTML.innerHTML = `<img src="${dados[dado1 - 1]}.png " width="50">`;
-        dado2HTML.innerHTML = `<img src="${
-          dados[dado2 - 1]
-        }evil.png" width=50" >`;
-      }, 1000);
-      if (dado1 > dado2) {
-        ganadores.push(jugadores[step][0]);
-      } /* else {
-        console.log("test");
-        if (jugadores.length >= 1) {
-          console.log("test");
-
-          //ganadores.push("Paloma");
-        }
-      } */
-    }
+    setTurns(dado1HTML, dado2HTML, jugadores, step);
     step++;
     resolve();
   });
+}
+
+function setTurns(dado1HTML, dado2HTML, jugadores, step) {
+  const turnCount = document.getElementById("turncount");
+  const diceHTML = [dado1HTML, dado2HTML];
+  turnCount.textContent = `${jugadores[step][0]}'S TURN`;
+  rollDice(diceHTML[0]);
+  showRollingDice();
+  setTimeout(() => {
+    turnCount.textContent = `${jugadores[step][1]}'S TURN`;
+    rollDice(diceHTML[1]);
+    showRollingDice();
+  }, 3000);
+}
+
+function findWinners(dice1, dice2, jugadores) {
+  if (jugadores[step][1]) {
+    if (dice1 > dice2) {
+      ganadores.push(jugadores[step][0]);
+      muertos.push(jugadores[step][1]);
+    } else {
+      ganadores.push(jugadores[step][1]);
+      muertos.push(jugadores[step][0]);
+    }
+  } else {
+    if (dice1 > dice2) {
+      ganadores.push(jugadores[step][0]);
+    } else {
+      muertos.push(jugadores[step][0]);
+    }
+  }
+}
+
+function showRollingDice() {
+  const rollingDice = document.createElement("img");
+  rollingDice.src =
+    "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077596/yellowdice_yuvoti.gif";
+  document.getElementById("rolling-dice").appendChild(rollingDice);
+  setTimeout(() => {
+    rollingDice.src = "";
+  }, 2000);
+}
+
+function rollDice(dadoHTML) {
+  let count = 0;
+  let swapNumber = 4;
+  let intervalo = setInterval(() => {
+    let index = Math.floor(Math.random() * dados.length);
+    dadoHTML.src = dados[index];
+    count++;
+    if (count >= swapNumber) {
+      clearInterval(intervalo);
+    }
+  }, 500);
 }
 
 async function ejecutarRonda(jugadores) {
@@ -461,8 +480,7 @@ async function ejecutarRonda(jugadores) {
   for (let i = 0; i < jugadores.length; i++) {
     showDuelingGoblins(jugadores[i][0], jugadores[i][1]);
     await tirarDado(player1dice, playe2dice, jugadores);
-    //Goblins' idle animation and death animation
-    await new Promise((resolve) => setTimeout(resolve, 5000));
+    await new Promise((resolve) => setTimeout(resolve, 3000));
   }
 
   if (ganadores.length == 1) {
@@ -507,13 +525,6 @@ async function ejecutarRonda(jugadores) {
 
 let roundNumber = 0;
 
-//TODO HACER FUNCION DONDE METAS POR PARAMETRO EL FICHERO DE AUDIO
-/* 
-function playMusic() {
-  var music = new Audio("images/play.mp3");
-  music.play();
-}
- */
 vivos = nombres;
 function startRound() {
   roundNumber++;

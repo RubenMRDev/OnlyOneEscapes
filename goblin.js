@@ -114,14 +114,14 @@ const goblins = {
   17: {
     color: "purple",
     animations: {
-      idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786868/iddlePurple_n6gal5.gif",
+      idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077657/purple_ozwge2.gif",
       death: "",
     },
   },
   18: {
     color: "purple-yellow",
     animations: {
-      idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786866/idlePurpleYellow_gx5qpi.gif",
+      idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077658/purpleYellow_eide1n.gif",
       death: "",
     },
   },
