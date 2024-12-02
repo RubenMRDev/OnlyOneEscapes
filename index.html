@@ -151,15 +151,17 @@
         <div class="container text-center text-white h-100" id="duelsContainer">
           <h2 class="mb-5" id="roundcount">ROUND X</h2>
           <h2 class="mb-5" id="turncount"></h2>
-          <div class="row align-items-end w-100 Pt-5">
-            <div class="col duelingGoblin" id="player1dice">DICE VALUE</div>
-            <div class="col duelingGoblin" id="player2dice">DICE VALUE</div>
+          <div class="row align-items-center w-100 Pt-5">
+            <div class="w-25 duelingGoblin" id="player1dice">DICE VALUE</div>
+            <div class="w-50" id="versus"><img width="80px" src="https://res.cloudinary.com/ddguqr8l8/image/upload/v1733130754/versus_y4sfcp.png" alt="versus"></div>
+            <div class="w-25 col duelingGoblin" id="player2dice">DICE VALUE</div>
           </div>
-          <div class="row align-items-end mt-5">
-            <div class="duelingGoblin col" id="player1">PLAYER 1</div>
-            <div class="duelingGoblin col" id="player2">PLAYER 2</div>
+          <div id="goblins-row" class="row justify-content-between align-items-start mt-5">
+            <div class="w-25 duelingGoblin" id="player1">PLAYER 1</div>
+            <div class="w-50" id="rolling-dice-desktop"></div>
+            <div class="w-25 duelingGoblin" id="player2">PLAYER 2</div>
           </div>
-          <div id="rolling-dice">
+          <div id="rolling-dice-mobile">
           </div>
           <button
             type="button"

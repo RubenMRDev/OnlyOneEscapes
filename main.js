@@ -406,7 +406,6 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
       dice1 = 6 - Math.floor(Math.random() * 5);
       dice2 = 6 - Math.floor(Math.random() * 5);
     } while (dice1 === dice2);
-    findWinners(dice1, dice2, jugadores);
     setTurns(jugadores, step, dice1, dice2);
     step++;
     resolve();
@@ -432,6 +431,7 @@ function setTurns(jugadores, step, dice1, dice2) {
     await handleTurn(jugadores[step][1], "second-dice");
     console.log(dados[dice2]);
     document.getElementById("second-dice").src = dados[dice2];
+    findWinners(dice1, dice2, jugadores);
   }
 
   playTurns(dice1, dice2);
@@ -442,15 +442,27 @@ function findWinners(dice1, dice2, jugadores) {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
       muertos.push(jugadores[step][1]);
+      document.getElementById(
+        "turncount"
+      ).textContent = `${jugadores[step][0]} WINS`;
     } else {
       ganadores.push(jugadores[step][1]);
       muertos.push(jugadores[step][0]);
+      document.getElementById(
+        "turncount"
+      ).textContent = `${jugadores[step][1]} WINS`;
     }
   } else {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
+      document.getElementById(
+        "turncount"
+      ).textContent = `${jugadores[step][1]} SURVIVES`;
     } else {
       muertos.push(jugadores[step][0]);
+      document.getElementById(
+        "turncount"
+      ).textContent = `${jugadores[step][1]} DIDN'T SURVIVE`;
     }
   }
 }
@@ -459,17 +471,19 @@ function showRollingDice() {
   const rollingDice = document.createElement("img");
   rollingDice.src =
     "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077596/yellowdice_yuvoti.gif";
-  document.getElementById("rolling-dice").appendChild(rollingDice);
+  rollDice.classList = "align-items-start";
+  document.getElementById("rolling-dice-desktop").appendChild(rollingDice);
   setTimeout(() => {
     rollingDice.src = "";
-  }, 2000);
+    document.getElementById("goblins-row").removeChild(rollingDice);
+  }, 3000);
 }
 
 function rollDice(id) {
   let count = 0;
   let swapNumber = 4;
   let intervalo = setInterval(() => {
-    let index = Math.floor(Math.random() * dados.length);
+    let index = 6 - Math.floor(Math.random() * 5);
     document.getElementById(id).src = dados[index];
     count++;
     if (count >= swapNumber) {
