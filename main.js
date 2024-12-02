@@ -128,6 +128,35 @@ function dialogue(){
 
 } 
 
+let mouseX = 0;
+let mouseY = 0;
+let flashlightOn = true;
+
+let flashlight = document.getElementById("flashlight");
+
+function getMousePosition(e) {
+  if (flashlightOn) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    flashlight.style.setProperty("--Xpos", mouseX + "px");
+    flashlight.style.setProperty("--Ypos", mouseY + "px");
+  }
+}
+
+document.addEventListener("mousemove", getMousePosition);
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    flashlightOn = !flashlightOn;
+    flashlight.style.display = flashlightOn ? "block" : "none";
+  }
+});
+
+// Add this line to set the initial position of the flashlight
+flashlight.style.setProperty("--Xpos", "50vw");
+flashlight.style.setProperty("--Ypos", "50vh");
+
 function addLettersToDiv(string, divId){
   const letters = string.split("");
   const div = document.getElementById(divId);
