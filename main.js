@@ -1,4 +1,4 @@
-import { assignGoblinToPlayer, showDuelingGoblins } from "./goblin.js";
+import { assignGoblinToPlayer, showDuelingGoblins, showDyingGoblin } from "./goblin.js";
 
 //alerta añade un jugador
 //play aviso seguro que quieres empezar solo la primera vez
@@ -442,12 +442,14 @@ function findWinners(dice1, dice2, jugadores, step) {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
       muertos.push(jugadores[step][1]);
+      showDyingGoblin(jugadores[step][1], true);
       document.getElementById(
         "turncount"
       ).textContent = `${jugadores[step][0]} WINS`;
     } else {
       ganadores.push(jugadores[step][1]);
       muertos.push(jugadores[step][0]);
+      showDyingGoblin(jugadores[step][0], false);
       document.getElementById(
         "turncount"
       ).textContent = `${jugadores[step][1]} WINS`;
@@ -460,6 +462,7 @@ function findWinners(dice1, dice2, jugadores, step) {
       ).textContent = `${jugadores[step][0]} SURVIVES`;
     } else {
       muertos.push(jugadores[step][0]);
+      showDyingGoblin(jugadores[step][0], false);
       document.getElementById(
         "turncount"
       ).textContent = `${jugadores[step][0]} DIDN'T SURVIVE`;
