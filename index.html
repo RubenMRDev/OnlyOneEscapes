@@ -42,6 +42,40 @@
 
   <div class="responsive-background"></div>
 
+
+<!--Settings-->
+  <div id="overlay" class="hidden">
+    <div class="overlay-content container">
+        <h4 class="settings-father text-center">VOLUME</h4>
+        <div id="sliders-container" class="sliders-container row">
+          <div class="col d-flex justify-content-center">
+            <label for="music-slider" class="text-center"><h5>MUSIC:</h5></label>
+            <input class="sliders" type="range" id="music-slider" min="0" max="1" step="0.01" value="0.5">
+          </div>
+          <div class="col d-flex justify-content-center">
+            <label for="sound-slider" class="volume-slider text-center"><h5>SOUND:</h5></label>
+            <input class="sliders" type="range" id="sound-slider" min="0" max="1" step="0.01" value="0.5">
+          </div>
+      </div>
+        <h4 class="settings-father text-center">GRAPHICS</h4>
+        <div class="div-Gore-button text-center">
+            <button class="graphics-button"><p><strong>ACTIVATE GORE MODE</strong><p><img class="danger-img" width="45" height="45" src="https://cdn-icons-png.flaticon.com/512/10843/10843180.png" alt="Danger!"> </button>
+        </div>
+        <h4 class="settings-game text-center">GAME</h4>
+      <div class="gameButtonsSpace row">
+        <div class="col">
+          <button class="game-button">RESTART GAME</button>
+        </div>
+        <div class="col">
+          <button class="game-button" id="quit-button">QUIT GAME</button>
+        </div>
+        <div class="col">
+          <button id="exitButton" class="exit-button">EXIT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <header class="px-3">
       <nav class="navbar navbar-dark" style="background-color: transparent">
         <div
@@ -97,28 +131,7 @@
       </nav>
     </header>
 
-  <!--Settings-->
-  <div id="overlay" class="hidden">
-    <div class="overlay-content">
-        <h4 class="settings-father">VOLUME</h4>
-        <div id="sliders-container" class="sliders-container">
-          <label for="music-slider"><h5>MUSIC:</h5></label>
-          <input class="sliders" type="range" id="music-slider" min="0" max="1" step="0.01" value="0.5">
-          <label for="sound-slider" class="volume-slider"><h5>SOUND:</h5></label>
-          <input class="sliders" type="range" id="sound" min="0" max="1" step="0.01" value="0.5">
-      </div>
-        <h4 class="settings-father">GRAPHICS</h4>
-        <div class="div-Gore-button">
-            <button class="graphics-button"><p><strong>ACTIVATE GORE MODE</strong><p><img class="danger-img" width="45" height="45" src="https://cdn-icons-png.flaticon.com/512/10843/10843180.png" alt="Danger!"> </button>
-        </div>
-        <h4 class="settings-game">GAME</h4>
-      <div class="gameButtonsSpace">
-        <button class="game-button">RESTART GAME</button>
-        <button class="game-button">QUIT GAME</button>
-        <button id="exitButton" class="exit-button">EXIT</button>
-      </div>
-    </div>
-</div>
+  
 
     <main
       id="main-screen"
@@ -179,12 +192,10 @@
       style="background-color: transparent"
     >
       <div class="footer d-flex justify-content-center gap-5">
-        <a href="" class="unstyled-link">Github</a>
-        <a href="" class="unstyled-link">Documentation</a>
-        <i class="bi bi-twitter-x"></i>
-        <i class="bi bi-instagram"></i>
-        <i class="bi bi-youtube"></i>
-        <i class="bi bi-linkedin"></i>
+        <a href="https://github.com/RubenMRDev/WheelOfDoom" class="bi bi-github"></a>
+        <a href="https://twitter.com/OEscapes78392" class="bi bi-twitter-x"></a>
+        <a href="https://www.instagram.com/onlyoneescapes/" class="bi bi-instagram"></a>
+        <a href="https://www.youtube.com/channel/UCTgnay0D5NFx4gWhAg-2q0w" class="bi bi-youtube"></a>
       </div>
     </footer>
 

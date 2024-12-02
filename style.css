@@ -124,8 +124,8 @@ body {
 }
 #title {
   color: white;
-  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
-    0px 0px 5px #c7fcca;
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+
 }
 
 .button-UI {
@@ -267,10 +267,41 @@ main {
   height: 300px;
 }
 
-.footer a,
+
 .footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 10vh; 
+  background-color: #111;
   color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
 }
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  color: #00f6bd;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+    padding: 20px;
+  }
+}
+
 
 @keyframes spin {
   0% {
@@ -320,6 +351,7 @@ main {
   transform: scale(1.2);
 }
 #settingsOverlayButton {
+  
   position: relative;
   z-index: 4;
 }
@@ -340,8 +372,13 @@ main {
   );
 }
 
+#overlay:not(.hidden) ~ #navbar {
+  filter: brightness(50%);
+}
+
 #overlay {
-  position: absolute;
+  padding-top: 100px;
+  position: fixed;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.8);
@@ -355,12 +392,18 @@ main {
   display: none;
 }
 
+
+#overlay.hidden{
+  display: none;
+}
+
 .overlay-content {
   background: transparent;
   width: 500px;
   height: -150px;
   text-align: center;
   margin-top: 20px;
+  max-height: 90vh;
 }
 
 .settings-father {
@@ -388,10 +431,11 @@ main {
 
 button.graphics-button {
   transform: translateY(-100%);
+  white-space: nowrap;
   width: 60%;
   padding-top: 18px;
   height: 35px;
-  font-size: 22px;
+  font-size: min(22px, 4vw);
   border: none;
   cursor: pointer;
   display: flex;
@@ -479,9 +523,12 @@ button.graphics-button {
   left: 50%;
   transform: translate(-50%);
   gap: 20px;
+  padding: 10px;
+  padding-top: 110px;
   max-width: 500px;
   margin-top: 30px;
   margin-bottom: 30px;
+  margin-left: 0 !important;
 }
 
 .sliders {
@@ -515,4 +562,8 @@ button.graphics-button {
 
 .sliders:active::-webkit-slider-thumb {
   background: #c7fcca;
+}
+
+.row{
+  margin-left: 0;
 }

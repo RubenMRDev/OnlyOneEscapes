@@ -557,4 +557,60 @@ function startRound() {
   ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
 
+// --------------- SETTINGS FUNCTIONS ---------------//
+
+function quitGame() {
+  const startMenuElement = document.getElementById("start-menu");
+  const duelsElement = document.getElementById("duels");
+  const addPlayerMenuElement = document.getElementById("add-player-menu");
+  const overlayElement = document.getElementById("overlay");
+  const nextButtonElement = document.getElementById("nextButton");
+  const dialogueElement = document.getElementById("dialogue");
+  const startRoundButtonElement = document.getElementById("start-round-button");
+  const addPlayerButtonElement = document.getElementById("add-player-button");
+  const playButtonElement = document.getElementById("playButton");
+  const blackScreenElement = document.getElementById("black-screen");
+
+  startMenuElement.classList.remove("d-none");
+  startMenuElement.style.display = "flex";
+  startMenuElement.classList.add("d-flex");
+
+  duelsElement.classList.remove("d-block");
+  addPlayerMenuElement.classList.remove("d-block");
+  overlayElement.classList.add("hidden");
+  overlayElement.style.display = "none";
+
+  nextButtonElement.style.display = "none";
+  dialogueElement.innerHTML = "";
+  dialogueElement.style.display = "none";
+
+  playMusic();
+
+  gameData.muertos = [];
+  gameData.vivos = [];
+  gameData.ganadores = [];
+  gameData.roundNumber = 0;
+  gameData.step = 0;
+  gameData.i = 0;
+  gameData.parejas = [];
+  gameData.jugando = [];
+  gameData.nombres = [];
+
+  startRoundButtonElement.innerHTML = "Start Round!";
+  startRoundButtonElement.style.display = "inline";
+  addPlayerButtonElement.style.display = "inline";
+  playButtonElement.style.display = "none";
+  blackScreenElement.style.display = "none";
+  addPlayerMenuElement.classList.add("d-none");
+}
+
+
+const quitGameButton = document.getElementById("quit-button");
+
+quitGameButton.addEventListener("click", () => {
+    quitGame();
+  
+});
+
+
 //---------------------------------------WINDOW-EVENT--------------------------------------
