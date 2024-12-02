@@ -119,6 +119,7 @@ body {
 #title{
   color: white;
   text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #C7FCCA, 0px 0px 5px #C7FCCA;
+
 }
 
 .button-UI {
@@ -264,12 +265,13 @@ main{
   }
 }
 
-/* /////////////////////////////////////SETTINGS//////////////////////////////////////       */
+/* /////////////////////////////////////SETTINGS////////////////////////////////////// */
 
 #settings:hover, #logo:hover {
   transform: scale(1.2);
 }
 #settingsOverlayButton {
+  
   position: relative;
   z-index: 4;
 }
@@ -284,16 +286,29 @@ main{
   background: radial-gradient(circle, rgb(199, 252, 202, 0.4) 0%, rgb(199, 252, 202, 0.4) 30%, rgba(255, 255, 255, 0) 55%, rgba(255, 255, 255, 0) 100%);
 }
 
+/* Filtro para oscurecer el navbar cuando el overlay esté visible */
+#overlay:not(.hidden) ~ #navbar {
+  filter: brightness(50%); /* Reduce el brillo del navbar */
+}
+
+/* El estilo para el overlay */
 #overlay {
-  position: absolute;
+  padding-top: 100px;
+  position: fixed;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8); /* Esto oscurece todo */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   z-index: 10000;
 }
+
+/* El navbar no se oscurecerá si está en .hidden */
+#overlay.hidden {
+  display: none;
+}
+
 
 #overlay.hidden{
   display: none;
@@ -332,10 +347,11 @@ main{
 
 button.graphics-button {
   transform: translateY(-100%);
+  white-space: nowrap;
   width: 60%;
   padding-top: 18px;
   height: 35px;
-  font-size: 22px;
+  font-size: min(22px, 4vw);
   border: none;
   cursor: pointer;
   display: flex;
@@ -424,9 +440,12 @@ button.graphics-button {
   left: 50%;
   transform: translate(-50%);
   gap: 20px;
+  padding: 10px;
+  padding-top: 110px;
   max-width: 500px;
   margin-top: 30px;
   margin-bottom: 30px;
+  margin-left: 0 !important;
 }
 
 .sliders {
@@ -460,4 +479,8 @@ button.graphics-button {
 
 .sliders:active::-webkit-slider-thumb {
   background: #C7FCCA;
+}
+
+.row{
+  margin-left: 0;
 }
