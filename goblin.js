@@ -260,7 +260,6 @@ export function showDuelingGoblins(player1, player2){
   nickname2.setAttribute("class", "nickname text-center mt-3");
   nickname2.textContent = player2;
 
-  //seguro que se pasa algo diferente a undefined tras una comprobacion x
   if(player2){
     let goblin2 = document.createElement("img");
     goblin2.setAttribute("src", goblins[goblin2Number].animations.idle);

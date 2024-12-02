@@ -303,15 +303,16 @@ main {
   font-size: 20px;
 }
 .goblin-fighting {
-  width: 100px;
-  height: 100px;
+  min-width: 80px;
+  max-width: 150px;
+  width: 100%;
+  height: 100%;
 }
 
-/* .duelingGoblin{
-  width: 100px;
-  height: 100px;
+
+.duelingGoblin{
+  width: 35%;
 }
- */
 /* /////////////////////////////////////SETTINGS//////////////////////////////////////       */
 
 #settings:hover,

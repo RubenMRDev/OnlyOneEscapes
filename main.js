@@ -396,7 +396,6 @@ let i = 0;
 let dice1 = 0;
 let dice2 = 0;
 let loose = false;
-const duelsContainer = document.getElementById("duelsContainer");
 
 function tirarDado(dado1HTML, dado2HTML, jugadores) {
   return new Promise((resolve) => {
@@ -415,30 +414,31 @@ function tirarDado(dado1HTML, dado2HTML, jugadores) {
 function setTurns(jugadores, step, dice1, dice2) {
   const turnCount = document.getElementById("turncount");
 
-  function handleTurn(player, diceId) {
+  async function handleTurn(player, diceId) {
     return new Promise((resolve) => {
       turnCount.textContent = `${player}'S TURN`;
-      rollDice(diceId);
       showRollingDice();
+      rollDice(diceId);
       setTimeout(() => resolve(), 3000);
     });
   }
 
   async function playTurns(dice1, dice2) {
+    showRollingDice();
     await handleTurn(jugadores[step][0], "first-dice");
-    console.log(dados[dice1]);
     document.getElementById("first-dice").src = dados[dice1];
+    document.getElementById("rolling-dice").innerHTML = "";
+    showRollingDice();
     await handleTurn(jugadores[step][1], "second-dice");
-    console.log(dados[dice2]);
     document.getElementById("second-dice").src = dados[dice2];
-    findWinners(dice1, dice2, jugadores);
+    findWinners(dice1, dice2, jugadores, step);
   }
 
   playTurns(dice1, dice2);
 }
 
-function findWinners(dice1, dice2, jugadores) {
-  if (jugadores[step][1]) {
+function findWinners(dice1, dice2, jugadores, step) {
+  if (jugadores[step][1] !== undefined) {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
       muertos.push(jugadores[step][1]);
@@ -457,26 +457,25 @@ function findWinners(dice1, dice2, jugadores) {
       ganadores.push(jugadores[step][0]);
       document.getElementById(
         "turncount"
-      ).textContent = `${jugadores[step][1]} SURVIVES`;
+      ).textContent = `${jugadores[step][0]} SURVIVES`;
     } else {
       muertos.push(jugadores[step][0]);
       document.getElementById(
         "turncount"
-      ).textContent = `${jugadores[step][1]} DIDN'T SURVIVE`;
+      ).textContent = `${jugadores[step][0]} DIDN'T SURVIVE`;
     }
   }
 }
 
 function showRollingDice() {
   const rollingDice = document.createElement("img");
-  rollingDice.src =
+  rollingDice.style.height = "200px";
+  const gifUrl =
     "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077596/yellowdice_yuvoti.gif";
-  rollDice.classList = "align-items-start";
-  document.getElementById("rolling-dice-desktop").appendChild(rollingDice);
-  setTimeout(() => {
-    rollingDice.src = "";
-    document.getElementById("goblins-row").removeChild(rollingDice);
-  }, 3000);
+  rollingDice.src = `${gifUrl}?t=${Date.now()}`;
+  const diceContainer = document.getElementById("rolling-dice");
+  diceContainer.innerHTML = "";
+  diceContainer.appendChild(rollingDice);
 }
 
 function rollDice(id) {
