@@ -1,16 +1,5 @@
 import { assignGoblinToPlayer, showDuelingGoblins, showDyingGoblin } from "./goblin.js";
 
-//alerta añade un jugador
-//play aviso seguro que quieres empezar solo la primera vez
-//dado rotando
-//resultado del dado
-//moverse entre pantallas
-//mostrar logs en pantalla inicio
-//quitar
-//añadir nombres en rojo a la lista en enfrentamientos
-//animacion/transicion de inicio
-//animacion boss
-
 window.addEventListener("load", () => {
   const loadingScreen = document.getElementById("loadingScreen");
 
@@ -66,25 +55,6 @@ function showHistory() {
 
 ///////////////////////////PLAYERS/////////////////////////////////
 
-/* let ALUMNOS = [
-  "Israel Abad Barrera",
-  "Javier Ariza Rosales",
-  "Nicolás Burgos Contreras",
-  "Felipe Chacón Montero",
-  "Fernando de la Torre Esperon",
-  "Jesús Manuel García Lozano",
-  "Alejandro Gómez Ojeda",
-  "Pablo Jiménez Menéndez",
-  "Mario Lebrero García",
-  "Pablo Noria Gómez",
-  "Mauricio Nicolas Ortiz",
-  "Adrián Pérez Agredano",
-  "Jairo Saborito Franco",
-  "Judith Tamayo Balogh",
-  "Samuel Utrilla Núñez",
-  "Ruben Martin Ruiz",
-]; */
-
 let nombres = [];
 
 const fight_music = new Audio("images/audio/fight.mp3");
@@ -120,7 +90,36 @@ function dialogue() {
   }
 }
 
-function addLettersToDiv(string, divId) {
+
+let mouseX = 0;
+let mouseY = 0;
+let flashlightOn = true;
+
+let flashlight = document.getElementById("flashlight");
+
+function getMousePosition(e) {
+  if (flashlightOn) {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+
+    flashlight.style.setProperty("--Xpos", mouseX + "px");
+    flashlight.style.setProperty("--Ypos", mouseY + "px");
+  }
+}
+
+document.addEventListener("mousemove", getMousePosition);
+
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Enter") {
+    flashlightOn = !flashlightOn;
+    flashlight.style.display = flashlightOn ? "block" : "none";
+  }
+});
+
+flashlight.style.setProperty("--Xpos", "50vw");
+flashlight.style.setProperty("--Ypos", "50vh");
+
+function addLettersToDiv(string, divId){
   const letters = string.split("");
   const div = document.getElementById(divId);
   let i = 0;
@@ -287,8 +286,6 @@ function showDuels() {
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
-        //show first round pairings
-        //TODO FIX EVENT
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");

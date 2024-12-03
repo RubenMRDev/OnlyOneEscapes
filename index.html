@@ -32,13 +32,17 @@
     <div id="loadingScreen"></div>
 
 <body style="overflow-x: hidden;">
-  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 999;">
-  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
-    <button id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
-    <div id="dialogue" class="text-white container text-center"></div>
-    <button id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url(images/parallaxCave/fullbackground.png); z-index: 999;">
+    <div id="dialogueBox" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      
+      <button class="button-UI" id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
+      <div id="dialogue" class="text-white container text-center" style="filter: brightness(1)">
+      </div>
+      <button class="button-UI" id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+      <div id="flashlight"></div>
+    </div>
   </div>
-</div>
+  
 
   <div class="responsive-background"></div>
 
@@ -57,10 +61,6 @@
             <input class="sliders" type="range" id="sound-slider" min="0" max="1" step="0.01" value="0.5">
           </div>
       </div>
-        <h4 class="settings-father text-center">GRAPHICS</h4>
-        <div class="div-Gore-button text-center">
-            <button class="graphics-button"><p><strong>ACTIVATE GORE MODE</strong><p><img class="danger-img" width="45" height="45" src="https://cdn-icons-png.flaticon.com/512/10843/10843180.png" alt="Danger!"> </button>
-        </div>
         <h4 class="settings-game text-center">GAME</h4>
       <div class="gameButtonsSpace row">
         <div class="col">
@@ -130,9 +130,6 @@
         </div>
       </nav>
     </header>
-
-  
-
     <main
       id="main-screen"
       class="p-5 d-flex flex-column align-items-center justify-content-center"

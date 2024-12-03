@@ -4,6 +4,30 @@
   font-family: "Pixelify Sans", serif;
 }
 
+#flashlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+#flashlight:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 35em at var(--Xpos) var(--Ypos),
+    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 1)
+  );
+}
+
 body {
   text-align: center;
   font-family: "Pixelify Sans", serif;
@@ -326,6 +350,12 @@ main {
     0px 0px 5px #c7fcca;
   font-size: 30px;
 }
+
+#dialogueBox{
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
+  0px 0px 5px #c7fcca;
+}
+
 #player1,
 #player2 {
   text-shadow: 0px 0px 10px #c7fcca,
@@ -428,32 +458,6 @@ main {
   text-align: center;
 }
 
-button.graphics-button {
-  transform: translateY(-100%);
-  white-space: nowrap;
-  width: 60%;
-  padding-top: 18px;
-  height: 35px;
-  font-size: min(22px, 4vw);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: #990000;
-  color: #ffffff;
-  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
-    1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
-  font-weight: bold;
-  box-shadow: 0 0 0px 3px #b80000;
-}
-
-.graphics-button:hover {
-  background-color: #ff0000;
-  box-shadow: 0 0 0px 3px #710000;
-}
-
 .game-button:hover {
   background-color: #2daab8;
   box-shadow: 0 0 0px 3px #ffe600;
@@ -494,7 +498,6 @@ button.graphics-button {
   margin-top: 20px;
   font-size: 22px;
   background-color: #ffe600;
-  opacity: 0;
   color: #ffffff;
   text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
     1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
