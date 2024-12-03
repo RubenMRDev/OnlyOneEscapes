@@ -3,6 +3,7 @@ import {
   showDuelingGoblins,
   showDyingGoblin,
   assignedGoblins as importedGoblins,
+  showWinnerGoblin,
 } from "./goblin.js";
 
 let assignedGoblins;
@@ -543,6 +544,39 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
+    let winnerTitle = document.createElement("h2");
+    winnerTitle.classList.add("title_victoria");
+    winnerTitle.textContent = "Winner";
+    let winner = document.createElement("p");
+    winner.classList.add("name_victoria");
+    winner.textContent = ganadores[0];
+    let winnerGoblin = document.createElement("img");
+    winnerGoblin.src = showWinnerGoblin(ganadores[0]);
+    let backToLobbyButton = document.createElement("button");
+    backToLobbyButton.id = "winner";
+    backToLobbyButton.classList = "button-UI text-center";
+    backToLobbyButton.textContent = "Back to Lobby";
+    let winnerContainer = document.createElement("div");
+    winnerContainer.classList.add("text");
+    winnerContainer.id = "winner-container";
+
+    let imgContainer = document.createElement("div");
+    imgContainer.classList.add("w");
+    imgContainer.appendChild(winner);
+    imgContainer.appendChild(winnerGoblin);
+    imgContainer.appendChild(backToLobbyButton);
+    
+    winnerContainer.appendChild(winnerTitle);
+    winnerContainer.appendChild(imgContainer)
+
+    backToLobbyButton.addEventListener("click", ()=>{
+      document.getElementById("winner-container").classList.add("d-none");
+      document.body.removeChild(winnerContainer);
+      quitGame();
+    })
+    
+    document.body.appendChild(winnerContainer);
+    
     parejas = [];
     muertos = [];
     vivos = nombres;
