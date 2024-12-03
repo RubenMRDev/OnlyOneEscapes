@@ -443,6 +443,7 @@ main {
   font-size: 22px;
   color: #ffe600;
   text-align: left;
+  margin-bottom: 20px;
   transform: translateY(-15%);
 }
 
