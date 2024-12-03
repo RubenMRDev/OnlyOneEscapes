@@ -566,3 +566,54 @@ main {
 .row{
   margin-left: 0;
 }
+
+/*--------------------------------*/
+
+.text {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: yellow;
+  z-index: 3;
+  text-shadow: 2px 2px 4px black;
+}
+
+.title_victoria {
+  font-size: 8vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px black;
+}
+
+.name_victoria {
+  font-size: 4vw;
+  margin-top: 10px;
+  position: relative;
+}
+
+.crown {
+  width: 4vw;
+  position: absolute;
+  top: -30%;
+  transform: translateX(-50%) rotate(-30deg);
+}
+
+.winner-btn {
+  margin-top: 60px;
+  padding: 10px 20px;
+  font-family: "Pixelify Sans", serif;
+  font-size: 2vw;
+  color: black;
+  background-color: gold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.winner-btn:hover {
+background-color: #ffcc00;
+transform: scale(1.05);
+}
