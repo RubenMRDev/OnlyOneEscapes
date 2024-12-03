@@ -73,7 +73,9 @@ let nombres = [];
 
 const fight_music = new Audio("images/audio/fight.mp3");
 fight_music.volume = "0.1";
-const menu_music = new Audio("https://res.cloudinary.com/ddguqr8l8/video/upload/v1733180368/crombat_whxfat.mp3");
+const menu_music = new Audio(
+  "https://res.cloudinary.com/ddguqr8l8/video/upload/v1733180368/crombat_whxfat.mp3"
+);
 menu_music.volume = "0.3";
 const winner_music = new Audio("images/audio/winner.mp3");
 
@@ -212,8 +214,6 @@ slider.addEventListener("input", () => {
   menu_music.volume = slider.value;
   winner_music.volume = slider.value;
 });
-
-
 
 overlayButton.addEventListener("click", () => {
   overlay.classList.toggle("hidden");
@@ -544,39 +544,8 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
-    let winnerTitle = document.createElement("h2");
-    winnerTitle.classList.add("title_victoria");
-    winnerTitle.textContent = "Winner";
-    let winner = document.createElement("p");
-    winner.classList.add("name_victoria");
-    winner.textContent = ganadores[0];
-    let winnerGoblin = document.createElement("img");
-    winnerGoblin.src = showWinnerGoblin(ganadores[0]);
-    let backToLobbyButton = document.createElement("button");
-    backToLobbyButton.id = "winner";
-    backToLobbyButton.classList = "button-UI text-center";
-    backToLobbyButton.textContent = "Back to Lobby";
-    let winnerContainer = document.createElement("div");
-    winnerContainer.classList.add("text");
-    winnerContainer.id = "winner-container";
+    loadWinnerScreen();
 
-    let imgContainer = document.createElement("div");
-    imgContainer.classList.add("w");
-    imgContainer.appendChild(winner);
-    imgContainer.appendChild(winnerGoblin);
-    imgContainer.appendChild(backToLobbyButton);
-    
-    winnerContainer.appendChild(winnerTitle);
-    winnerContainer.appendChild(imgContainer)
-
-    backToLobbyButton.addEventListener("click", ()=>{
-      document.getElementById("winner-container").classList.add("d-none");
-      document.body.removeChild(winnerContainer);
-      quitGame();
-    })
-    
-    document.body.appendChild(winnerContainer);
-    
     parejas = [];
     muertos = [];
     vivos = nombres;
@@ -596,6 +565,41 @@ async function ejecutarRonda(jugadores) {
   }
 }
 
+function loadWinnerScreen() {
+  let winnerTitle = document.createElement("h2");
+  winnerTitle.classList.add("title_victoria");
+  winnerTitle.textContent = "Winner";
+  let winner = document.createElement("p");
+  winner.classList.add("name_victoria");
+  winner.textContent = ganadores[0];
+  let winnerGoblin = document.createElement("img");
+  winnerGoblin.src = showWinnerGoblin(ganadores[0]);
+  let backToLobbyButton = document.createElement("button");
+  backToLobbyButton.id = "winner";
+  backToLobbyButton.classList = "button-UI text-center";
+  backToLobbyButton.textContent = "Back to Lobby";
+  let winnerContainer = document.createElement("div");
+  winnerContainer.classList.add("text");
+  winnerContainer.id = "winner-container";
+
+  let imgContainer = document.createElement("div");
+  imgContainer.classList.add("w");
+  imgContainer.appendChild(winnerGoblin);
+  imgContainer.appendChild(winner);
+  imgContainer.appendChild(backToLobbyButton);
+
+  winnerContainer.appendChild(winnerTitle);
+  winnerContainer.appendChild(imgContainer);
+
+  backToLobbyButton.addEventListener("click", () => {
+    document.getElementById("winner-container").classList.add("d-none");
+    document.body.removeChild(winnerContainer);
+    quitGame();
+  });
+
+  document.body.appendChild(winnerContainer);
+}
+
 let roundNumber = 0;
 
 vivos = nombres;
@@ -611,7 +615,10 @@ function startRound() {
 // --------------- SETTINGS FUNCTIONS ---------------//
 
 function quitGame() {
-
+  let winnerContainer;
+  if ((winnerContainer = document.getElementById("winner-container"))) {
+    document.body.removeChild(winnerContainer);
+  }
   fight_music.pause();
   fight_music.currentTime = 0;
   menu_music.loop = true;
