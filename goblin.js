@@ -3,112 +3,168 @@ const goblins = {
     color: "black",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786869/idleBlack_jd3lw4.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180332/deathBlack_uyoa7e.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   2: {
     color: "black-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786869/idleBlackYellow_rsdo7j.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180333/deathBlackYellow_fiiqli.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   3: {
     color: "blue",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786868/iddlePurple_n6gal5.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180334/deathBlue_ig4bxr.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   4: {
     color: "blue-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786866/idlePurpleYellow_gx5qpi.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180334/deathBlueYellow_ijkd8t.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   5: {
     color: "brown",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786858/idleBrown_zomgdq.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180335/deathBrown_kqppxh.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   6: {
     color: "brown-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786859/idleBrownYellow_vreuly.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180336/deathBrownYellow_f3t2vl.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   7: {
     color: "green",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786859/idleGreen_u5glu0.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180315/deathGreen_uil4kn.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   8: {
     color: "green-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786860/idleGreenYellow_whdt1d.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180316/deathGreenYellow_myyzid.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   9: {
     color: "olive",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786862/idleOlive_qb2e7f.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180316/deathOlive_sxc5al.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   10: {
     color: "olive-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786861/idleOliveYellow_hweqrs.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180316/deathOliveYellow_wvplyf.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   11: {
     color: "orange",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786862/idleOrange_xvmowk.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180317/deathOrange_kvkxby.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   12: {
     color: "orange-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786863/idleOrangeYellow_nttaz2.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180317/deathOrangeYellow_e62m9z.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   13: {
     color: "pink",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786863/idlePink_mohhl7.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180318/deathPink_qdfakv.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   14: {
     color: "pink-yellow",
     animations: {
       idle: "https://res.cloudinary.com/ddguqr8l8/image/upload/v1732786864/idlePinkYellow_jwgu3g.gif",
+<<<<<<< HEAD
       death:
         "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733180319/deathPinkYellow_friz7b.gif",
+=======
+      death: "",
+>>>>>>> nicolas
     },
   },
   15: {

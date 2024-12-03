@@ -532,6 +532,39 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
+    
+
+//-----------------------
+
+const alertContainer = document.createElement('div');
+alertContainer.classList.add('alert-container');
+
+
+alertContainer.innerHTML = `
+    <div class="text">
+        <h1 class="title_victoria">Winner</h1>
+        <h2 class="name_victoria">
+            <img src="images/crown.png" alt="Corona" class="crown">
+            Nicolas
+        </h2>
+        <button class="winner-btn">Aceptar</button>
+    </div>
+`;
+
+
+
+document.body.appendChild(alertContainer);
+
+
+const acceptButton = alertContainer.querySelector('.winner-btn');
+acceptButton.addEventListener('click', function() {
+  
+    document.body.removeChild(alertContainer);
+
+  
+});
+
+//--------------------------
     parejas = [];
     muertos = [];
     vivos = nombres;

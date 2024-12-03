@@ -32,6 +32,7 @@
     <div id="loadingScreen"></div>
 
 <body style="overflow-x: hidden;">
+<<<<<<< HEAD
   <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url(images/parallaxCave/fullbackground.png); z-index: 999;">
     <div id="dialogueBox" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
       
@@ -76,12 +77,27 @@
     </div>
   </div>
 
+=======
+  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-color: black; z-index: 999;">
+  <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <button id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
+    <div id="dialogue" class="text-white container text-center"></div>
+    <button id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+  </div>
+</div>
+
+  <div class="responsive-background"></div>
+
+>>>>>>> nicolas
     <header class="px-3">
       <nav class="navbar navbar-dark" style="background-color: transparent">
         <div
           class="d-flex flex-row justify-content-between align-items-center w-100 h-100"
         >
+<<<<<<< HEAD
           <!-- Dropdown con imagen de calavera -->
+=======
+>>>>>>> nicolas
           <div class="dropdown">
             <button
               class="navbar-toggler border-0"
@@ -178,9 +194,29 @@
           >
             Play
           </button>
+        </div>
+        <div class="text-center mt-5">
+          <div class="row align-items-end text-white">
+            <div class="col">ALIVE</div>
+            <div class="col">DEATH</div>
+          </div>
+          <div class="row align-items-end text-white">
+            <div class="col" id="aliveplayers"></div>
+            <div class="col" id="deadplayers"></div>
           </div>
         </div>
       </div>
+
+      
+      <!-- Contenedor para mostrar la victoria -->
+      <div id="victoryMessage" class="victory-message d-none">
+        <h1>¡Felicidades, Has ganado!</h1>
+    <h2><img src="images/crown.png" alt="Crown" class="crown"> Nicolás</h2>
+  <p>¡Eres el único superviviente! Disfruta de tu victoria, valiente guerrero. 🌟</p>
+  <button onclick="reiniciarJuego()">Continuar</button>
+</div>
+
+
     </main>
 
     <!-- Footer -->
