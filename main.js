@@ -2,9 +2,8 @@ import {
   assignGoblinToPlayer,
   showDuelingGoblins,
   showDyingGoblin,
-  assignedGoblins as importedGoblins
+  assignedGoblins as importedGoblins,
 } from "./goblin.js";
-
 
 let assignedGoblins;
 
@@ -21,7 +20,6 @@ window.addEventListener("load", () => {
     }, 1000);
   }, 3000);
 });
-
 
 /////////////////////EVENT-LISTENER////////////////////////////////
 
@@ -533,18 +531,6 @@ async function ejecutarRonda(jugadores) {
 
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
-    //TODO: Insertar pantalla ganador
-    swal.fire({
-      title: "Tenemos un ganador",
-      text: `El ganador es ${ganadores[0]}`,
-      imageUrl: "images/crown.png",
-      imageWidth: 230,
-      imageHeight: 150,
-      confirmButtonText: "Aceptar",
-      customClass: {
-        popup: "swal2-custom",
-      },
-    });
 
     parejas = [];
     muertos = [];
@@ -607,7 +593,6 @@ function quitGame() {
   nombres = [];
   assignedGoblins = new Map();
 
-  
   const addPlayerButtons = document.getElementById("player-list-buttons");
   addPlayerButtons.classList.remove("d-none");
   addPlayerButtons.classList.add("d-flex");
