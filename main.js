@@ -71,7 +71,9 @@ function showHistory() {
 let nombres = [];
 
 const fight_music = new Audio("images/audio/fight.mp3");
-const menu_music = new Audio("images/audio/menu.mp3");
+fight_music.volume = "0.1";
+const menu_music = new Audio("https://res.cloudinary.com/ddguqr8l8/video/upload/v1733180368/crombat_whxfat.mp3");
+menu_music.volume = "0.3";
 const winner_music = new Audio("images/audio/winner.mp3");
 
 let dialogueCount = 0;
@@ -202,6 +204,15 @@ buttonSkull.addEventListener("click", () => {
 const overlayButton = document.getElementById("settingsOverlayButton");
 const overlay = document.getElementById("overlay");
 const exitButton = document.getElementById("exitButton");
+
+const slider = document.getElementById("music-slider");
+slider.addEventListener("input", () => {
+  fight_music.volume = slider.value;
+  menu_music.volume = slider.value;
+  winner_music.volume = slider.value;
+});
+
+
 
 overlayButton.addEventListener("click", () => {
   overlay.classList.toggle("hidden");
@@ -566,7 +577,12 @@ function startRound() {
 // --------------- SETTINGS FUNCTIONS ---------------//
 
 function quitGame() {
-  console.log(nombres.length);
+
+  fight_music.pause();
+  fight_music.currentTime = 0;
+  menu_music.loop = true;
+  menu_music.play();
+
   const startMenuElement = document.getElementById("start-menu");
   const duelsElement = document.getElementById("duels");
   const addPlayerMenuElement = document.getElementById("add-player-menu");
