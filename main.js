@@ -1,7 +1,16 @@
-import { assignGoblinToPlayer, showDuelingGoblins, showDyingGoblin } from "./goblin.js";
+import {
+  assignGoblinToPlayer,
+  showDuelingGoblins,
+  showDyingGoblin,
+  assignedGoblins as importedGoblins
+} from "./goblin.js";
+
+
+let assignedGoblins;
 
 window.addEventListener("load", () => {
   const loadingScreen = document.getElementById("loadingScreen");
+  assignedGoblins = importedGoblins;
 
   setTimeout(() => {
     loadingScreen.style.transition = "opacity 1s ease";
@@ -12,6 +21,7 @@ window.addEventListener("load", () => {
     }, 1000);
   }, 3000);
 });
+
 
 /////////////////////EVENT-LISTENER////////////////////////////////
 
@@ -39,18 +49,23 @@ function startGame() {
   document.getElementById("add-player-button").style.display = "block";
   document.getElementById("lobby").classList.remove("d-none");
   document.getElementById("play-button").style.display = "block";
-
-  document.getElementById("add-player-menu").style.display = "flex";
+  document.getElementById("add-player-menu").classList.remove("d-none");
+  document.getElementById("add-player-menu").classList.add("d-flex");
   document.getElementById("start-menu").classList.remove("d-flex");
   document.getElementById("start-menu").style.display = "none";
-  document.getElementById("fight-button").style.display = "none";
+  document.getElementById("fight-button").classList.add("d-none");
 }
 
 function showHistory() {
   //Logs
   const p = document.getElementById("history");
   p.textContent = "No history has been found";
-  p.style.color = "white";
+  p.style.color = "red";
+  p.style.display = "block";
+  setTimeout(() => {
+    p.textContent = "";
+    p.style.display = "none";
+  }, 2000);
 }
 
 ///////////////////////////PLAYERS/////////////////////////////////
@@ -90,7 +105,6 @@ function dialogue() {
   }
 }
 
-
 let mouseX = 0;
 let mouseY = 0;
 let flashlightOn = true;
@@ -119,7 +133,7 @@ document.addEventListener("keydown", function (e) {
 flashlight.style.setProperty("--Xpos", "50vw");
 flashlight.style.setProperty("--Ypos", "50vh");
 
-function addLettersToDiv(string, divId){
+function addLettersToDiv(string, divId) {
   const letters = string.split("");
   const div = document.getElementById(divId);
   let i = 0;
@@ -289,9 +303,10 @@ function showDuels() {
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");
-        document.getElementById("player-list-buttons").style.display = "none";
+        document.getElementById("player-list-buttons").classList.add("d-none");
         document.getElementById("play-button").style.display = "none";
-        document.getElementById("fight-button").style.display = "block";
+        document.getElementById("fight-button").classList.remove("d-none");
+        document.getElementById("fight-button").classList.add("d-block");
         parejas = crearParejas(mezclarArray(nombres));
         const lobby = document.getElementById("lobby");
         lobby.innerHTML = "";
@@ -544,7 +559,8 @@ async function ejecutarRonda(jugadores) {
   } else {
     vivos = ganadores;
     ganadores = [];
-    document.getElementById("start-round-button").style.display = "inline";
+    document.getElementById("start-round-button").classList.remove("d-none");
+    document.getElementById("start-round-button").classList.add("d-inline");
     step = 0;
   }
 }
@@ -556,7 +572,7 @@ function startRound() {
   roundNumber++;
   roundcount.innerHTML = "RONDA " + roundNumber;
   document.getElementById("start-round-button").innerHTML = "Next Round!";
-  document.getElementById("start-round-button").style.display = "none";
+  document.getElementById("start-round-button").classList.add("d-none");
   // playMusic()
   ejecutarRonda(crearParejas(mezclarArray(vivos)));
 }
@@ -564,16 +580,12 @@ function startRound() {
 // --------------- SETTINGS FUNCTIONS ---------------//
 
 function quitGame() {
+  console.log(nombres.length);
   const startMenuElement = document.getElementById("start-menu");
   const duelsElement = document.getElementById("duels");
   const addPlayerMenuElement = document.getElementById("add-player-menu");
   const overlayElement = document.getElementById("overlay");
-  const nextButtonElement = document.getElementById("nextButton");
-  const dialogueElement = document.getElementById("dialogue");
   const startRoundButtonElement = document.getElementById("start-round-button");
-  const addPlayerButtonElement = document.getElementById("add-player-button");
-  const playButtonElement = document.getElementById("playButton");
-  const blackScreenElement = document.getElementById("black-screen");
 
   startMenuElement.classList.remove("d-none");
   startMenuElement.style.display = "flex";
@@ -582,39 +594,35 @@ function quitGame() {
   duelsElement.classList.remove("d-block");
   addPlayerMenuElement.classList.remove("d-block");
   overlayElement.classList.add("hidden");
-  overlayElement.style.display = "none";
+  //overlayElement.classList.add("none");
 
-  nextButtonElement.style.display = "none";
-  dialogueElement.innerHTML = "";
-  dialogueElement.style.display = "none";
+  muertos = [];
+  vivos = [];
+  ganadores = [];
+  roundNumber = 0;
+  step = 0;
+  i = 0;
+  parejas = [];
+  jugando = [];
+  nombres = [];
+  assignedGoblins = new Map();
 
-  playMusic();
-
-  gameData.muertos = [];
-  gameData.vivos = [];
-  gameData.ganadores = [];
-  gameData.roundNumber = 0;
-  gameData.step = 0;
-  gameData.i = 0;
-  gameData.parejas = [];
-  gameData.jugando = [];
-  gameData.nombres = [];
   
+  const addPlayerButtons = document.getElementById("player-list-buttons");
+  addPlayerButtons.classList.remove("d-none");
+  addPlayerButtons.classList.add("d-flex");
+
+  document.getElementById("lobby").innerHTML = "";
   startRoundButtonElement.innerHTML = "Start Round!";
-  startRoundButtonElement.style.display = "inline";
-  addPlayerButtonElement.style.display = "inline";
-  playButtonElement.style.display = "none";
-  blackScreenElement.style.display = "none";
+  startRoundButtonElement.classList.add("d-inline");
+  addPlayerMenuElement.classList.remove("d-flex");
   addPlayerMenuElement.classList.add("d-none");
 }
-
 
 const quitGameButton = document.getElementById("quit-button");
 
 quitGameButton.addEventListener("click", () => {
-    quitGame();
-  
+  quitGame();
 });
-
 
 //---------------------------------------WINDOW-EVENT--------------------------------------

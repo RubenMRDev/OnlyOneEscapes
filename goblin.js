@@ -163,11 +163,11 @@ const goblins = {
 
 //-------------------------------------------------------------------------------------------------------------------
 
-const availableGoblins = Object.keys(goblins);
-const spareGoblins = [...availableGoblins];
-export const assignedGoblins = new Map();
-const containerSize = 250;
-const qSize = containerSize / 5;
+let availableGoblins = Object.keys(goblins);
+let spareGoblins = [...availableGoblins];
+export let assignedGoblins = new Map();
+let containerSize = 250;
+let qSize = containerSize / 5;
 const quadrantsPixels = new Map([
   [1, [qSize, containerSize]],
   [2, [qSize, qSize * 4]],
@@ -196,7 +196,7 @@ const quadrantsPixels = new Map([
   [25, [containerSize, qSize]],
 ]);
 
-const spareQuadrants = Array.from(quadrantsPixels.keys());
+let spareQuadrants = Array.from(quadrantsPixels.keys());
 
 function findRandomGoblin() {
   let randomGoblin = Math.floor(Math.random() * spareGoblins.length);
@@ -204,7 +204,7 @@ function findRandomGoblin() {
 }
 
 export function assignGoblinToPlayer(playerNickname) {
-  const goblinNumber = findRandomGoblin();
+  let goblinNumber = findRandomGoblin();
   assignedGoblins.set(playerNickname, goblinNumber);
 
   let goblinContainer = document.createElement("div");
@@ -222,9 +222,9 @@ export function assignGoblinToPlayer(playerNickname) {
   goblinContainer.setAttribute("class", "goblin");
   goblinContainer.appendChild(nickname);
   goblinContainer.appendChild(randomGoblin);
-  const container = document.getElementById("lobby");
+  let container = document.getElementById("lobby");
   //random location inside lobby
-  const location = randomizeLocationGoblinSpawn(container);
+  let location = randomizeLocationGoblinSpawn(container);
   goblinContainer.style.top = `${location[0]}px`;
   goblinContainer.style.right = `${location[1]}px`;
   //change z-index based on location[0] number to overlap gif
@@ -233,7 +233,7 @@ export function assignGoblinToPlayer(playerNickname) {
 }
 
 function randomizeLocationGoblinSpawn() {
-  const quadrant = selectRandomQuadrant();
+  let quadrant = selectRandomQuadrant();
   const containerHeight = quadrantsPixels.get(quadrant)[0];
   const containerWidth = quadrantsPixels.get(quadrant)[1];
   const padding = 25;
