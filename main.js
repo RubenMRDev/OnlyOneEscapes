@@ -489,6 +489,9 @@ async function ejecutarRonda(jugadores) {
     await new Promise((resolve) => setTimeout(resolve, 5000));
   }
 
+
+//------------------------------------PANTALLA WIN----------------------------
+
   if (ganadores.length == 1) {
     if (fight_music) {
       fight_music.pause();
@@ -499,31 +502,39 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
-    Swal.fire({
-      html: `
-          <div class="container">
-              <div class="text">
-                  <h1 class="title_alerta">Winner</h1>
-                  <h2 class="name">
-                      <img src="images/crown.png" alt="Crown" class="crown">
-                      Nicolas
-                  </h2>
-                  <p class="congratulations">
-                      ¡Felicidades, Has logrado vencer a todos tus rivales. ¡Eres el único superviviente! 
-                      Disfruta de tu victoria, valiente guerrero. 🌟
-                  </p>
-              </div>
-          </div>
-      `,
-      width: '90%',  
-      padding: '2rem',
-      confirmButtonText: 'Continuar', 
-      grow: 'fullscreen',
-      customClass: {
-          popup: 'swal2-popup' 
-      },
-  });
+    
 
+//-----------------------
+
+const alertContainer = document.createElement('div');
+alertContainer.classList.add('alert-container');
+
+
+alertContainer.innerHTML = `
+    <div class="text">
+        <h1 class="title_victoria">Winner</h1>
+        <h2 class="name_victoria">
+            <img src="images/crown.png" alt="Corona" class="crown">
+            Nicolas
+        </h2>
+        <button class="winner-btn">Aceptar</button>
+    </div>
+`;
+
+
+
+document.body.appendChild(alertContainer);
+
+
+const acceptButton = alertContainer.querySelector('.winner-btn');
+acceptButton.addEventListener('click', function() {
+  
+    document.body.removeChild(alertContainer);
+
+  
+});
+
+//--------------------------
     parejas = [];
     muertos = [];
     vivos = nombres;
@@ -544,6 +555,8 @@ async function ejecutarRonda(jugadores) {
     step = 0;
   }
 }
+
+//--------------------------------------------------
 
 let roundNumber = 0;
 
