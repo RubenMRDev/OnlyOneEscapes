@@ -66,11 +66,11 @@ let dialogueCount = 0;
 function dialogue() {
   document.getElementById("nextButton").style.display = "block";
   const dialog1 =
-    "¡Ahhh, bienvenidos, frágiles criaturas! Están en mi dominio, un laberinto que respira oscuridad y muerte. Aquí no hay recuerdos, ni piedad... solo un camino: sobrevivir.";
+    "¡Ahhh, welcome, fragile creatures! You are in my domain, a labyrinth that breathes darkness and death. Here, there are no memories, no mercy... only one path: survive.";
   const dialog2 =
-    "No confíen demasiado en esas caras... ¡uno de ustedes será el último en pie! Cada esquina guarda un secreto, cada sombra, un peligro. ¿Amigos? ¿Enemigos? ¡Decídanlo pronto, o el laberinto lo hará por ustedes!";
+    "Do not trust those faces too much... one of you will be the last one standing! Every corner hides a secret, every shadow, a danger. Friends? Enemies? Decide soon, or the labyrinth will do it for you!";
   const dialog3 =
-    "Vayan, corran... o quédense y enfrenten su destino. El tiempo no será su aliado aquí. ¡Que comience el juego!";
+    "Go, run... or stay and face your fate. Time will not be your ally here. Let the game begin!";
 
   if (dialogueCount == 0) {
     document.getElementById("dialogue").innerHTML = "";
@@ -202,8 +202,8 @@ exitButton.addEventListener("click", () => {
 async function newInsertPlayer() {
   const { value: playerName } = await Swal.fire({
     input: "text",
-    inputLabel: "Nombre de Jugador",
-    inputPlaceholder: "Introduce el nombre del jugador...",
+    inputLabel: "Player Name",
+    inputPlaceholder: "Enter the player's name...",
     inputAttributes: {
       "aria-label": "Introduce the name of the player:r",
     },
@@ -219,7 +219,7 @@ async function newInsertPlayer() {
     if (nombres.includes(name)) {
       await Swal.fire({
         title: "ERROR",
-        text: "El nombre ya existe en la lista de jugadores.",
+        text: "The name already exists in the player list.",
         icon: "error",
         customClass: {
           popup: "swal2-custom",
@@ -234,8 +234,8 @@ async function newInsertPlayer() {
         assignGoblinToPlayer(name);
         vivos = nombres;
         await Swal.fire({
-          title: "Jugador Agregado",
-          text: `El jugador ${name} ha sido agregado.`,
+          title: "Player added",
+          text: `The player ${name} has been added.`,
           icon: "success",
           customClass: {
             popup: "swal2-custom",
@@ -244,7 +244,7 @@ async function newInsertPlayer() {
       } else {
         await Swal.fire({
           title: "ERROR",
-          text: "El nombre tiene mas de 10 caracteres.",
+          text: "The name has more than 10 characters.",
           icon: "error",
           customClass: {
             popup: "swal2-custom",
@@ -254,7 +254,7 @@ async function newInsertPlayer() {
     } else {
       await Swal.fire({
         title: "ERROR",
-        text: "Límite máximo de jugadores alcanzado.",
+        text: "Maximum player limit reached.",
         icon: "error",
         customClass: {
           popup: "swal2-custom",
@@ -300,7 +300,10 @@ function showDuels() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Tiene que haber al menos 1 jugador.",
+          text: "There must be at least 1 player.",
+          customClass: {
+          popup: "swal2-custom",
+          },
         });
       }
     }
@@ -497,6 +500,9 @@ async function ejecutarRonda(jugadores) {
       icon: "error",
       title: "Oops...",
       text: "You need at least one player to start.",
+      customClass: {
+      popup: "swal2-custom",
+    },
     });
   }
   for (let i = 0; i < jugadores.length; i++) {
@@ -516,12 +522,12 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("duels").classList.remove("d-block");
     //TODO: Insertar pantalla ganador
     swal.fire({
-      title: "Tenemos un ganador",
-      text: `El ganador es ${ganadores[0]}`,
+      title: "WINNER",
+      text: `The Winner is ${ganadores[0]}`,
       imageUrl: "images/crown.png",
       imageWidth: 230,
       imageHeight: 150,
-      confirmButtonText: "Aceptar",
+      confirmButtonText: "Accept",
       customClass: {
         popup: "swal2-custom",
       },
@@ -614,3 +620,4 @@ quitGameButton.addEventListener("click", () => {
 
 
 //---------------------------------------WINDOW-EVENT--------------------------------------
+
