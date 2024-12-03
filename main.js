@@ -442,6 +442,7 @@ function findWinners(dice1, dice2, jugadores, step) {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
       muertos.push(jugadores[step][1]);
+      updatePlayers(ganadores, muertos);
       showDyingGoblin(jugadores[step][1], true);
       document.getElementById(
         "turncount"
@@ -449,6 +450,7 @@ function findWinners(dice1, dice2, jugadores, step) {
     } else {
       ganadores.push(jugadores[step][1]);
       muertos.push(jugadores[step][0]);
+      updatePlayers(ganadores, muertos);
       showDyingGoblin(jugadores[step][0], false);
       document.getElementById(
         "turncount"
@@ -457,11 +459,13 @@ function findWinners(dice1, dice2, jugadores, step) {
   } else {
     if (dice1 > dice2) {
       ganadores.push(jugadores[step][0]);
+      updatePlayers(ganadores, muertos);
       document.getElementById(
         "turncount"
       ).textContent = `${jugadores[step][0]} SURVIVES`;
     } else {
       muertos.push(jugadores[step][0]);
+      updatePlayers(ganadores, muertos);
       showDyingGoblin(jugadores[step][0], false);
       document.getElementById(
         "turncount"
@@ -598,7 +602,7 @@ function quitGame() {
   gameData.parejas = [];
   gameData.jugando = [];
   gameData.nombres = [];
-
+  
   startRoundButtonElement.innerHTML = "Start Round!";
   startRoundButtonElement.style.display = "inline";
   addPlayerButtonElement.style.display = "inline";
