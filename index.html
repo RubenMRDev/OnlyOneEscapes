@@ -33,12 +33,12 @@
 
 <body style="overflow-x: hidden;">
   <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url(images/parallaxCave/fullbackground.png); z-index: 999;">
-    <div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+    <div id="dialogueBox" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
       
-      <button id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
+      <button class="button-UI" id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
       <div id="dialogue" class="text-white container text-center" style="filter: brightness(1)">
       </div>
-      <button id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+      <button class="button-UI" id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
       <div id="flashlight"></div>
     </div>
   </div>
@@ -134,9 +134,6 @@
         </div>
       </nav>
     </header>
-
-  
-
     <main
       id="main-screen"
       class="p-5 d-flex flex-column align-items-center justify-content-center"

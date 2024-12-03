@@ -1,16 +1,5 @@
 import { assignGoblinToPlayer, showDuelingGoblins, showDyingGoblin } from "./goblin.js";
 
-//alerta añade un jugador
-//play aviso seguro que quieres empezar solo la primera vez
-//dado rotando
-//resultado del dado
-//moverse entre pantallas
-//mostrar logs en pantalla inicio
-//quitar
-//añadir nombres en rojo a la lista en enfrentamientos
-//animacion/transicion de inicio
-//animacion boss
-
 window.addEventListener("load", () => {
   const loadingScreen = document.getElementById("loadingScreen");
 
@@ -65,25 +54,6 @@ function showHistory() {
 }
 
 ///////////////////////////PLAYERS/////////////////////////////////
-
-/* let ALUMNOS = [
-  "Israel Abad Barrera",
-  "Javier Ariza Rosales",
-  "Nicolás Burgos Contreras",
-  "Felipe Chacón Montero",
-  "Fernando de la Torre Esperon",
-  "Jesús Manuel García Lozano",
-  "Alejandro Gómez Ojeda",
-  "Pablo Jiménez Menéndez",
-  "Mario Lebrero García",
-  "Pablo Noria Gómez",
-  "Mauricio Nicolas Ortiz",
-  "Adrián Pérez Agredano",
-  "Jairo Saborito Franco",
-  "Judith Tamayo Balogh",
-  "Samuel Utrilla Núñez",
-  "Ruben Martin Ruiz",
-]; */
 
 let nombres = [];
 
@@ -146,7 +116,6 @@ document.addEventListener("keydown", function (e) {
   }
 });
 
-// Add this line to set the initial position of the flashlight
 flashlight.style.setProperty("--Xpos", "50vw");
 flashlight.style.setProperty("--Ypos", "50vh");
 
@@ -317,8 +286,6 @@ function showDuels() {
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
-        //show first round pairings
-        //TODO FIX EVENT
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");
