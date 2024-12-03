@@ -421,11 +421,6 @@ main {
   display: none;
 }
 
-
-#overlay.hidden{
-  display: none;
-}
-
 .overlay-content {
   background: transparent;
   width: 500px;
@@ -474,6 +469,7 @@ main {
   gap: 30px;
   align-items: center;
   margin-top: 30px;
+  padding-top: 20px;
 }
 
 .game-button {
