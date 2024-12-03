@@ -452,32 +452,6 @@ main {
   text-align: center;
 }
 
-button.graphics-button {
-  transform: translateY(-100%);
-  white-space: nowrap;
-  width: 60%;
-  padding-top: 18px;
-  height: 35px;
-  font-size: min(22px, 4vw);
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  background-color: #990000;
-  color: #ffffff;
-  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
-    1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
-  font-weight: bold;
-  box-shadow: 0 0 0px 3px #b80000;
-}
-
-.graphics-button:hover {
-  background-color: #ff0000;
-  box-shadow: 0 0 0px 3px #710000;
-}
-
 .game-button:hover {
   background-color: #2daab8;
   box-shadow: 0 0 0px 3px #ffe600;
@@ -518,7 +492,6 @@ button.graphics-button {
   margin-top: 20px;
   font-size: 22px;
   background-color: #ffe600;
-  opacity: 0;
   color: #ffffff;
   text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
     1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
