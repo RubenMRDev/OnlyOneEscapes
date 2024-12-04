@@ -5,6 +5,8 @@ import {
   assignedGoblins as importedGoblins,
 } from "./goblin.js";
 
+import { showHistory as displayHistory, saveGame } from "./storage.js";
+
 let assignedGoblins;
 
 window.addEventListener("load", () => {
@@ -29,6 +31,7 @@ document
 document
   .getElementById("show-history-button")
   .addEventListener("click", showHistory);
+
 document
   .getElementById("add-player-button")
   .addEventListener("click", newInsertPlayer);
@@ -55,15 +58,7 @@ function startGame() {
 }
 
 function showHistory() {
-  //Logs
-  const p = document.getElementById("history");
-  p.textContent = "No history has been found";
-  p.style.color = "red";
-  p.style.display = "block";
-  setTimeout(() => {
-    p.textContent = "";
-    p.style.display = "none";
-  }, 2000);
+  displayHistory();
 }
 
 ///////////////////////////PLAYERS/////////////////////////////////
@@ -529,6 +524,7 @@ async function ejecutarRonda(jugadores) {
       winner_music.play();
     }
 
+    saveGame(ganadores[0]);
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 

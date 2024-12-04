@@ -569,3 +569,7 @@ main {
 .row{
   margin-left: 0;
 }
+
+#partidaElemento.hidden{
+  display: none;
+}
