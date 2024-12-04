@@ -114,4 +114,45 @@ Feel free to reach out through the following channels:
 
 We look forward to connecting with you!
 
+---
+## 🤝 **Contribuciones**
+
+¡Las contribuciones de la comunidad son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
+
+### 📝 **Cómo Contribuir**:
+1. **Haz un Fork del repositorio**: Haz clic en el botón "Fork" en la parte superior derecha de esta página para crear una copia del repositorio bajo tu propia cuenta de GitHub.
+2. **Clona tu Fork**: Clona tu repositorio bifurcado a tu máquina local usando Git.
+
+## **Create a new branch**:
+1. **Create a new branch for your changes.**
+git checkout -b new-feature
+
+
+## **Make your changes**:
+Implement the feature or fix the issue you want to work on.
+
+## **Commit your changes**:
+Write clear and concise commit messages describing what you have done.
+git commit -m "Add a new feature"
+
+## **Push your changes**:
+Push your changes to your forked repository.
+git push origin new-feature
+
+## **Create a Pull Request**:
+Go to the original repository and create a pull request to submit your changes. Provide a detailed explanation of what you have changed and why.
+
+## 📜 **Guidelines**:
+**Be respectful**: Please maintain a respectful and collaborative tone in all discussions and contributions.
+**Keep your code clean**: Ensure your code is clean and well-documented.
+**Test your changes**: If possible, add tests to ensure that your changes work as expected and don't break existing features.
+
+## 💡 **Ideas for Contribution**:
+Add new features or functionalities.
+Fix bugs or improve existing code.
+Update documentation for better clarity.
+We appreciate all contributions, and we'll review your pull request as soon as possible!
+
+Thank you for helping improve this project! 😊
+
 
