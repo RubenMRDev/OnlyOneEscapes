@@ -147,7 +147,7 @@ Go to the original repository and create a pull request to submit your changes. 
 **Keep your code clean**: Ensure your code is clean and well-documented.
 **Test your changes**: If possible, add tests to ensure that your changes work as expected and don't break existing features.
 
-💡 **Ideas for Contribution**:
+## 💡 **Ideas for Contribution**:
 Add new features or functionalities.
 Fix bugs or improve existing code.
 Update documentation for better clarity.
