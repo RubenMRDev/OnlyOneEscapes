@@ -149,6 +149,7 @@ body {
     transform: scale(1);
   }
 }
+
 #title {
   color: white;
   text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
@@ -263,6 +264,7 @@ body {
 main {
   height: 83%;
 }
+
 .duels,
 #fight {
   display: none;
@@ -360,16 +362,58 @@ main {
 #player2 {
   text-shadow: 0px 0px 10px #c7fcca, 0px 0px 5px #c7fcca;
   font-size: 20px;
+  text-align: center;
+  flex: 1 0 30%;
+  max-width: 20%;
+  flex-shrink: 1;
 }
-.goblin-fighting {
-  min-width: 80px;
-  max-width: 150px;
-  width: 100%;
+
+.boss-container {
+  flex: 1 0 40%;
+  text-align: center;
+}
+
+#rolling-dice {
+  width: 20%;
   height: 100%;
+  max-width: 150px;
+}
+
+#start-round-button{
+  padding: 5px;
+  width: 20%;
+  text-align: center;
+}
+
+#rolling-dice img{
+  width: 100%;
+  height: auto;
+}
+
+#goblins-row {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 40%;
+  gap: 1rem;
+}
+
+.boss-fighting {
+  min-width: 120px;
+  width: 100%;
+  height: auto;
+}
+
+.goblin-fighting {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
 }
 
 .duelingGoblin {
-  width: 35%;
+  width: 15%;
+  max-width: 120px;
 }
 /* /////////////////////////////////////SETTINGS//////////////////////////////////////       */
 

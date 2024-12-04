@@ -152,7 +152,7 @@
         <button class="button-UI" id="fight-button">Fight</button>
       </div>
       <div class="duels" id="duels">
-        <div class="justify-content-center w-100 text-center text-white h-100" id="duelsContainer">
+        <div class="d-flex flex-column justify-content-center w-100 text-center text-white h-100" id="duelsContainer">
           <h2 class="mb-5" id="roundcount">ROUND X</h2>
           <h2 class="mb-5" id="turncount"></h2>
           <div class="row align-items-center w-100 Pt-5 justify-content-between">
@@ -160,14 +160,14 @@
             <div class="w-50 p-0" id="versus"><img width="80px" src="https://res.cloudinary.com/ddguqr8l8/image/upload/v1733130754/versus_y4sfcp.png" alt="versus"></div>
             <div class="w-25 p-0 duelingGoblin align-items-center justify-content-center" id="player2dice">DICE VALUE</div>
           </div>
-          <div id="goblins-row w-100" class="row justify-content-between align-items-start mt-5">
-            <div class="w-25 goblin-fighting p-0" id="player1">PLAYER 1</div>
-            <div class="w-25 h-100 p-0" id="rolling-dice"></div>
-            <div class="w-25 goblin-fighting p-0" id="player2">PLAYER 2</div>
+          <div id="goblins-row" class="row">
+            <div class="goblin-container p-0" id="player1">PLAYER 1</div>
+            <div class="rolling-dice p-0" id="rolling-dice"></div>
+            <div class="goblin-container p-0" id="player2">PLAYER 2</div>
           </div>
           <button
             type="button"
-            class="btn btn-danger"
+            class="button-UI"
             id="start-round-button"
           >
             Play

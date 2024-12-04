@@ -4,6 +4,7 @@ import {
   showDyingGoblin,
   assignedGoblins as importedGoblins,
   showWinnerGoblin,
+  showBossAttacking,
 } from "./goblin.js";
 
 import { showHistory as displayHistory, saveGame } from "./storage.js";
@@ -248,7 +249,7 @@ async function newInsertPlayer() {
           popup: "swal2-custom",
         },
       });
-      
+
       return;
     }
 
@@ -333,7 +334,7 @@ function showDuels() {
           heightAuto: false,
           customClass: {
             popup: "swal2-custom",
-          }
+          },
         });
       }
     }
@@ -494,9 +495,12 @@ function findWinners(dice1, dice2, jugadores, step) {
         "turncount"
       ).textContent = `${jugadores[step][0]} SURVIVES`;
     } else {
+      showBossAttacking();
       muertos.push(jugadores[step][0]);
       updatePlayers(ganadores, muertos);
-      showDyingGoblin(jugadores[step][0], false);
+      setTimeout(()=>{
+        showDyingGoblin(jugadores[step][0], false);
+      }, 800);
       document.getElementById(
         "turncount"
       ).textContent = `${jugadores[step][0]} DIDN'T SURVIVE`;
@@ -506,7 +510,7 @@ function findWinners(dice1, dice2, jugadores, step) {
 
 function showRollingDice() {
   const rollingDice = document.createElement("img");
-  rollingDice.style.height = "200px";
+  //rollingDice.style.height = "200px";
   const gifUrl =
     "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077596/yellowdice_yuvoti.gif";
   rollingDice.src = `${gifUrl}?t=${Date.now()}`;

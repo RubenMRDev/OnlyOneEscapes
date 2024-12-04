@@ -289,8 +289,17 @@ export function showDuelingGoblins(player1, player2) {
     goblin2.setAttribute("id", "right-goblin");
     goblin2.style.transform = "scaleX(-1)";
     player2Container.appendChild(goblin2);
+    player2Container.classList.add("goblin-container");
+    player2Container.classList.remove("boss-container");
   } else {
     nickname2.textContent = "BOSS";
+    let goblin2 = document.createElement("img");
+    goblin2.setAttribute("src", "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733331219/boss-idle_v2j1mj.gif");
+    goblin2.setAttribute("class", "boss-fighting");
+    goblin2.id =  "boss";
+    player2Container.appendChild(goblin2);
+    player2Container.classList.remove("goblin-container");
+    player2Container.classList.add("boss-container");
   }
   player2Container.appendChild(nickname2);
 }
@@ -312,3 +321,9 @@ export function showDyingGoblin(player, inverted) {
 export function showWinnerGoblin(player){
   return goblins[assignedGoblins.get(player)].animations.idle;
 }
+
+export function showBossAttacking(){
+  let boss = document.getElementById("boss");
+  boss.setAttribute("src", "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733331219/boss-attack_nrohg9.gif");
+}
+
