@@ -228,6 +228,7 @@ async function newInsertPlayer() {
     inputAttributes: {
       "aria-label": "Introduce the name of the player:r",
     },
+    heightAuto: false,
     showCancelButton: true,
     customClass: {
       popup: "swal2-custom",
@@ -242,10 +243,12 @@ async function newInsertPlayer() {
         title: "ERROR",
         text: "El nombre ya existe en la lista de jugadores.",
         icon: "error",
+        heightAuto: false,
         customClass: {
           popup: "swal2-custom",
         },
       });
+      
       return;
     }
 
@@ -258,6 +261,7 @@ async function newInsertPlayer() {
           title: "Jugador Agregado",
           text: `El jugador ${name} ha sido agregado.`,
           icon: "success",
+          heightAuto: false,
           customClass: {
             popup: "swal2-custom",
           },
@@ -267,6 +271,7 @@ async function newInsertPlayer() {
           title: "ERROR",
           text: "El nombre tiene mas de 10 caracteres.",
           icon: "error",
+          heightAuto: false,
           customClass: {
             popup: "swal2-custom",
           },
@@ -277,6 +282,7 @@ async function newInsertPlayer() {
         title: "ERROR",
         text: "Límite máximo de jugadores alcanzado.",
         icon: "error",
+        heightAuto: false,
         customClass: {
           popup: "swal2-custom",
         },
@@ -301,6 +307,7 @@ function showDuels() {
     confirmButtonColor: "#3085d6",
     cancelButtonColor: "#d33",
     confirmButtonText: "Start Game",
+    heightAuto: false,
     customClass: {
       popup: "swal2-custom",
     },
@@ -323,6 +330,10 @@ function showDuels() {
           icon: "error",
           title: "Oops...",
           text: "Tiene que haber al menos 1 jugador.",
+          heightAuto: false,
+          customClass: {
+            popup: "swal2-custom",
+          }
         });
       }
     }
@@ -523,6 +534,7 @@ async function ejecutarRonda(jugadores) {
       icon: "error",
       title: "Oops...",
       text: "You need at least one player to start.",
+      heightAuto: false,
     });
   }
   for (let i = 0; i < jugadores.length; i++) {

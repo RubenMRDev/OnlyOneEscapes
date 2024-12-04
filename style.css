@@ -2,8 +2,14 @@
 
 * {
   font-family: "Pixelify Sans", serif;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  
 }
 
+body{
+  background-color: #000;
+}
 #flashlight {
   position: absolute;
   top: 0;
@@ -23,7 +29,7 @@
   pointer-events: none;
   background: radial-gradient(
     circle 35em at var(--Xpos) var(--Ypos),
-    rgba(0, 0, 0, 0),
+    rgba(0, 0, 0, 0.3),
     rgba(0, 0, 0, 1)
   );
 }
@@ -48,6 +54,7 @@ body {
   background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
   color: white;
 }
+
 
 #players-roster {
   padding: 10%;
@@ -157,6 +164,7 @@ body {
   color: #fff;
   border: none;
   font-size: 1.4rem;
+  white-space: nowrap;
   margin: 5px;
   padding: 10px 20px;
   text-shadow: 1px 1px #000, -1px -1px #000, 0 -1px #000, 0 1px #000, 1px 0 #000, -1px 0 #000, 2px 2px #000, -2px -2px #000, 0 -2px #000, 0 2px #000, 2px 0 #000, -2px 0 #000;
