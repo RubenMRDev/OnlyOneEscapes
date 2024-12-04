@@ -618,8 +618,9 @@ function startRound() {
   roundcount.innerHTML = "RONDA " + roundNumber;
   document.getElementById("start-round-button").innerHTML = "Next Round!";
   document.getElementById("start-round-button").classList.add("d-none");
+  document.getElementById("start-round-button").classList.add("button-UI");
   // playMusic()
-  ejecutarRonda(crearParejas(mezclarArray(vivos)));
+  ejecutarRonda(crearParejas(vivos));
 }
 
 // --------------- SETTINGS FUNCTIONS ---------------//
