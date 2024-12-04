@@ -3,6 +3,7 @@ import {
   showDuelingGoblins,
   showDyingGoblin,
   assignedGoblins as importedGoblins,
+  showWinnerGoblin,
 } from "./goblin.js";
 
 import { showHistory as displayHistory, saveGame } from "./storage.js";
@@ -68,7 +69,11 @@ function showHistory() {
 let nombres = [];
 
 const fight_music = new Audio("images/audio/fight.mp3");
-const menu_music = new Audio("images/audio/menu.mp3");
+fight_music.volume = "0.1";
+const menu_music = new Audio(
+  "https://res.cloudinary.com/ddguqr8l8/video/upload/v1733180368/crombat_whxfat.mp3"
+);
+menu_music.volume = "0.3";
 const winner_music = new Audio("images/audio/winner.mp3");
 
 let dialogueCount = 0;
@@ -199,6 +204,13 @@ buttonSkull.addEventListener("click", () => {
 const overlayButton = document.getElementById("settingsOverlayButton");
 const overlay = document.getElementById("overlay");
 const exitButton = document.getElementById("exitButton");
+
+const slider = document.getElementById("music-slider");
+slider.addEventListener("input", () => {
+  fight_music.volume = slider.value;
+  menu_music.volume = slider.value;
+  winner_music.volume = slider.value;
+});
 
 overlayButton.addEventListener("click", () => {
   overlay.classList.toggle("hidden");
@@ -530,6 +542,8 @@ async function ejecutarRonda(jugadores) {
     document.getElementById("start-menu").classList.remove("d-none");
     document.getElementById("duels").classList.remove("d-block");
 
+    loadWinnerScreen();
+
     parejas = [];
     muertos = [];
     vivos = nombres;
@@ -549,6 +563,41 @@ async function ejecutarRonda(jugadores) {
   }
 }
 
+function loadWinnerScreen() {
+  let winnerTitle = document.createElement("h2");
+  winnerTitle.classList.add("title_victoria");
+  winnerTitle.textContent = "Winner";
+  let winner = document.createElement("p");
+  winner.classList.add("name_victoria");
+  winner.textContent = ganadores[0];
+  let winnerGoblin = document.createElement("img");
+  winnerGoblin.src = showWinnerGoblin(ganadores[0]);
+  let backToLobbyButton = document.createElement("button");
+  backToLobbyButton.id = "winner";
+  backToLobbyButton.classList = "button-UI text-center";
+  backToLobbyButton.textContent = "Back to Lobby";
+  let winnerContainer = document.createElement("div");
+  winnerContainer.classList.add("text");
+  winnerContainer.id = "winner-container";
+
+  let imgContainer = document.createElement("div");
+  imgContainer.classList.add("w");
+  imgContainer.appendChild(winnerGoblin);
+  imgContainer.appendChild(winner);
+  imgContainer.appendChild(backToLobbyButton);
+
+  winnerContainer.appendChild(winnerTitle);
+  winnerContainer.appendChild(imgContainer);
+
+  backToLobbyButton.addEventListener("click", () => {
+    document.getElementById("winner-container").classList.add("d-none");
+    document.body.removeChild(winnerContainer);
+    quitGame();
+  });
+
+  document.body.appendChild(winnerContainer);
+}
+
 let roundNumber = 0;
 
 vivos = nombres;
@@ -564,7 +613,15 @@ function startRound() {
 // --------------- SETTINGS FUNCTIONS ---------------//
 
 function quitGame() {
-  console.log(nombres.length);
+  let winnerContainer;
+  if ((winnerContainer = document.getElementById("winner-container"))) {
+    document.body.removeChild(winnerContainer);
+  }
+  fight_music.pause();
+  fight_music.currentTime = 0;
+  menu_music.loop = true;
+  menu_music.play();
+
   const startMenuElement = document.getElementById("start-menu");
   const duelsElement = document.getElementById("duels");
   const addPlayerMenuElement = document.getElementById("add-player-menu");
