@@ -1,0 +1,665 @@
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&display=swap");
+
+* {
+  font-family: "Pixelify Sans", serif;
+}
+
+body {
+  background-color: #000;
+}
+#flashlight {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1001;
+}
+
+#flashlight:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  background: radial-gradient(
+    circle 35em at var(--Xpos) var(--Ypos),
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 1)
+  );
+}
+
+body {
+  text-align: center;
+  font-family: "Pixelify Sans", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  z-index: 1;
+  height: 100vh;
+  width: 100vw;
+}
+
+.clicked {
+  color: rgb(47, 86, 90);
+  background-color: rgb(0, 0, 0);
+}
+
+.swal2-custom {
+  background-color: rgba(25, 161, 176, 0.9) !important; /* Color con opacidad */
+  color: white;
+}
+
+#players-roster {
+  padding: 10%;
+  margin: auto 0;
+}
+
+.responsive-background {
+  position: fixed;
+  background-image: url("images/parallaxCave/9.png"),
+    /* url("images/parallaxCave/8fx.png"), */ url("images/parallaxCave/7.png"),
+    /* url("images/parallaxCave/6fx.png"), */ url("images/parallaxCave/5.png"),
+    url("images/parallaxCave/4.png"),
+    /* url("images/parallaxCave/3fx.png"),  */ url("images/parallaxCave/2.png"),
+    url("images/parallaxCave/1.png");
+
+  background-repeat: repeat;
+  background-size: cover;
+  background-position: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  filter: brightness(0.5);
+  animation: scrollLeft 90s infinite linear;
+}
+
+.responsive-background::after {
+  content: "";
+  position: fixed;
+  background-color: rgb(39, 40, 69);
+  mix-blend-mode: difference;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  animation: mood-cycle 20s infinite ease;
+}
+
+@keyframes scrollLeft {
+  0% {
+    background-position: -300vw 0%, -200vw 0%, -100vw 0%, -50vw 0%, 0vw 0%,
+      0vw 0%;
+  }
+  50% {
+    background-position: 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%, 0vw 0%;
+  }
+
+  100% {
+    background-position: 300vw 0%, 200vw 0%, 100vw 0%, 50vw 0%, 0vw 0%, 0% 0%;
+  }
+}
+
+@keyframes mood-cycle {
+  0% {
+    background-color: #0c2627;
+  }
+  25% {
+    background-color: #222e2c;
+  }
+  50% {
+    background-color: #2d4444;
+  }
+  75% {
+    background-color: #282f47;
+  }
+  100% {
+    background-color: #0c2627;
+  }
+}
+
+#loadingScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  opacity: 1;
+}
+
+
+#loadingLogo {
+  width: 100px;
+  animation: scaleUp 3s ease forwards;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: scale(6);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+#title {
+  color: white;
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
+    0px 0px 5px #c7fcca;
+}
+
+.button-UI {
+  background: linear-gradient(#ffe500 90%, #ffa600 90%);
+  color: #fff;
+  border: none;
+  font-size: 1.1rem;
+  white-space: nowrap;
+  margin: 5px;
+  padding: 10px 20px;
+  text-shadow: 1px 1px #000, -1px -1px #000, 0 -1px #000, 0 1px #000, 1px 0 #000,
+    -1px 0 #000, 2px 2px #000, -2px -2px #000, 0 -2px #000, 0 2px #000,
+    2px 0 #000, -2px 0 #000;
+  box-shadow: 0px 0px 10px 5px rgba(255, 229, 0, 0.5);
+  border-radius: 3px;
+  position: relative;
+  transition: transform 0.1s ease-in-out, box-shadow 0.2s ease, color 0.2s ease;
+  z-index: 1;
+}
+
+.button-UI:hover {
+  background-color: rgb(0, 0, 0);
+  color: rgb(0, 246, 189);
+  box-shadow:  2px 2px 0 rgb(0, 246, 189),
+  -2px -2px 0 rgb(0, 246, 189),
+  2px -2px 0 rgb(0, 246, 189),
+  -2px 2px 0 rgb(0, 246, 189); 
+  transform: scale(1.1);
+  z-index: 100;
+}
+
+.button-UI:active {
+  text-shadow: 1px 1px #000, -1px -1px #000, 0 -1px #000, 0 1px #000, 1px 0 #000,
+    -1px 0 #000, 2px 2px #000, -2px -2px #000, 0 -2px #000, 0 2px #000,
+    2px 0 #000, -2px 0 #000;
+  box-shadow: inset 0 3px 0px rgba(255, 255, 255, 0.2),
+    inset 0 -3px 0px rgba(0, 0, 0, 0.2), 0px 0px 20px 3px #ffe500;
+}
+
+.button-UI::before {
+  content: "";
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 0, 0.5),
+    rgba(255, 255, 0, 0)
+  );
+  clip-path: polygon(0px 0px, 200px 100px, 0px 200px);
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+#lobby {
+  position: relative;
+}
+.goblin {
+  color: #ffe500;
+  text-shadow: 1px 0 rgb(25, 161, 176), 0 -1px rgb(25, 161, 176),
+    0px 0px 10px #c7fcca;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+}
+.nickname {
+  height: 20%;
+  width: 100%;
+  text-align: center;
+}
+
+.goblin-image {
+  height: 80%;
+  width: 100%;
+  object-fit: cover;
+}
+
+#settings,
+#logo {
+  min-width: 40px;
+  transition: transform 0.1s ease-in-out;
+  border: none;
+  background: none;
+}
+
+#dropdownPlayersStatus::before {
+  content: "";
+  position: absolute;
+  top: 0%;
+  left: -1%;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgb(199, 252, 202, 0.2) 0%,
+    rgb(199, 252, 202, 0.4) 30%,
+    rgb(199, 252, 202, 0.4) 40%,
+    rgba(255, 255, 255, 0) 70%
+  );
+}
+
+.navbar-toggler:focus {
+  color: transparent;
+}
+main {
+  height: 83%;
+}
+
+.duels,
+#fight {
+  display: none;
+}
+#add-player-menu {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+#dropdown-players {
+  background-color: rgba(25, 161, 176, 0.9);
+  padding: 10% 20%;
+  margin-top: 0px;
+  border-radius: 0;
+  text-align: start;
+  top: 65px;
+}
+.unstyled-link {
+  color: black;
+}
+
+#lobby {
+  background-color: rgba(25, 161, 176, 0.9);
+  width: 300px;
+  height: 300px;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 6vh;
+  background-color: #111;
+  color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer a:hover {
+  color: #00f6bd;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+    height: auto;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/*--------------------------------------DUELS-------------------------------------- */
+.duels {
+  width: 100%;
+  height: 100%;
+}
+#roundcount {
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
+    0px 0px 5px #c7fcca;
+  font-size: 40px;
+}
+#turncount {
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
+    0px 0px 5px #c7fcca;
+  font-size: 30px;
+}
+
+#dialogueBox {
+  text-shadow: 2px 0 #000000, 0 1px #000000, 0px 0px 10px #c7fcca,
+    0px 0px 5px #c7fcca;
+}
+
+#player1,
+#player2 {
+  text-shadow: 0px 0px 10px #c7fcca, 0px 0px 5px #c7fcca;
+  font-size: 20px;
+  text-align: center;
+  flex: 1 0 30%;
+  max-width: 20%;
+  flex-shrink: 1;
+}
+
+.boss-container {
+  flex: 1 0 40%;
+  text-align: center;
+}
+
+#rolling-dice {
+  width: 20%;
+  height: 100%;
+  max-width: 150px;
+}
+
+#start-round-button{
+  padding: 5px;
+  width: 20%;
+  text-align: center;
+}
+
+#rolling-dice img{
+  width: 100%;
+  height: auto;
+}
+
+#goblins-row {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  width: 100%;
+  height: 40%;
+  gap: 1rem;
+}
+
+.boss-fighting {
+  min-width: 120px;
+  width: 100%;
+  height: auto;
+}
+
+.goblin-fighting {
+  max-width: 100px;
+  width: 100%;
+  height: auto;
+}
+
+.duelingGoblin {
+  width: 15%;
+  max-width: 120px;
+}
+/* /////////////////////////////////////SETTINGS//////////////////////////////////////       */
+
+#settings:hover,
+#logo:hover {
+  transform: scale(1.2);
+}
+#settingsOverlayButton {
+  position: relative;
+  z-index: 4;
+}
+#settingsOverlayButton::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  z-index: -1;
+  background: radial-gradient(
+    circle,
+    rgb(199, 252, 202, 0.4) 0%,
+    rgb(199, 252, 202, 0.4) 30%,
+    rgba(255, 255, 255, 0) 55%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+#overlay:not(.hidden) ~ #navbar {
+  filter: brightness(50%);
+}
+
+#overlay {
+  padding-top: 100px;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 10000;
+}
+
+#overlay.hidden {
+  display: none;
+}
+
+.overlay-content {
+  background: transparent;
+  width: 500px;
+  height: -150px;
+  text-align: center;
+  margin-top: 20px;
+  max-height: 90vh;
+}
+
+.settings-father {
+  font-size: 22px;
+  color: #ffe600;
+  margin-bottom: 40px;
+  text-align: left;
+  padding-top: 20px;
+  padding-bottom: 25px;
+}
+
+.settings-game {
+  font-size: 22px;
+  color: #ffe600;
+  text-align: left;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  transform: translateY(-15%);
+}
+
+.settings-son {
+  font-size: 20px;
+  color: #ffe600;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.game-button:hover {
+  background-color: #2daab8;
+  box-shadow: 0 0 0px 3px #ffe600;
+}
+
+.exit-button:hover {
+  background-color: #710000;
+  box-shadow: 0 0 0px 3px #ffe600;
+}
+
+.gameButtonsSpace {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.game-button {
+  height: 25px;
+  font-size: 22px;
+  border: none;
+  width: 170px;
+  background-color: #ffe600;
+  color: #ffffff;
+  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
+    1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+  font-weight: bold;
+  padding: 5px;
+  box-shadow: 0 0 0px 2px #ffffff;
+  padding-bottom: 40px;
+  transform: translateY(-10%);
+}
+
+.exit-button {
+  border: none;
+  height: 30px;
+  margin-top: 20px;
+  font-size: 22px;
+  background-color: #ffe600;
+  color: #ffffff;
+  text-shadow: 2px 0 #000000, -2px 0 #000000, 0 2px #000000, 0 -2px #000000,
+    1px 1px #000000, -1px -1px #000000, 1px -1px #000000, -1px 1px #000000;
+  font-weight: bold;
+  box-shadow: 0 0 0px 2px #ffffff;
+  padding-bottom: 35px;
+  transform: translateY(90%);
+}
+
+.div-Gore-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sliders-container {
+  color: #ffe600;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%);
+  gap: 20px;
+  padding: 10px;
+  padding-top: 110px;
+  max-width: 500px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 0 !important;
+}
+
+.sliders {
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  border-radius: 5px;
+  width: 100%;
+  height: 8px;
+  margin: 10px 0;
+  transform: translateY(-30%);
+}
+
+.sliders::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, #2daab8, #000036);
+  border-radius: 5px;
+  height: 8px;
+}
+
+.sliders::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #ffe600;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  transform: translateY(-25%);
+}
+
+.sliders:active::-webkit-slider-thumb {
+  background: #c7fcca;
+}
+
+.row {
+  margin-left: 0;
+}
+
+#partidaElemento.hidden {
+  display: none;
+}
+/*--------------------------------*/
+
+.text {
+  position: absolute;
+  top: 20%;
+  width: 100%;
+  text-align: center;
+  color: yellow;
+  z-index: 3;
+  text-shadow: 2px 2px 4px black;
+}
+
+.title_victoria {
+  font-size: 8vw;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px black;
+}
+
+.name_victoria {
+  font-size: 4vw;
+  margin-top: 10px;
+  position: relative;
+}
+
+.crown {
+  width: 4vw;
+  position: absolute;
+  top: -30%;
+  transform: translateX(-50%) rotate(-30deg);
+}
+
+.winner-btn {
+  margin-top: 60px;
+  padding: 10px 20px;
+  font-family: "Pixelify Sans", serif;
+  font-size: 2vw;
+  color: black;
+  background-color: gold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  transition: all 0.3s ease;
+}
+
+.winner-btn:hover {
+  background-color: #ffcc00;
+  transform: scale(1.05);
+}

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Only One Escapes</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="shortcut icon"
+      href="images\black-skull.png"
+      type="image/x-icon"
+    />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/d97b9905ce.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
+  </head>
+
+  <body style="overflow-x: hidden">
+    <div id="loadingScreen"></div>
+
+<body style="overflow-x: hidden;">
+  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('images/parallaxCave/fullbackground.png'); z-index: 999;">
+    <div id="dialogueBox" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+      
+      <button class="button-UI" id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Start</button>
+      <div id="dialogue" class="text-white container text-center">
+      </div>
+      <button class="button-UI" id="nextButton" style="position: absolute; top: 63%; left: 50%; transform: translate(-50%, -50%); display: none;">Next </button>
+      <div id="flashlight"></div>
+    </div>
+  </div>
+  
+
+  <div class="responsive-background"></div>
+
+
+<!--Settings-->
+  <div id="overlay" class="hidden">
+    <div class="overlay-content container">
+      <h4 class="settings-father text-center">VOLUME</h4>
+      <div id="sliders-container" class="sliders-container row">
+        <div class="col d-flex justify-content-center">
+          <label for="music-slider" class="text-center"><h5>MUSIC:</h5></label>
+          <input class="sliders" type="range" id="music-slider" min="0" max="1" step="0.04" value="0.3">
+        </div>
+      </div>
+      <div class="d-flex justify-content-center">
+        <button id="mute-button" class="button-UI">MUTE</button>
+      </div>
+      <h4 class="settings-game text-center">GAME</h4>
+      <div class="gameButtonsSpace row">
+        <div class="col">
+          <button class="button-UI" id="quit-button">QUIT GAME</button>
+        </div>
+        <div class="col">
+          <button id="exitButton" class="button-UI">EXIT</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <header class="px-3">
+      <nav class="navbar navbar-dark" style="background-color: transparent">
+        <div
+          class="d-flex flex-row justify-content-between align-items-center w-100 h-100"
+        >
+          <!-- Dropdown con imagen de calavera -->
+          <div class="dropdown">
+            <button
+              class="navbar-toggler border-0"
+              id="dropdownPlayersStatus"
+              type="button"
+              data-bs-toggle="dropdown"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <img
+                src="images/UI/skull-logo.png"
+                id="logo"
+                height="50"
+                alt="Logo"
+                class="d-inline-block align-text-top"
+              />
+            </button>
+            <ul
+              class="dropdown-menu rounded-bottom border-0"
+              id="dropdown-players"
+              aria-labelledby="dropdownMenuLink"
+              style="min-width: max-content"
+            ></ul>
+          </div>
+          <div class="name">
+            <h1 id="title" class="display-5 text-center m-0 fw-bold">
+              ONLY ONE ESCAPES
+            </h1>
+          </div>
+          <div class="navbar-right">
+            <button
+              id="settingsOverlayButton"
+              class="settings_button border-0 mx-3 bg-transparent"
+              value="sound"
+            >
+              <img
+                src="images/UI/Gear.svg"
+                alt="Gear Icon"
+                id="settings"
+                class="w-75"
+              />
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main
+      id="main-screen"
+      class="d-flex flex-column align-items-center justify-content-center"
+    >
+   
+      <!--Players-->
+      <div
+        id="start-menu"
+        class="d-flex flex-column justify-content-center align-items-center gap-4"
+      >
+        <button id="start-game-button" class="button-UI">New Game</button>
+        <button id="show-history-button" class="button-UI">Game History</button>
+        <p id="history"></p>
+      </div>
+      <div id="add-player-menu">
+        <button class="button-UI" id="play-button">Start</button>
+        <div id="lobby" class="rounded"></div>
+        <div
+          id="player-list-buttons"
+          class="d-flex justify-content-around align-items-center w-100"
+        >
+          <button class="button-UI" id="remove-player-button">
+            Delete Player
+          </button>
+          <button class="button-UI" id="add-player-button">Add Player</button>
+        </div>
+        <button class="button-UI" id="fight-button">Fight</button>
+      </div>
+      <div class="duels" id="duels">
+        <div class="d-flex flex-column justify-content-center w-100 text-center text-white h-100" id="duelsContainer">
+          <h2 class="mb-5" id="roundcount">ROUND X</h2>
+          <h2 class="mb-5" id="turncount"></h2>
+          <div class="row align-items-center w-100 Pt-5 justify-content-between">
+            <div class="w-25 p-0 duelingGoblin align-items-center justify-content-center" id="player1dice">DICE VALUE</div>
+            <div class="w-50 p-0" id="versus"><img width="80px" src="https://res.cloudinary.com/ddguqr8l8/image/upload/v1733130754/versus_y4sfcp.png" alt="versus"></div>
+            <div class="w-25 p-0 duelingGoblin align-items-center justify-content-center" id="player2dice">DICE VALUE</div>
+          </div>
+          <div id="goblins-row" class="row">
+            <div class="goblin-container p-0" id="player1">PLAYER 1</div>
+            <div class="rolling-dice p-0" id="rolling-dice"></div>
+            <div class="goblin-container p-0" id="player2">PLAYER 2</div>
+          </div>
+          <button
+            type="button"
+            class="button-UI"
+            id="start-round-button"
+          >
+            Play
+          </button>
+          </div>
+        </div>
+      </div>
+      <!--Historial-->
+      <div id="historial"></div>
+    </main>
+
+    <!-- Footer -->
+    <footer
+      class="footer w-100 pt-1 position-fixed bottom-0 text-center p-0"
+      style="background-color: transparent"
+    >
+      <div class="footer pt-1 d-flex justify-content-center align-items-center gap-5">
+        <a href="https://github.com/RubenMRDev/WheelOfDoom" class="bi bi-github"></a>
+        <a href="https://twitter.com/OEscapes78392" class="bi bi-twitter-x"></a>
+        <a href="https://www.instagram.com/onlyoneescapes/" class="bi bi-instagram"></a>
+        <a href="https://www.youtube.com/channel/UCTgnay0D5NFx4gWhAg-2q0w" class="bi bi-youtube"></a>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="main.js" type="module"></script>
+
+  </body>
+</html>

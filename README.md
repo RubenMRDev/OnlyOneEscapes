@@ -1,14 +1,15 @@
-# CEI Battle Royale
+# Only One Survives
 
-**CEI Battle Royale** is a dynamic web-based project inspired by the **Wheel of Doom** concept. Players' fates are decided through dice rolls, and the participant with the highest score wins the combat.
+**Only One Survives** is a dynamic web-based project inspired by the **Wheel of Doom** concept. Players' fates are decided through dice rolls, and the participant with the highest score wins the combat.
 
 [Click here to view the live project](#)  
 
 
 ## 📸 Screenshots  
 
-![Homepage Screenshot](path-to-image.jpg)  
-_Description of the screenshot_
+![Homepage Screenshot](images/screenshots/ss1.png)  
+![Battle Screenshot](images/screenshots/ss2.png)  
+![Winner Screenshot](images/screenshots/ss3.png)  
 
 ---
 
