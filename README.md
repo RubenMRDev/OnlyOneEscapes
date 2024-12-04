@@ -52,7 +52,13 @@ This project utilizes the following technologies:
    ```bash
    cd WheelOfDoom
    ```
-3. Open the `index.html` file in your browser to preview the application locally.
+3. Run the next commands:
+    ```bash
+   npm init -y
+   npm install --save-dev jest
+   npm install --save-dev jest-environment-jsdom
+   ```
+5. Open the `index.html` file in your browser to preview the application locally.
 
 ---
 
