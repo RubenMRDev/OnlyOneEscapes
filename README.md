@@ -5,7 +5,6 @@
 [Click here to view the live project](#)  
 
 
-
 ## 📸 Screenshots  
 
 ![Homepage Screenshot](path-to-image.jpg)  
