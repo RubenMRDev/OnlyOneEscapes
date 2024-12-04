@@ -448,6 +448,9 @@ function setTurns(jugadores, step, dice1, dice2) {
   async function handleTurn(player, diceId) {
     return new Promise((resolve) => {
       turnCount.textContent = `${player}'S TURN`;
+      if(!player){
+        turnCount.textContent = `BOSS'S TURN`;
+      }
       showRollingDice();
       rollDice(diceId);
       setTimeout(() => resolve(), 3000);
