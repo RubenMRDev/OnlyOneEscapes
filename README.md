@@ -123,23 +123,23 @@ We welcome contributions from the community! If you’d like to contribute to th
 1. **Fork the repository**: Click the "Fork" button at the top right of this page to create a copy of the repository under your own GitHub account.
 2. **Clone your fork**: Clone your forked repository to your local machine using Git.
 
-## **Create a new branch**:
+**Create a new branch**:
 1. **Create a new branch for your changes.**
 git checkout -b new-feature
 
 
-## **Make your changes**:
+**Make your changes**:
 Implement the feature or fix the issue you want to work on.
 
-## **Commit your changes**:
+**Commit your changes**:
 Write clear and concise commit messages describing what you have done.
 git commit -m "Add a new feature"
 
-## **Push your changes**:
+**Push your changes**:
 Push your changes to your forked repository.
 git push origin new-feature
 
-## **Create a Pull Request**:
+ **Create a Pull Request**:
 Go to the original repository and create a pull request to submit your changes. Provide a detailed explanation of what you have changed and why.
 
 ## 📜 **Guidelines**:
