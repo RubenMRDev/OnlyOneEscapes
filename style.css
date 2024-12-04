@@ -136,6 +136,7 @@ body {
   opacity: 1;
 }
 
+
 #loadingLogo {
   width: 100px;
   animation: scaleUp 3s ease forwards;

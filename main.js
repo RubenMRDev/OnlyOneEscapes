@@ -44,7 +44,9 @@ document
   .addEventListener("click", startRound);
 document.getElementById("nextButton").addEventListener("click", dialogue);
 document.getElementById("playButton").addEventListener("click", loadWebsite);
-document.getElementById("remove-player-button").addEventListener("click", removeLastPlayer);
+document
+  .getElementById("remove-player-button")
+  .addEventListener("click", removeLastPlayer);
 
 function removeLastPlayer() {
   touch_sound.play(); 
@@ -241,6 +243,11 @@ const buttonSkull = document.getElementById("dropdownPlayersStatus");
 buttonSkull.addEventListener("click", () => {
   if (!muertos.length > 0) {
     updatePlayers(nombres);
+    if (nombres.length < 1) {
+      document.getElementById("dropdown-players").classList.add("d-none");
+    }else{
+      document.getElementById("dropdown-players").classList.remove("d-none");
+    }
   }
 });
 
@@ -388,9 +395,10 @@ function showDuels() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      if (nombres.length >= 1) {
-  touch_sound.play(); 
+  
 
+      if (nombres.length >= 2) {
+        touch_sound.play(); 
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");
@@ -406,7 +414,7 @@ function showDuels() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "There must be at least 1 player.",
+          text: "There must be at least 2 players.",
           heightAuto: false,
           customClass: {
             popup: "swal2-custom",
@@ -525,7 +533,7 @@ function setTurns(jugadores, step, dice1, dice2) {
   async function handleTurn(player, diceId) {
     return new Promise((resolve) => {
       turnCount.textContent = `${player}'S TURN`;
-      if(!player){
+      if (!player) {
         turnCount.textContent = `BOSS'S TURN`;
       }
       showRollingDice();
@@ -578,7 +586,7 @@ function findWinners(dice1, dice2, jugadores, step) {
       showBossAttacking();
       muertos.push(jugadores[step][0]);
       updatePlayers(ganadores, muertos);
-      setTimeout(()=>{
+      setTimeout(() => {
         showDyingGoblin(jugadores[step][0], false);
       }, 800);
       document.getElementById(
@@ -660,6 +668,7 @@ async function ejecutarRonda(jugadores) {
 }
 
 function loadWinnerScreen() {
+  nombres = [];
   let winnerTitle = document.createElement("h2");
   winnerTitle.classList.add("title_victoria");
   winnerTitle.textContent = "Winner";
@@ -703,6 +712,9 @@ function startRound() {
   document.getElementById("start-round-button").innerHTML = "Next Round!";
   document.getElementById("start-round-button").classList.add("d-none");
   document.getElementById("start-round-button").classList.add("button-UI");
+  document.getElementById("start-round-button").classList.add("mx-auto");
+  document.getElementById("start-round-button").classList.add("w-auto");
+  
   // playMusic()
   ejecutarRonda(crearParejas(vivos));
 }
