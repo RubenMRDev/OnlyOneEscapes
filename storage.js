@@ -15,6 +15,8 @@ export function showHistory() {
 
   const historialContainer = document.getElementById("historial");
   historialContainer.innerHTML = "";
+  historialContainer.classList.remove("d-none");
+  historialContainer.classList.add("d-flex");
 
   if (localStorage.getItem("historialJuego") === null) {
     const p = document.getElementById("history");
@@ -27,25 +29,22 @@ export function showHistory() {
     }, 2000);
   } else {
     historial.forEach((partida, index) => {
-      const exitHistoryButton = document.createElement("button");
       const partidaElemento = document.createElement("p");
-      partidaElemento.appendChild(exitHistoryButton);
+      partidaElemento.id = "historial-texto";
       partidaElemento.classList.add("partida");
       partidaElemento.classList.add("text-wrap");
       partidaElemento.classList.add("text-center");
       partidaElemento.classList.add("w-75");
-      exitHistoryButton.id = `exitHistoryButton-${index}`;
       partidaElemento.textContent = `Partida ${index + 1}: 
             Fecha: ${new Date(partida.fecha).toLocaleString()}, 
             Ganador: ${partida.ganador}`;
       partidaElemento.style.color = "white";
-      historialContainer.classList.add("d-flex");
       historialContainer.classList.add("justify-content-center");
-      document
+    /*   document
         .getElementById("show-history-button")
         .addEventListener("click", () => {
           partidaElemento.classList.add("hidden");
-        });
+        }); */
       historialContainer.appendChild(partidaElemento);
     });
   }

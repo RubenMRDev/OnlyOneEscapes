@@ -55,6 +55,8 @@ function startGame() {
   document.getElementById("start-menu").classList.remove("d-flex");
   document.getElementById("start-menu").style.display = "none";
   document.getElementById("fight-button").classList.add("d-none");
+  document.getElementById("historial").classList.remove("d-flex");
+  document.getElementById("historial").classList.add("d-none");
 }
 
 function showHistory() {
