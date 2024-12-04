@@ -49,11 +49,27 @@ document
   .addEventListener("click", removeLastPlayer);
 
 function removeLastPlayer() {
-  let deletedPlayer = nombres.pop();
-  document
-    .getElementById("lobby")
-    .removeChild(document.getElementById(deletedPlayer));
+  Swal.fire({
+    title: "Are you sure you want to remove the last player?",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "red",
+    cancelButtonColor: "#808080",
+    confirmButtonText: "Remove",
+    heightAuto: false,
+    customClass: {
+      popup: "swal2-custom",
+    },
+  }).then((result) => {
+    if (result.isConfirmed) {
+      let deletedPlayer = nombres.pop();
+      document.getElementById("lobby").removeChild(
+        document.getElementById(deletedPlayer)
+      );
+    }
+  });
 }
+
 
 ///////////////////////UI-INICIO///////////////////////////////////
 
