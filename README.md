@@ -12,7 +12,7 @@ _Description of the screenshot_
 
 ---
 
-## 🚀 Features  
+
 
 - **Wheel of Doom Inspired Gameplay**: Decide who lives or dies with the roll of a dice.
 - **Interactive User Interface**: Engaging and easy-to-use interface for seamless participation.
