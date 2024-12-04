@@ -621,3 +621,4 @@ quitGameButton.addEventListener("click", () => {
 
 //---------------------------------------WINDOW-EVENT--------------------------------------
 
+export{validateName};

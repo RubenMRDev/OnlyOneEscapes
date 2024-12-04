@@ -1,0 +1,19 @@
+{
+  "name": "wheelofdoom",
+  "version": "1.0.0",
+  "description": "**CEI Battle Royale** is a dynamic web-based project inspired by the **Wheel of Doom** concept. Players' fates are decided through dice rolls, and the participant with the highest score wins the combat.",
+  "main": "main.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.26.0",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0"
+  },
+  "type": "module"
+}
