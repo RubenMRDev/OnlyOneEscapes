@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Wheel of Doom</title>
+    <title>Only One Escapes</title>
     <link rel="stylesheet" href="style.css" />
     <link
       rel="shortcut icon"
@@ -32,13 +32,13 @@
     <div id="loadingScreen"></div>
 
 <body style="overflow-x: hidden;">
-  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url(images/parallaxCave/fullbackground.png); z-index: 999;">
+  <div id="black-screen" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('images/parallaxCave/9.png'), url('images/parallaxCave/7.png'), url('images/parallaxCave/5.png'), url('images/parallaxCave/4.png'), url('images/parallaxCave/2.png'), url('images/parallaxCave/1.png'); z-index: 999;">
     <div id="dialogueBox" style="display: flex; justify-content: center; align-items: center; height: 100vh;">
       
       <button class="button-UI" id="playButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%); z-index: 1000; font-size: 30px; display: none;">Iniciar</button>
       <div id="dialogue" class="text-white container text-center" style="filter: brightness(1)">
       </div>
-      <button class="button-UI" id="nextButton" style="position: absolute; top: 60%; left: 50%; transform: translate(-50%, -50%);">Next </button>
+      <button class="button-UI" id="nextButton" style="position: absolute; top: 63%; left: 50%; transform: translate(-50%, -50%); display: none;">Next </button>
       <div id="flashlight"></div>
     </div>
   </div>
@@ -64,13 +64,10 @@
         <h4 class="settings-game text-center">GAME</h4>
       <div class="gameButtonsSpace row">
         <div class="col">
-          <button class="game-button">RESTART GAME</button>
+          <button class="button-UI" id="quit-button">QUIT GAME</button>
         </div>
         <div class="col">
-          <button class="game-button" id="quit-button">QUIT GAME</button>
-        </div>
-        <div class="col">
-          <button id="exitButton" class="exit-button">EXIT</button>
+          <button id="exitButton" class="button-UI">EXIT</button>
         </div>
       </div>
     </div>
