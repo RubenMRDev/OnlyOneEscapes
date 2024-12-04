@@ -1,6 +1,6 @@
-# Only One Escape
+# Only One Escapes
 
-**Only One Escape** is a dynamic web-based project inspired by the **Wheel of Doom** concept. Players' fates are decided through dice rolls, and the participant with the highest score wins the combat.
+**Only One Escapes** is a dynamic web-based project inspired by the **Wheel of Doom** concept. Players' fates are decided through dice rolls, and the participant with the highest score wins the combat.
 
 [Click here to view the live project](#)  
 
