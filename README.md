@@ -54,6 +54,7 @@ This project utilizes the following technologies:
    ```
 3. Open the `index.html` file in your browser to preview the application locally.
 
+---
 
 ## 🚀 **Next Steps: New Features**
 
