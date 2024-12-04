@@ -47,6 +47,7 @@ document.getElementById("playButton").addEventListener("click", loadWebsite);
 document.getElementById("remove-player-button").addEventListener("click", removeLastPlayer);
 
 function removeLastPlayer() {
+  touch_sound.play(); 
   Swal.fire({
     title: "Are you sure you want to remove the last player?",
     icon: "warning",
@@ -61,6 +62,7 @@ function removeLastPlayer() {
   }).then((result) => {
     if (result.isConfirmed) {
       let deletedPlayer = nombres.pop();
+      death_sound.play();
       document.getElementById("lobby").removeChild(
         document.getElementById(deletedPlayer)
       );
@@ -83,10 +85,13 @@ function startGame() {
   document.getElementById("fight-button").classList.add("d-none");
   document.getElementById("historial").classList.remove("d-flex");
   document.getElementById("historial").classList.add("d-none");
+  touch_sound.play();
+
 }
 
 function showHistory() {
   displayHistory();
+  touch_sound.play();
 }
 
 ///////////////////////////PLAYERS/////////////////////////////////
@@ -94,7 +99,14 @@ function showHistory() {
 let nombres = [];
 
 const fight_music = new Audio("images/audio/fight.mp3");
+const touch_sound = new Audio("images/audio/touch.mp3");
+const error_sound = new Audio("images/audio/error.mp3");
+const death_sound = new Audio("images/audio/death.mp3");
+const add_sound = new Audio("images/audio/add.mp3");
+const page_sound = new Audio("images/audio/page.mp3");
 fight_music.volume = "0.1";
+page_sound.volume = "0.1";
+error_sound.volume = "0.4";
 const menu_music = new Audio(
   "https://res.cloudinary.com/ddguqr8l8/video/upload/v1733180368/crombat_whxfat.mp3"
 );
@@ -116,16 +128,23 @@ function dialogue() {
     document.getElementById("dialogue").innerHTML = "";
     addLettersToDiv(dialog1, "dialogue");
     document.getElementById("nextButton").style.display = "none";
+
     dialogueCount++;
   } else if (dialogueCount == 1) {
     document.getElementById("dialogue").innerHTML = "";
     addLettersToDiv(dialog2, "dialogue");
     document.getElementById("nextButton").style.display = "none";
+    page_sound.play()
+    
+
     dialogueCount++;
   } else if (dialogueCount == 2) {
     document.getElementById("dialogue").innerHTML = "";
     addLettersToDiv(dialog3, "dialogue");
     document.getElementById("nextButton").style.display = "none";
+    page_sound.play()
+    
+
     dialogueCount++;
   }
 }
@@ -237,15 +256,42 @@ slider.addEventListener("input", () => {
   winner_music.volume = slider.value;
 });
 
+const muteButton = document.getElementById("mute-button");
+let isMuted = false;
+
+muteButton.addEventListener("click", () => {
+  if (isMuted) {
+    muteButton.textContent = "MUTE";
+    fight_music.muted = false;
+    menu_music.muted = false;
+    winner_music.muted = false;
+  } else {
+    muteButton.textContent = "UNMUTE";
+    fight_music.muted = true;
+    menu_music.muted = true;
+    winner_music.muted = true;
+  }
+  isMuted = !isMuted;
+  touch_sound.play();
+});
+
+
 overlayButton.addEventListener("click", () => {
   overlay.classList.toggle("hidden");
+  touch_sound.play();
 });
 
 exitButton.addEventListener("click", () => {
   overlay.classList.add("hidden");
+  touch_sound.play();
 });
 
+
+
+
 async function newInsertPlayer() {
+  touch_sound.play();
+  
   const { value: playerName } = await Swal.fire({
     input: "text",
     inputLabel: "Player Name",
@@ -282,6 +328,7 @@ async function newInsertPlayer() {
         nombres.push(name);
         assignGoblinToPlayer(name);
         vivos = nombres;
+        add_sound.play()
         await Swal.fire({
           title: "Player Added",
           text: `Player ${name} has been added.`,
@@ -292,6 +339,7 @@ async function newInsertPlayer() {
           },
         });
       } else {
+        error_sound.play();
         await Swal.fire({
           title: "ERROR",
           text: "The name has more than 10 characters.",
@@ -303,6 +351,7 @@ async function newInsertPlayer() {
         });
       }
     } else {
+      error_sound.play();
       await Swal.fire({
         title: "ERROR",
         text: "Maximum player limit reached.",
@@ -325,6 +374,7 @@ function validateName(nickName) {
 //------------------------------INICIAR-PARTIDA--------------------------
 
 function showDuels() {
+  touch_sound.play(); 
   Swal.fire({
     title: "Are you sure you want to start the game?",
     icon: "warning",
@@ -339,6 +389,8 @@ function showDuels() {
   }).then((result) => {
     if (result.isConfirmed) {
       if (nombres.length >= 1) {
+  touch_sound.play(); 
+
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");
@@ -415,6 +467,7 @@ function crearParejas(nombres) {
 }
 
 function startDuels() {
+  touch_sound.play(); 
   document.getElementById("fight-button").classList.add("d-none");
   document.getElementById("lobby").classList.add("d-none");
   document.getElementById("duels").classList.add("d-block");
@@ -665,6 +718,7 @@ function quitGame() {
   fight_music.currentTime = 0;
   menu_music.loop = true;
   menu_music.play();
+  touch_sound.play();
 
   const startMenuElement = document.getElementById("start-menu");
   const duelsElement = document.getElementById("duels");

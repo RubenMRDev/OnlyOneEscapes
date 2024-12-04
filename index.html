@@ -50,14 +50,17 @@
 <!--Settings-->
   <div id="overlay" class="hidden">
     <div class="overlay-content container">
-        <h4 class="settings-father text-center">VOLUME</h4>
-        <div id="sliders-container" class="sliders-container row">
-          <div class="col d-flex justify-content-center">
-            <label for="music-slider" class="text-center"><h5>MUSIC:</h5></label>
-            <input class="sliders" type="range" id="music-slider" min="0" max="1" step="0.04" value="0.3">
-          </div>
+      <h4 class="settings-father text-center">VOLUME</h4>
+      <div id="sliders-container" class="sliders-container row">
+        <div class="col d-flex justify-content-center">
+          <label for="music-slider" class="text-center"><h5>MUSIC:</h5></label>
+          <input class="sliders" type="range" id="music-slider" min="0" max="1" step="0.04" value="0.3">
+        </div>
       </div>
-        <h4 class="settings-game text-center">GAME</h4>
+      <div class="d-flex justify-content-center">
+        <button id="mute-button" class="button-UI">MUTE</button>
+      </div>
+      <h4 class="settings-game text-center">GAME</h4>
       <div class="gameButtonsSpace row">
         <div class="col">
           <button class="button-UI" id="quit-button">QUIT GAME</button>
