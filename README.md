@@ -102,3 +102,16 @@ Throughout the game, it's essential to provide **interactive feedback messages**
 
 ### 📢 **Keep in mind that these steps are optional, but adding them will increase interactivity and competition in the game.**
 
+--- 
+
+## 📞 **Contact Us**
+
+Feel free to reach out through the following channels:
+
+- **Instagram**: [@onlyoneescapes](https://www.instagram.com/onlyoneescapes/)
+- **YouTube**: [OnlyOne Escapes Channel](https://www.youtube.com/channel/UCTgnay0D5NFx4gWhAg-2q0w)
+- **X (Twitter)**: [@OEscapes78392](https://x.com/OEscapes78392)
+
+We look forward to connecting with you!
+
+
