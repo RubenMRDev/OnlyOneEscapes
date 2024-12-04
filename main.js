@@ -44,11 +44,15 @@ document
   .addEventListener("click", startRound);
 document.getElementById("nextButton").addEventListener("click", dialogue);
 document.getElementById("playButton").addEventListener("click", loadWebsite);
-document.getElementById("remove-player-button").addEventListener("click", removeLastPlayer);
+document
+  .getElementById("remove-player-button")
+  .addEventListener("click", removeLastPlayer);
 
-function removeLastPlayer(){
+function removeLastPlayer() {
   let deletedPlayer = nombres.pop();
-  document.getElementById("lobby").removeChild(document.getElementById(deletedPlayer));
+  document
+    .getElementById("lobby")
+    .removeChild(document.getElementById(deletedPlayer));
 }
 
 ///////////////////////UI-INICIO///////////////////////////////////
@@ -204,6 +208,11 @@ const buttonSkull = document.getElementById("dropdownPlayersStatus");
 buttonSkull.addEventListener("click", () => {
   if (!muertos.length > 0) {
     updatePlayers(nombres);
+    if (nombres.length < 1) {
+      document.getElementById("dropdown-players").classList.add("d-none");
+    }else{
+      document.getElementById("dropdown-players").classList.remove("d-none");
+    }
   }
 });
 
@@ -454,7 +463,7 @@ function setTurns(jugadores, step, dice1, dice2) {
   async function handleTurn(player, diceId) {
     return new Promise((resolve) => {
       turnCount.textContent = `${player}'S TURN`;
-      if(!player){
+      if (!player) {
         turnCount.textContent = `BOSS'S TURN`;
       }
       showRollingDice();
@@ -507,7 +516,7 @@ function findWinners(dice1, dice2, jugadores, step) {
       showBossAttacking();
       muertos.push(jugadores[step][0]);
       updatePlayers(ganadores, muertos);
-      setTimeout(()=>{
+      setTimeout(() => {
         showDyingGoblin(jugadores[step][0], false);
       }, 800);
       document.getElementById(
