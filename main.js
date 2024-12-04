@@ -345,7 +345,7 @@ function showDuels() {
     },
   }).then((result) => {
     if (result.isConfirmed) {
-      if (nombres.length >= 1) {
+      if (nombres.length >= 2) {
         document
           .getElementById("player-list-buttons")
           .classList.remove("d-flex");
@@ -361,7 +361,7 @@ function showDuels() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "There must be at least 1 player.",
+          text: "There must be at least 2 players.",
           heightAuto: false,
           customClass: {
             popup: "swal2-custom",
@@ -614,6 +614,7 @@ async function ejecutarRonda(jugadores) {
 }
 
 function loadWinnerScreen() {
+  nombres = [];
   let winnerTitle = document.createElement("h2");
   winnerTitle.classList.add("title_victoria");
   winnerTitle.textContent = "Winner";
