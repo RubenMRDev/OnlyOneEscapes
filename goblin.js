@@ -220,6 +220,7 @@ export function assignGoblinToPlayer(playerNickname) {
   nickname.textContent = playerNickname.toUpperCase();
 
   goblinContainer.setAttribute("class", "goblin");
+  goblinContainer.id = playerNickname;
   goblinContainer.appendChild(nickname);
   goblinContainer.appendChild(randomGoblin);
   let container = document.getElementById("lobby");

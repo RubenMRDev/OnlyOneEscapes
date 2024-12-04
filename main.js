@@ -44,6 +44,12 @@ document
   .addEventListener("click", startRound);
 document.getElementById("nextButton").addEventListener("click", dialogue);
 document.getElementById("playButton").addEventListener("click", loadWebsite);
+document.getElementById("remove-player-button").addEventListener("click", removeLastPlayer);
+
+function removeLastPlayer(){
+  let deletedPlayer = nombres.pop();
+  document.getElementById("lobby").removeChild(document.getElementById(deletedPlayer));
+}
 
 ///////////////////////UI-INICIO///////////////////////////////////
 
