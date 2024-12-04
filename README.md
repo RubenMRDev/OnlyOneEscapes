@@ -115,13 +115,13 @@ Feel free to reach out through the following channels:
 We look forward to connecting with you!
 
 ---
-## 🤝 **Contribuciones**
+## 🤝 **Contributing**
 
-¡Las contribuciones de la comunidad son bienvenidas! Si deseas contribuir a este proyecto, por favor sigue estos pasos:
+We welcome contributions from the community! If you’d like to contribute to this project, please follow these steps:
 
-### 📝 **Cómo Contribuir**:
-1. **Haz un Fork del repositorio**: Haz clic en el botón "Fork" en la parte superior derecha de esta página para crear una copia del repositorio bajo tu propia cuenta de GitHub.
-2. **Clona tu Fork**: Clona tu repositorio bifurcado a tu máquina local usando Git.
+### 📝 **How to Contribute**:
+1. **Fork the repository**: Click the "Fork" button at the top right of this page to create a copy of the repository under your own GitHub account.
+2. **Clone your fork**: Clone your forked repository to your local machine using Git.
 
 ## **Create a new branch**:
 1. **Create a new branch for your changes.**
@@ -147,7 +147,7 @@ Go to the original repository and create a pull request to submit your changes. 
 **Keep your code clean**: Ensure your code is clean and well-documented.
 **Test your changes**: If possible, add tests to ensure that your changes work as expected and don't break existing features.
 
-## 💡 **Ideas for Contribution**:
+💡 **Ideas for Contribution**:
 Add new features or functionalities.
 Fix bugs or improve existing code.
 Update documentation for better clarity.
