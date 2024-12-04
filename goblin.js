@@ -308,3 +308,7 @@ export function showDyingGoblin(player, inverted) {
       urlDyingGoblinAnimation(player);
   }
 }
+
+export function showWinnerGoblin(player){
+  return goblins[assignedGoblins.get(player)].animations.idle;
+}
