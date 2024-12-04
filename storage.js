@@ -17,6 +17,10 @@ export function showHistory() {
   historialContainer.innerHTML = "";
   historialContainer.classList.remove("d-none");
   historialContainer.classList.add("d-flex");
+  historialContainer.classList.add("flex-column");
+  historialContainer.style.overflowY = "auto";
+  historialContainer.style.maxHeight = "100px"; 
+
 
   if (localStorage.getItem("historialJuego") === null) {
     const p = document.getElementById("history");
@@ -32,7 +36,6 @@ export function showHistory() {
       const partidaElemento = document.createElement("p");
       partidaElemento.id = "historial-texto";
       partidaElemento.classList.add("partida");
-      partidaElemento.classList.add("text-wrap");
       partidaElemento.classList.add("text-center");
       partidaElemento.classList.add("w-75");
       partidaElemento.textContent = `Partida ${index + 1}: 
