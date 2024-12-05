@@ -100,13 +100,13 @@ function showHistory() {
 
 let nombres = [];
 
-const fight_music = new Audio("images/audio/fight.mp3");
+const fight_music = new Audio("https://res.cloudinary.com/ddguqr8l8/video/upload/v1733382316/battle_yxwsew.mp3");
 const touch_sound = new Audio("images/audio/touch.mp3");
 const error_sound = new Audio("images/audio/error.mp3");
 const death_sound = new Audio("images/audio/death.mp3");
 const add_sound = new Audio("images/audio/add.mp3");
 const page_sound = new Audio("images/audio/page.mp3");
-fight_music.volume = "0.1";
+fight_music.volume = "0.3";
 page_sound.volume = "0.1";
 error_sound.volume = "0.4";
 const menu_music = new Audio(
