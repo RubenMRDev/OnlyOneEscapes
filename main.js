@@ -603,6 +603,7 @@ function showRollingDice() {
     "https://res.cloudinary.com/ddguqr8l8/image/upload/v1733077596/yellowdice_yuvoti.gif";
   rollingDice.src = `${gifUrl}?t=${Date.now()}`;
   const diceContainer = document.getElementById("rolling-dice");
+  diceContainer.classList.remove("d-none");
   diceContainer.innerHTML = "";
   diceContainer.appendChild(rollingDice);
 }
@@ -661,6 +662,7 @@ async function ejecutarRonda(jugadores) {
   } else {
     vivos = ganadores;
     ganadores = [];
+    document.getElementById("rolling-dice").classList.add("d-none");
     document.getElementById("start-round-button").classList.remove("d-none");
     document.getElementById("start-round-button").classList.add("d-inline");
     step = 0;
